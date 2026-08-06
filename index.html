@@ -15,6 +15,16 @@
 
     <style>
         /* =========================================
+           FONTE PERSONALIZADA (BOSTON ANGEL)
+           ========================================= */
+        @font-face {
+            font-family: 'Boston Angel';
+            src: url('boston-angel.ttf') format('truetype'); /* Coloque o arquivo da fonte na mesma pasta */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* =========================================
            VARIÁVEIS - TEMA METÁLICO E AZUL ROYAL
            ========================================= */
         :root {
@@ -43,6 +53,7 @@
 
             --font-ui: 'Montserrat', sans-serif;
             --font-serif: 'Cinzel', serif;
+            --font-logo: 'Boston Angel', 'Cinzel', cursive; /* Fonte aplicada nas logos */
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -102,7 +113,7 @@
         .top-bar-left { display: flex; align-items: center; gap: 8px; }
         .top-bar-center { text-align: center; flex-grow: 1; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
         .top-bar-center a { text-decoration: underline; margin-left: 10px; color: #fff; }
-        .top-bar-right { font-family: var(--font-serif); font-style: italic; text-transform: none; font-size: 14px; color: #e1e6ed; }
+        .top-bar-right { font-family: var(--font-logo); font-size: 20px; font-weight: normal; color: #e1e6ed; } /* Alterado para a nova fonte da logo */
 
         /* =========================================
            CABEÇALHO (HEADER METÁLICO)
@@ -124,10 +135,9 @@
         .header-cep:hover { color: var(--accent-royal); }
 
         .header-logo {
-            font-family: var(--font-serif);
-            font-size: 28px; /* Reduzido de 40px para caber melhor */
-            letter-spacing: 4px; /* Reduzido de 8px */
-            font-weight: 700;
+            font-family: var(--font-logo); /* Alterado para a nova fonte da logo */
+            font-size: 48px; /* Aumentado um pouco, pois fontes cursivas costumam ser menores */
+            font-weight: normal;
             text-align: center;
         }
 
