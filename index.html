@@ -53,7 +53,7 @@
 
             --font-ui: 'Montserrat', sans-serif;
             --font-serif: 'Cinzel', serif;
-            --font-logo: 'Boston Angel', 'Cinzel', cursive; /* Fonte aplicada nas logos */
+            --font-logo: 'Boston Angel', 'Cinzel', cursive;
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -113,7 +113,7 @@
         .top-bar-left { display: flex; align-items: center; gap: 8px; }
         .top-bar-center { text-align: center; flex-grow: 1; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
         .top-bar-center a { text-decoration: underline; margin-left: 10px; color: #fff; }
-        .top-bar-right { font-family: var(--font-logo); font-size: 20px; font-weight: normal; color: #e1e6ed; } /* Alterado para a nova fonte da logo */
+        .top-bar-right { font-family: var(--font-logo); font-size: 20px; font-weight: normal; color: #e1e6ed; }
 
         /* =========================================
            CABEÇALHO (HEADER METÁLICO)
@@ -135,15 +135,14 @@
         .header-cep:hover { color: var(--accent-royal); }
 
         .header-logo {
-            font-family: var(--font-logo); /* Alterado para a nova fonte da logo */
-            font-size: 48px; /* Aumentado um pouco, pois fontes cursivas costumam ser menores */
+            font-family: var(--font-logo); 
+            font-size: 48px; 
             font-weight: normal;
             text-align: center;
         }
 
         .header-icons { display: flex; align-items: center; gap: 20px; }
         
-        /* Botões de Ícones Esculpidos no Metal */
         .header-icons .icon-btn {
             background: var(--bg-secondary); border: none; width: 40px; height: 40px;
             border-radius: 50%; color: var(--text-primary); cursor: pointer;
@@ -187,7 +186,7 @@
             margin-bottom: 60px; text-transform: uppercase;
         }
 
-        /* FILTROS (Botões Metálicos em Relevo) */
+        /* FILTROS */
         .filters-row {
             display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-bottom: 25px;
         }
@@ -225,7 +224,7 @@
             background-repeat: no-repeat; background-position: right 15px center; background-size: 16px;
         }
 
-        /* VITRINE DE PRODUTOS (Placas de Metal 4 Colunas) */
+        /* VITRINE DE PRODUTOS */
         .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
 
         .product-card {
@@ -236,7 +235,6 @@
             position: relative;
         }
 
-        /* Brilho da placa */
         .product-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); z-index: 10;
@@ -256,6 +254,20 @@
         .product-name { font-size: 14px; font-weight: 600; text-align: center; margin-bottom: 10px; color: var(--text-primary);}
         .product-price { font-size: 16px; font-weight: 700; }
 
+        /* =========================================
+           BOTÃO WHATSAPP FLUTUANTE
+           ========================================= */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 25px rgba(37,211,102,0.4), inset 0 4px 8px rgba(255,255,255,0.4);
+            border: 2px solid rgba(255,255,255,0.2); z-index: 1000; transition: var(--transition);
+        }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(5deg); color: white; }
+
+        /* RESPONSIVIDADE */
         @media (max-width: 1024px) {
             .product-grid { grid-template-columns: repeat(2, 1fr); }
             .main-nav { flex-wrap: wrap; gap: 20px; }
@@ -396,6 +408,11 @@
             </div>
         </div>
     </main>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/5519982865594?text=Olá!%20Gostaria%20de%20falar%20com%20um%20Consultor%20VIP." target="_blank" class="whatsapp-float" title="Fale com um Consultor VIP">
+        <i data-feather="message-circle" width="30" height="30"></i>
+    </a>
 
     <!-- INICIALIZAÇÃO DOS ÍCONES FEATHER E MODO NOTURNO -->
     <script>
