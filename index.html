@@ -229,7 +229,7 @@
         .section-header h2 { font-size: 36px; margin-bottom: 15px; }
         .section-header p { color: var(--text-secondary); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;}
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 
         .product-card {
             background: var(--card-bg);
@@ -241,9 +241,11 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        /* Brilho da borda superior */
         .product-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); z-index: 10;
@@ -252,27 +254,33 @@
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 51, 160, 0.15); }
 
         .product-img-wrap {
-            position: relative; overflow: hidden; height: 350px;
+            position: relative; overflow: hidden; height: 320px;
             display: flex; align-items: center; justify-content: center;
             background: var(--shadow-inset);
             border-bottom: 1px solid var(--border-light);
         }
 
-        .product-img-wrap img { width: 75%; height: auto; object-fit: contain; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)); transition: transform 0.6s ease; }
-        .product-card:hover .product-img-wrap img { transform: scale(1.1); }
+        .product-img-wrap img { width: 80%; height: auto; object-fit: contain; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)); transition: transform 0.6s ease; }
+        .product-card:hover .product-img-wrap img { transform: scale(1.08); }
 
         .badge {
-            position: absolute; top: 20px; left: 20px;
+            position: absolute; top: 15px; left: 15px;
             background: var(--accent-royal-grad); color: #fff;
-            padding: 6px 14px; font-size: 10px; letter-spacing: 1px;
+            padding: 6px 12px; font-size: 10px; letter-spacing: 1px;
             text-transform: uppercase; z-index: 2; border-radius: 3px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.3);
+            font-weight: 600;
         }
 
-        .product-info { padding: 30px; text-align: center; }
+        .badge-danger {
+            background: linear-gradient(135deg, #d9534f 0%, #b52b27 100%);
+        }
+
+        .product-info { padding: 25px 20px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
         .product-brand { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; font-weight: 600;}
-        .product-name { font-size: 18px; margin-bottom: 15px; font-weight: 700; }
-        .product-price { font-size: 20px; font-weight: 700; margin-bottom: 25px; }
+        .product-name { font-size: 15px; margin-bottom: 12px; font-weight: 700; line-height: 1.4; min-height: 42px; }
+        .old-price { font-size: 13px; color: var(--text-secondary); text-decoration: line-through; margin-bottom: 2px; }
+        .product-price { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
 
         /* ==========================================================================
            6. DIFERENCIAIS
@@ -290,7 +298,7 @@
             display: flex; align-items: center; justify-content: center;
             box-shadow: var(--shadow-3d); border: 1px solid var(--border-light);
         }
-        .feature-icon { stroke: url(#blueGradient); } /* SVG Gradient aplicado no script */
+        .feature-icon { stroke: url(#blueGradient); }
 
         .feature-item h3 { font-size: 16px; margin-bottom: 10px; font-weight: 700; }
         .feature-item p { font-size: 13px; color: var(--text-secondary); }
@@ -378,10 +386,10 @@
         <div class="cart-items">
             <!-- Item de exemplo -->
             <div class="cart-item">
-                <img src="https://images.unsplash.com/photo-1548171915-e76a39d89b91?q=80&w=200&auto=format&fit=crop" alt="Relógio">
+                <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=200&auto=format&fit=crop" alt="Relógio Poedagar">
                 <div class="cart-item-details">
-                    <h4>The President Inox</h4>
-                    <p class="text-metallic">R$ 12.500,00</p>
+                    <h4>Relógio Poedagar De Luxo Aço</h4>
+                    <p class="text-metallic">R$ 97,75</p>
                     <span style="font-size:12px; color:var(--text-secondary); font-weight: 600;">Qtd: 1</span>
                 </div>
             </div>
@@ -389,7 +397,7 @@
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Subtotal</span>
-                <span class="text-metallic">R$ 12.500,00</span>
+                <span class="text-metallic">R$ 97,75</span>
             </div>
             <button class="btn btn-solid" style="width: 100%; margin-bottom: 10px;">Finalizar Compra Segura</button>
             <p style="font-size: 10px; text-align:center; color: var(--text-secondary); font-weight: 600;">Pagamento via Pix, Cartão ou Boleto. Criptografia SSL 256-bit.</p>
@@ -422,7 +430,7 @@
         <div class="hero-content fade-in">
             <span class="hero-subtitle">A Essência do Tempo</span>
             <h1 class="text-metallic">Precisão e Imponência<br>para o Sucesso</h1>
-            <p style="margin-bottom: 40px; font-weight: 500; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Descubra a nossa coleção exclusiva de alta relojoaria corporativa.</p>
+            <p style="margin-bottom: 40px; font-weight: 500; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Descubra a nossa coleção exclusiva de alta relojoaria masculina.</p>
             <a href="#colecoes" class="btn btn-solid">Explorar Coleção</a>
         </div>
     </section>
@@ -448,51 +456,82 @@
         </div>
     </section>
 
-    <!-- VITRINE DE PRODUTOS -->
+    <!-- VITRINE DE PRODUTOS POEDAGAR -->
     <section class="section" id="colecoes">
         <div class="section-header fade-in">
-            <p>Seleção Exclusiva</p>
+            <p>Seleção Exclusiva Poedagar</p>
             <h2 class="text-metallic">Coleção Executiva</h2>
         </div>
         
         <div class="product-grid">
             <!-- Produto 1 -->
             <div class="product-card fade-in">
-                <span class="badge">Lançamento</span>
+                <span class="badge">15% OFF</span>
                 <div class="product-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=500&auto=format&fit=crop" alt="The Minimalist">
+                    <!-- Substitua o src abaixo pela URL da sua foto do Produto 1 -->
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=500&auto=format&fit=crop" alt="Relógio Poedagar De Luxo Aço">
                 </div>
                 <div class="product-info">
-                    <span class="product-brand">Royal Imperium</span>
-                    <h3 class="product-name text-metallic">The Executive Titanium</h3>
-                    <div class="product-price text-metallic">R$ 8.900,00</div>
+                    <div>
+                        <span class="product-brand">POEDAGAR</span>
+                        <h3 class="product-name text-metallic">Relógio Poedagar De Luxo Aço Com Caixa E Ajuste De Pulseira</h3>
+                        <div class="old-price">R$ 115,00</div>
+                        <div class="product-price text-metallic">R$ 97,75</div>
+                    </div>
                     <button class="btn btn-solid btn-add-cart" style="width: 100%;">Adicionar ao Carrinho</button>
                 </div>
             </div>
 
             <!-- Produto 2 -->
             <div class="product-card fade-in" style="transition-delay: 0.2s">
+                <span class="badge badge-danger">ÚLTIMAS 2 UNIDADES (51% OFF)</span>
                 <div class="product-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1548171915-e76a39d89b91?q=80&w=500&auto=format&fit=crop" alt="The President">
+                    <!-- Substitua o src abaixo pela URL da sua foto do Produto 2 -->
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=500&auto=format&fit=crop" alt="Relógio De Pulso Masculino Poedagar 613 Branco">
                 </div>
                 <div class="product-info">
-                    <span class="product-brand">Royal Imperium</span>
-                    <h3 class="product-name text-metallic">The President Inox</h3>
-                    <div class="product-price text-metallic">R$ 12.500,00</div>
+                    <div>
+                        <span class="product-brand">POEDAGAR</span>
+                        <h3 class="product-name text-metallic">Relógio De Pulso Masculino Poedagar 613 Branco, Quartzo</h3>
+                        <div class="old-price">R$ 199,00</div>
+                        <div class="product-price text-metallic">R$ 95,99</div>
+                    </div>
                     <button class="btn btn-solid btn-add-cart" style="width: 100%;">Adicionar ao Carrinho</button>
                 </div>
             </div>
 
             <!-- Produto 3 -->
             <div class="product-card fade-in" style="transition-delay: 0.4s">
-                <span class="badge" style="background: linear-gradient(135deg, #111, #333);">Mais Vendido</span>
+                <span class="badge">12% OFF</span>
                 <div class="product-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=500&auto=format&fit=crop" alt="The Chrono">
+                    <!-- Substitua o src abaixo pela URL da sua foto do Produto 3 -->
+                    <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?q=80&w=500&auto=format&fit=crop" alt="Relógio Masculino Clássico Luxo Social">
                 </div>
                 <div class="product-info">
-                    <span class="product-brand">Royal Imperium</span>
-                    <h3 class="product-name text-metallic">Master Chronograph</h3>
-                    <div class="product-price text-metallic">R$ 15.200,00</div>
+                    <div>
+                        <span class="product-brand">POEDAGAR</span>
+                        <h3 class="product-name text-metallic">Relógio Masculino Clássico Luxo Social Aço Inox Porto Old Mo</h3>
+                        <div class="old-price">R$ 130,00</div>
+                        <div class="product-price text-metallic">R$ 113,49</div>
+                    </div>
+                    <button class="btn btn-solid btn-add-cart" style="width: 100%;">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="product-card fade-in" style="transition-delay: 0.6s">
+                <span class="badge" style="background: linear-gradient(135deg, #111, #333);">MAIS VENDIDO (6% OFF)</span>
+                <div class="product-img-wrap">
+                    <!-- Substitua o src abaixo pela URL da sua foto do Produto 4 -->
+                    <img src="https://images.unsplash.com/photo-1548171915-e76a39d89b91?q=80&w=500&auto=format&fit=crop" alt="Relógio de Pulso Poedagar 613">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <span class="product-brand">POEDAGAR / CRISTALLANDIA</span>
+                        <h3 class="product-name text-metallic">Relógio de Pulso Poedagar 613 com Correia de Aço Inoxidável</h3>
+                        <div class="old-price">R$ 98,42</div>
+                        <div class="product-price text-metallic">R$ 92,00</div>
+                    </div>
                     <button class="btn btn-solid btn-add-cart" style="width: 100%;">Adicionar ao Carrinho</button>
                 </div>
             </div>
@@ -538,7 +577,7 @@
                 document.body.removeAttribute('data-theme');
                 icon.setAttribute('data-feather', 'moon');
             }
-            feather.replace(); // Atualiza o ícone SVG
+            feather.replace();
         });
 
         // 2. Lógica do Carrinho de Compras (Side Panel)
@@ -567,7 +606,7 @@
                 e.target.style.color = '#ffffff';
                 
                 setTimeout(() => {
-                    toggleCart(); // Abre o carrinho
+                    toggleCart();
                     e.target.innerText = originalText;
                     e.target.style.background = '';
                     e.target.style.borderColor = '';
@@ -586,7 +625,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Anima apenas uma vez
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
