@@ -431,8 +431,8 @@
                 <span>Subtotal</span>
                 <span class="text-metallic">R$ 97,75</span>
             </div>
-            <!-- Redirecionamento de Checkout dentro do Carrinho -->
-            <a href="COLE_O_LINK_DO_SEU_CHECKOUT_AQUI" class="btn btn-solid" style="width: 100%; margin-bottom: 10px; display: block; text-align: center;">Finalizar Compra Segura</a>
+            <!-- Link do Checkout do Carrinho para a Cakto -->
+            <a href="https://pay.cakto.com.br/SEU_LINK_GERAL_AQUI" id="cartCheckoutBtn" class="btn btn-solid" style="width: 100%; margin-bottom: 10px; display: block; text-align: center;" target="_blank">Finalizar Compra Segura</a>
             <p style="font-size: 10px; text-align:center; color: var(--text-secondary); font-weight: 600;">Pagamento via Pix, Cartão ou Boleto. Criptografia SSL 256-bit.</p>
         </div>
     </aside>
@@ -594,8 +594,8 @@
                     </div>
                 </div>
                 <div class="modal-actions">
-                    <!-- Botão Comprar Agora direciona para o link de checkout correspondente -->
-                    <a href="COLE_O_LINK_DO_SEU_CHECKOUT_AQUI" class="btn btn-solid" id="modalBuyNowBtn" style="display: block; text-align: center;">Comprar Agora</a>
+                    <!-- Botão Comprar Agora direciona para o checkout da Cakto -->
+                    <a href="#" class="btn btn-solid" id="modalBuyNowBtn" style="display: block; text-align: center;" target="_blank">Comprar Agora</a>
                     <button class="btn" id="modalAddToCartBtn">Adicionar ao Carrinho</button>
                 </div>
             </div>
@@ -623,16 +623,17 @@
     <script>
         feather.replace();
 
-        // Base de dados dos produtos
+        // BASE DE DADOS DOS PRODUTOS
+        // COLE OS SEUS LINKS DO CHECKOUT CAKTO ABAIXO:
         const productsData = {
             1: {
-                brand: "POEDAGAR",
+                brand: "POEDAGAR (Vendido por SINGULIERBR)",
                 title: "Relógio Poedagar De Luxo Aço Com Caixa E Ajuste De Pulseira",
                 oldPrice: "R$ 115,00",
                 currentPrice: "R$ 97,75",
-                rating: +100 vendidos",
+                rating: "4.9 ★★★★★ (8 avaliações) | +100 vendidos",
                 img: "https://http2.mlstatic.com/D_NQ_NP_2X_669770-MLB113946237148_072026-F-relogio-poedagar-de-luxo-aco-com-caixa-e-ajuste-de-pulseira.webp",
-                checkoutUrl: "https://pay.cakto.com.br/txtq3bm_1053099",
+                caktoCheckoutUrl: "https://pay.cakto.com.br/txtq3bm_1053099",
                 specs: [
                     "Modelo: 613 (Masculino - Adultos)",
                     "Material da correia & caixa: Aço inoxidável (Prateado)",
@@ -653,7 +654,7 @@
                 currentPrice: "R$ 95,99",
                 rating: "4.9 (+500 vendidos)",
                 img: "https://http2.mlstatic.com/D_NQ_NP_2X_977160-MLA111091578712_052026-F.webp",
-                checkoutUrl: "COLE_O_LINK_DO_SEU_CHECKOUT_DO_PRODUTO_2_AQUI",
+                caktoCheckoutUrl: "COLE_O_LINK_CAKTO_DO_PRODUTO_2_AQUI",
                 specs: [
                     "Mostrador Branco Elegante modelo 613",
                     "Frete Grátis para todo o Brasil",
@@ -668,7 +669,7 @@
                 currentPrice: "R$ 113,49",
                 rating: "4.7 (+100 vendidos)",
                 img: "https://http2.mlstatic.com/D_NQ_NP_2X_820004-MLB108124612115_032026-F-relogio-masculino-classico-luxo-social-aco-inox-porto-old-mo.webp",
-                checkoutUrl: "COLE_O_LINK_DO_SEU_CHECKOUT_DO_PRODUTO_3_AQUI",
+                caktoCheckoutUrl: "COLE_O_LINK_CAKTO_DO_PRODUTO_3_AQUI",
                 specs: [
                     "Exibição dupla de dia da semana e data do mês",
                     "Design Clássico Social Porto Old Mo",
@@ -683,7 +684,7 @@
                 currentPrice: "R$ 92,00",
                 rating: "4.8 (+10mil vendidos)",
                 img: "https://http2.mlstatic.com/D_NQ_NP_2X_887652-MLA99972973535_112025-F.webp",
-                checkoutUrl: "COLE_O_LINK_DO_SEU_CHECKOUT_DO_PRODUTO_4_AQUI",
+                caktoCheckoutUrl: "COLE_O_LINK_CAKTO_DO_PRODUTO_4_AQUI",
                 specs: [
                     "Modelo Campeão de Vendas com mais de 10 mil unidades",
                     "Construção robusta e confortável para o dia a dia",
@@ -708,8 +709,8 @@
             document.getElementById('modalOldPrice').innerText = product.oldPrice;
             document.getElementById('modalCurrentPrice').innerText = product.currentPrice;
             
-            // Atualiza o link do botão Comprar Agora para o Checkout do produto específico
-            document.getElementById('modalBuyNowBtn').href = product.checkoutUrl;
+            // Define o link de checkout Cakto correspondente
+            document.getElementById('modalBuyNowBtn').href = product.caktoCheckoutUrl;
 
             const specsContainer = document.getElementById('modalSpecsList');
             specsContainer.innerHTML = '';
@@ -727,7 +728,7 @@
             if (e.target === modalOverlay) modalOverlay.classList.remove('active');
         });
 
-        // Alternância de Tema (Dark/Light)
+        // Alternância de Tema
         const themeToggle = document.getElementById('themeToggle');
         const icon = themeToggle.querySelector('i');
         let isDarkMode = false;
@@ -744,7 +745,7 @@
             feather.replace();
         });
 
-        // Lógica do Carrinho Side Panel
+        // Carrinho
         const openCart = document.getElementById('openCart');
         const closeCart = document.getElementById('closeCart');
         const cartSidebar = document.getElementById('cartSidebar');
@@ -763,7 +764,7 @@
             toggleCart();
         }
 
-        // Animações de Scroll
+        // Animações
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -776,7 +777,6 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Efeito de sombra do Header
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 50) {
