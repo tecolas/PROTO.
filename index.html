@@ -431,7 +431,8 @@
                 <span>Subtotal</span>
                 <span class="text-metallic">R$ 97,75</span>
             </div>
-            <button class="btn btn-solid" style="width: 100%; margin-bottom: 10px;">Finalizar Compra Segura</button>
+            <!-- Redirecionamento de Checkout dentro do Carrinho -->
+            <a href="COLE_O_LINK_DO_SEU_CHECKOUT_AQUI" class="btn btn-solid" style="width: 100%; margin-bottom: 10px; display: block; text-align: center;">Finalizar Compra Segura</a>
             <p style="font-size: 10px; text-align:center; color: var(--text-secondary); font-weight: 600;">Pagamento via Pix, Cartão ou Boleto. Criptografia SSL 256-bit.</p>
         </div>
     </aside>
@@ -593,7 +594,8 @@
                     </div>
                 </div>
                 <div class="modal-actions">
-                    <button class="btn btn-solid" id="modalBuyNowBtn">Comprar Agora</button>
+                    <!-- Botão Comprar Agora direciona para o link de checkout correspondente -->
+                    <a href="COLE_O_LINK_DO_SEU_CHECKOUT_AQUI" class="btn btn-solid" id="modalBuyNowBtn" style="display: block; text-align: center;">Comprar Agora</a>
                     <button class="btn" id="modalAddToCartBtn">Adicionar ao Carrinho</button>
                 </div>
             </div>
@@ -621,7 +623,7 @@
     <script>
         feather.replace();
 
-        // Base de dados dos produtos para o Modal
+        // Base de dados dos produtos
         const productsData = {
             1: {
                 brand: "POEDAGAR (Vendido por SINGULIERBR)",
@@ -630,6 +632,7 @@
                 currentPrice: "R$ 97,75",
                 rating: "4.9 ★★★★★ (8 avaliações) | +100 vendidos",
                 img: "https://http2.mlstatic.com/D_NQ_NP_2X_669770-MLB113946237148_072026-F-relogio-poedagar-de-luxo-aco-com-caixa-e-ajuste-de-pulseira.webp",
+                checkoutUrl: "COLE_O_LINK_DO_SEU_CHECKOUT_DO_PRODUTO_1_AQUI",
                 specs: [
                     "Modelo: 613 (Masculino - Adultos)",
                     "Material da correia & caixa: Aço inoxidável (Prateado)",
@@ -650,6 +653,7 @@
                 currentPrice: "R$ 95,99",
                 rating: "4.9 (+500 vendidos)",
                 img: "https://http2.mlstatic.com/D_NQ_NP_2X_977160-MLA111091578712_052026-F.webp",
+                checkoutUrl: "COLE_O_LINK_DO_SEU_CHECKOUT_DO_PRODUTO_2_AQUI",
                 specs: [
                     "Mostrador Branco Elegante modelo 613",
                     "Frete Grátis para todo o Brasil",
@@ -664,6 +668,7 @@
                 currentPrice: "R$ 113,49",
                 rating: "4.7 (+100 vendidos)",
                 img: "https://http2.mlstatic.com/D_NQ_NP_2X_820004-MLB108124612115_032026-F-relogio-masculino-classico-luxo-social-aco-inox-porto-old-mo.webp",
+                checkoutUrl: "COLE_O_LINK_DO_SEU_CHECKOUT_DO_PRODUTO_3_AQUI",
                 specs: [
                     "Exibição dupla de dia da semana e data do mês",
                     "Design Clássico Social Porto Old Mo",
@@ -678,6 +683,7 @@
                 currentPrice: "R$ 92,00",
                 rating: "4.8 (+10mil vendidos)",
                 img: "https://http2.mlstatic.com/D_NQ_NP_2X_887652-MLA99972973535_112025-F.webp",
+                checkoutUrl: "COLE_O_LINK_DO_SEU_CHECKOUT_DO_PRODUTO_4_AQUI",
                 specs: [
                     "Modelo Campeão de Vendas com mais de 10 mil unidades",
                     "Construção robusta e confortável para o dia a dia",
@@ -701,6 +707,9 @@
             document.getElementById('modalRatingText').innerText = `(${product.rating})`;
             document.getElementById('modalOldPrice').innerText = product.oldPrice;
             document.getElementById('modalCurrentPrice').innerText = product.currentPrice;
+            
+            // Atualiza o link do botão Comprar Agora para o Checkout do produto específico
+            document.getElementById('modalBuyNowBtn').href = product.checkoutUrl;
 
             const specsContainer = document.getElementById('modalSpecsList');
             specsContainer.innerHTML = '';
