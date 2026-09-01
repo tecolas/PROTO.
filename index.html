@@ -1,567 +1,452 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniSmart — Tecnologia que cuida. Inteligência que conecta.</title>
-    <meta name="description" content="Ecossistema de saúde preditiva e sustentabilidade da Unicharm.">
-    
+    <title>Jaguariúna Conecta | Mobilidade e Transporte Inteligente</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
                     colors: {
                         brand: {
-                            blue: '#0066FF',
-                            cyan: '#00F0FF',
-                            green: '#10B981',
-                            dark: '#0A0F1D',
-                            card: 'rgba(255, 255, 255, 0.05)',
-                        },
-                        module: {
-                            kids: '#3B82F6',
-                            care: '#14B8A6',
-                            women: '#EC4899',
-                            bin: '#10B981',
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        .glass {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
         }
-        .glass-dark {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .glow-blue {
-            box-shadow: 0 0 50px -10px rgba(0, 102, 255, 0.3);
-        }
-        .pulse-line {
-            stroke-dasharray: 10;
-            animation: dash 20s linear infinite;
-        }
-        @keyframes dash {
-            to { stroke-dashoffset: -1000; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-        <nav class="max-w-7xl mx-auto px-6 py-4">
-            <div class="glass rounded-full px-6 py-3 flex items-center justify-between shadow-sm">
-                <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900">
-                    <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white text-sm">U</span>
-                    UniSmart
-                </a>
-
-                <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600">
-                    <a href="#ecossistema" onclick="navigateTo('ecossistema')" class="hover:text-blue-600 transition">Ecossistema</a>
-                    <a href="#kids" onclick="navigateTo('kids')" class="hover:text-blue-500 transition">UniSmart Kids</a>
-                    <a href="#care" onclick="navigateTo('care')" class="hover:text-teal-600 transition">UniSmart Care</a>
-                    <a href="#women" onclick="navigateTo('women')" class="hover:text-pink-500 transition">UniSmart Women</a>
-                    <a href="#bin" onclick="navigateTo('bin')" class="hover:text-emerald-600 transition">Sustentabilidade</a>
-                    <a href="#tecnologia" onclick="navigateTo('tecnologia')" class="hover:text-blue-600 transition">Tecnologia</a>
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-slate-200/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-bus"></i>
                 </div>
-
-                <button onclick="navigateTo('ecossistema')" class="hidden sm:flex items-center gap-2 bg-slate-900 hover:bg-blue-600 text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
-                    Conheça o UniSmart <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
-
-                <button id="mobile-menu-btn" class="lg:hidden text-slate-700">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <main id="app-content" class="pt-24 min-h-screen">
-        </main>
-
-    <footer class="bg-slate-950 text-white pt-16 pb-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
-            <div class="space-y-4">
-                <div class="flex items-center gap-2 font-bold text-xl tracking-tight">
-                    <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white text-sm">U</span>
-                    UniSmart
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900 block leading-none">Jaguariúna<span class="text-brand-600">Conecta</span></span>
+                    <span class="text-xs text-slate-500 font-medium tracking-wide uppercase">Plataforma de Mobilidade</span>
                 </div>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Tecnologia que cuida. Inteligência que conecta.<br>
-                    Um ecossistema conceitual desenvolvido sob a visão de inovação Unicharm.
-                </p>
             </div>
             
-            <div>
-                <h4 class="text-sm font-semibold mb-4 text-slate-200">Módulos</h4>
-                <ul class="space-y-2 text-xs text-slate-400">
-                    <li><a href="#kids" onclick="navigateTo('kids')" class="hover:text-white transition">UniSmart Kids</a></li>
-                    <li><a href="#care" onclick="navigateTo('care')" class="hover:text-white transition">UniSmart Care</a></li>
-                    <li><a href="#women" onclick="navigateTo('women')" class="hover:text-white transition">UniSmart Women</a></li>
-                    <li><a href="#bin" onclick="navigateTo('bin')" class="hover:text-white transition">UniSmart Bin</a></li>
-                </ul>
-            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                <a href="#lacuna" class="hover:text-brand-600 transition-colors">O Desafio</a>
+                <a href="#proposta" class="hover:text-brand-600 transition-colors">A Proposta</a>
+                <a href="#objetivos" class="hover:text-brand-600 transition-colors">Objetivos</a>
+                <a href="#funcionamento" class="hover:text-brand-600 transition-colors">Como Funciona</a>
+                <a href="#publico" class="hover:text-brand-600 transition-colors">Público-Alvo</a>
+                <a href="#resultados" class="hover:text-brand-600 transition-colors">Impacto</a>
+            </nav>
 
-            <div>
-                <h4 class="text-sm font-semibold mb-4 text-slate-200">Institucional</h4>
-                <ul class="space-y-2 text-xs text-slate-400">
-                    <li><a href="#ecossistema" onclick="navigateTo('ecossistema')" class="hover:text-white transition">O Ecossistema</a></li>
-                    <li><a href="#tecnologia" onclick="navigateTo('tecnologia')" class="hover:text-white transition">Tecnologia Preditiva</a></li>
-                    <li><a href="#sobre" onclick="navigateTo('sobre')" class="hover:text-white transition">Sobre a Unicharm</a></li>
-                    <li><a href="#privacidade" onclick="navigateTo('privacidade')" class="hover:text-white transition">Privacidade e Dados</a></li>
-                </ul>
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="#demonstracao" class="px-5 py-2.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md shadow-brand-600/20 transition-all hover:shadow-lg hover:-translate-y-0.5">
+                    Acessar Plataforma
+                </a>
             </div>
+        </div>
+    </header>
 
-            <div>
-                <h4 class="text-sm font-semibold mb-4 text-slate-200">Contato & Suporte</h4>
-                <ul class="space-y-2 text-xs text-slate-400 mb-4">
-                    <li><a href="#contato" onclick="navigateTo('contato')" class="hover:text-white transition">Central de Inovação</a></li>
-                    <li><span class="text-slate-500">São Paulo / Tokyo</span></li>
-                </ul>
-                <div class="inline-block px-3 py-1 bg-slate-900 border border-slate-800 rounded-full text-[10px] text-slate-400">
-                    Conceito Tecnológico — 2026
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 gradient-bg text-white overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold uppercase tracking-wider text-brand-100 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Projeto de Inovação Urbana
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+                    Conectando você ao transporte com <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-indigo-200">tecnologia e precisão</span>.
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed mb-8">
+                    O Jaguariúna Conecta é a solução moderna criada para otimizar o deslocamento urbano, aproximar a população da gestão municipal e transformar o transporte público em uma experiência ágil e transparente.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#proposta" class="px-8 py-4 rounded-xl bg-white text-slate-900 font-bold text-center hover:bg-slate-100 transition-all shadow-xl hover:-translate-y-0.5">
+                        Conhecer o Projeto
+                    </a>
+                    <a href="#funcionamento" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-center border border-white/20 transition-all backdrop-blur-sm">
+                        Ver Como Funciona
+                    </a>
                 </div>
             </div>
         </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 h-12 bg-slate-50 [clip-path:polygon(0_100%,100%_100%,100%_0)]"></div>
+    </section>
 
-        <div class="max-w-7xl mx-auto px-6 mt-8 flex flex-col md:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
-            <p>© 2026 UniSmart — Todos os direitos reservados. Os dados e métricas apresentados possuem caráter puramente conceitual e demonstrativo.</p>
-            <div class="flex gap-4">
-                <a href="#privacidade" onclick="navigateTo('privacidade')" class="hover:underline">Privacidade</a>
-                <a href="#contato" onclick="navigateTo('contato')" class="hover:underline">Termos de Uso</a>
+    <section id="lacuna" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        01. Desafio Urbano
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-6">
+                        A Lacuna Identificada na Mobilidade Local
+                    </h2>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                        Atualmente, uma das principais dificuldades enfrentadas em Jaguariúna está relacionada à mobilidade urbana. A imprevisibilidade e a falta de informações centralizadas impactam diretamente a rotina dos cidadãos.
+                    </p>
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl mb-6">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-clock text-amber-600 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-amber-900">O Problema Central</h4>
+                                <p class="text-sm text-amber-800 mt-1">A grande dificuldade que parte da população enfrenta para se deslocar pela cidade com rapidez, segurança e praticidade diária.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-tr from-brand-600 to-indigo-600 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 opacity-10 text-white">
+                            <i class="fa-solid fa-route text-9xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Gargalos Atuais</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark text-rose-300"></i></span>
+                                <span>Falta de previsibilidade nos horários dos ônibus</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark text-rose-300"></i></span>
+                                <span>Dificuldade para localizar pontos de embarque</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark text-rose-300"></i></span>
+                                <span>Canal ineficiente para reporte de problemas operacionais</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <section id="proposta" class="py-16 md:py-24 bg-slate-100/70 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    02. Solução Tecnológica
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                    A Proposta: Jaguariúna Conecta
+                </h2>
+                <p class="text-slate-600 text-lg mt-4">
+                    Um projeto concebido para modernizar o transporte e transformar a maneira como os moradores se movem pela cidade.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-all">
+                    <div class="w-14 h-14 bg-blue-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Acesso Digital Centralizado</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Plataforma acessível diretamente pelo celular ou computador, unificando dados de linhas, itinerários e pontos de ônibus em uma interface intuitiva.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-all">
+                    <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Monitoramento & Atrasos</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Informa horários atualizados e alerta sobre possíveis atrasos ou alterações nas rotas, permitindo um planejamento prévio eficiente.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-all">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Participação Cidadã</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Permite que os moradores enviem alertas e reportem problemas estruturais em pontos ou falhas na operação das linhas em tempo real.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="objetivos" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-bullseye"></i>
+                    03. Metas do Projeto
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                    Objetivos Estratégicos
+                </h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">1</div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Acesso Descomplicado</h4>
+                        <p class="text-sm text-slate-600">Facilitar o acesso completo às informações sobre o sistema de transporte público local.</p>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">2</div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Redução de Espera</h4>
+                        <p class="text-sm text-slate-600">Diminuir consideravelmente o tempo de espera dos passageiros nos pontos de ônibus.</p>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">3</div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Comunicação Direta</h4>
+                        <p class="text-sm text-slate-600">Melhorar e agilizar a ponte de comunicação entre a população e a Prefeitura.</p>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">4</div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Mapeamento de Gargalos</h4>
+                        <p class="text-sm text-slate-600">Identificar com precisão geográfica os locais e linhas que mais necessitam de intervenções.</p>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">5</div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-1">Organização & Acessibilidade</h4>
+                        <p class="text-sm text-slate-600">Tornar a rede de transporte urbano substancialmente mais organizada, inclusiva e acessível.</p>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-blue-100 border border-brand-200 flex items-center justify-center text-center">
+                    <div>
+                        <i class="fa-solid fa-chart-line text-brand-600 text-2xl mb-2"></i>
+                        <h4 class="font-bold text-brand-900">Eficiência Comprovada</h4>
+                        <p class="text-xs text-brand-700 mt-1">Foco na melhoria contínua dos serviços urbanos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funcionamento" class="py-16 md:py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 text-brand-400 font-bold text-sm uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-gears"></i>
+                    04. Operação
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
+                    Como Funcionaria na Prática
+                </h2>
+                <p class="text-slate-400 text-lg mt-4">
+                    Integração simples em duas pontas para garantir eficiência e rápida tomada de decisão.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-slate-800/80 rounded-2xl p-8 border border-slate-700 relative">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-xs font-bold uppercase mb-6">
+                        <i class="fa-solid fa-user"></i> Visão do Cidadão
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6">Interface do Usuário</h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span>Acessa a plataforma via aplicativo no smartphone ou pelo site.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span>Consulta em tempo real sua linha de ônibus, horários e pontos próximos.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                            <span>Envia de forma simples e rápida reclamações, alertas de atraso ou sugestões.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-800/80 rounded-2xl p-8 border border-slate-700 relative">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase mb-6">
+                        <i class="fa-solid fa-building-flag"></i> Visão da Gestão
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6">Painel Administrativo</h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-indigo-400 mt-1"></i>
+                            <span>A Prefeitura recebe e centraliza dados consolidados sobre o fluxo e reclamações.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-indigo-400 mt-1"></i>
+                            <span>Mapeia e identifica com agilidade os problemas recorrentes no sistema.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-indigo-400 mt-1"></i>
+                            <span>Utiliza os relatórios estratégicos para planejar melhorias reais no transporte urbano.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publico" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-users"></i>
+                    05. Beneficiários
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                    Público-Alvo do Projeto
+                </h2>
+                <p class="text-slate-600 text-lg mt-4">
+                    O Jaguariúna Conecta foi pensado primordialmente para quem depende do transporte coletivo no dia a dia.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center hover:-translate-y-1 transition-all">
+                    <div class="w-16 h-16 bg-blue-100 text-brand-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-person-walking-luggage"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-lg">Passageiros Gerais</h4>
+                    <p class="text-slate-500 text-sm mt-2">Moradores que utilizam o transporte público para seus deslocamentos diários na cidade.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center hover:-translate-y-1 transition-all">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-lg">Estudantes</h4>
+                    <p class="text-slate-500 text-sm mt-2">Jovens e universitários que precisam de pontualidade no deslocamento para as instituições de ensino.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center hover:-translate-y-1 transition-all">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-lg">Trabalhadores</h4>
+                    <p class="text-slate-500 text-sm mt-2">Profissionais que dependem do cumprimento estrito de rotas para chegar a seus empregos.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center hover:-translate-y-1 transition-all">
+                    <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-person-cane"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-lg">Idosos</h4>
+                    <p class="text-slate-500 text-sm mt-2">Cidadãos da terceira idade que necessitam de mais praticidade, conforto e acessibilidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resultados" class="py-16 md:py-24 bg-slate-100/70 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-square-poll-vertical"></i>
+                        06. Impacto Estimado
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-6">
+                        Resultados Esperados
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-white rounded-xl border border-slate-200 flex items-start gap-4">
+                            <i class="fa-solid fa-face-smile text-emerald-500 text-2xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Melhoria da Experiência</h4>
+                                <p class="text-sm text-slate-600">Proporcionar um deslocamento mais previsível, confortável e menos estressante aos passageiros.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-5 bg-white rounded-xl border border-slate-200 flex items-start gap-4">
+                            <i class="fa-solid fa-calendar-check text-brand-500 text-2xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Planejamento Eficiente</h4>
+                                <p class="text-sm text-slate-600">Facilitar a programação diária de viagens do morador, reduzindo esperas desnecessárias.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-5 bg-white rounded-xl border border-slate-200 flex items-start gap-4">
+                            <i class="fa-solid fa-sliders text-indigo-500 text-2xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Tomada de Decisão Baseada em Dados</h4>
+                                <p class="text-sm text-slate-600">Oferecer subsídios reais e consolidados para a Prefeitura investir onde a população realmente precisa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-900 to-brand-950 rounded-3xl p-8 text-white flex flex-col justify-between shadow-xl">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-brand-400 font-bold text-sm uppercase tracking-wider mb-4">
+                            <i class="fa-solid fa-flag"></i>
+                            07. Conclusão do Relatório
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Um Passo em Direção ao Futuro</h3>
+                        <p class="text-slate-300 leading-relaxed mb-6">
+                            O <strong class="text-white">Jaguariúna Conecta</strong> preencheria uma lacuna importante ao aproximar a população do serviço de transporte público por meio da tecnologia.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed">
+                            Trata-se de um projeto simples, moderno e altamente escalável, que pode ser desenvolvido gradualmente: iniciando por um portal ou aplicativo básico e recebendo novas funcionalidades conforme o uso da comunidade.
+                        </p>
+                    </div>
+                    <div class="pt-8 border-t border-slate-800 mt-8 flex items-center justify-between">
+                        <span class="text-xs text-slate-400">Status do Projeto: <span class="text-emerald-400 font-semibold">Proposta Conceitual</span></span>
+                        <i class="fa-solid fa-city text-2xl text-slate-600"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-base">
+                    <i class="fa-solid fa-bus"></i>
+                </div>
+                <span class="text-lg font-bold text-white tracking-tight">Jaguariúna<span class="text-brand-500">Conecta</span></span>
+            </div>
+            <p class="text-sm">
+                Relatório de Projeto - Mobilidade e Transporte Urbano © Jaguariúna.
+            </p>
         </div>
     </footer>
 
-    <script>
-        // ROTAS E COMPONENTES DAS 11 PÁGINAS
-        const pages = {
-            home: `
-                <section class="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-6">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-semibold">
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> O futuro da higiene pessoal
-                        </div>
-                        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-                            O futuro do cuidado começa aqui.
-                        </h1>
-                        <p class="text-lg text-slate-600 font-normal leading-relaxed">
-                            UniSmart conecta pessoas, produtos e tecnologia para transformar higiene, saúde e sustentabilidade em uma experiência inteligente e preditiva.
-                        </p>
-                        <div class="flex flex-wrap gap-4 pt-4">
-                            <button onclick="navigateTo('ecossistema')" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3.5 rounded-full shadow-lg hover:shadow-blue-500/25 transition">
-                                Explorar o UniSmart
-                            </button>
-                            <button onclick="navigateTo('tecnologia')" class="bg-white hover:bg-slate-100 text-slate-700 font-medium px-8 py-3.5 rounded-full border border-slate-200 shadow-sm transition">
-                                Conhecer o aplicativo
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="relative flex items-center justify-center p-8">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-400/20 to-teal-400/20 rounded-full blur-3xl -z-10"></div>
-                        
-                        <div class="relative w-full max-w-md bg-slate-900 rounded-[40px] p-6 shadow-2xl border border-slate-800 text-white glow-blue">
-                            <div class="flex justify-between items-center mb-6">
-                                <div>
-                                    <span class="text-[10px] text-slate-400 uppercase tracking-widest block">Dashboard Familiar</span>
-                                    <h3 class="text-base font-bold text-white">Ecossistema UniSmart</h3>
-                                </div>
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-3 mb-4">
-                                <div class="bg-slate-800/60 p-3 rounded-2xl border border-blue-500/20">
-                                    <div class="flex items-center gap-2 text-blue-400 text-xs font-semibold mb-1">
-                                        <i data-lucide="baby" class="w-4 h-4"></i> Kids
-                                    </div>
-                                    <div class="text-sm font-medium">Fralda Leo</div>
-                                    <div class="text-[10px] text-slate-400">Umidade: 65%</div>
-                                </div>
-
-                                <div class="bg-slate-800/60 p-3 rounded-2xl border border-teal-500/20">
-                                    <div class="flex items-center gap-2 text-teal-400 text-xs font-semibold mb-1">
-                                        <i data-lucide="heart-pulse" class="w-4 h-4"></i> Care
-                                    </div>
-                                    <div class="text-sm font-medium">Mat Bio</div>
-                                    <div class="text-[10px] text-slate-400">Posição: De lado</div>
-                                </div>
-
-                                <div class="bg-slate-800/60 p-3 rounded-2xl border border-pink-500/20">
-                                    <div class="flex items-center gap-2 text-pink-400 text-xs font-semibold mb-1">
-                                        <i data-lucide="flower2" class="w-4 h-4"></i> Women
-                                    </div>
-                                    <div class="text-sm font-medium">Ciclo Íntimo</div>
-                                    <div class="text-[10px] text-slate-400">Fase Folicular</div>
-                                </div>
-
-                                <div class="bg-slate-800/60 p-3 rounded-2xl border border-emerald-500/20">
-                                    <div class="flex items-center gap-2 text-emerald-400 text-xs font-semibold mb-1">
-                                        <i data-lucide="recycle" class="w-4 h-4"></i> Bin
-                                    </div>
-                                    <div class="text-sm font-medium">Descarte Smart</div>
-                                    <div class="text-[10px] text-slate-400">Capacidade: 80%</div>
-                                </div>
-                            </div>
-
-                            <div class="bg-blue-600/20 border border-blue-500/30 p-3 rounded-xl flex items-center justify-between text-xs">
-                                <span class="text-blue-200">Status da Rede Preditiva</span>
-                                <span class="font-bold text-blue-400">100% Conectado</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="py-20 bg-white border-t border-slate-100">
-                    <div class="max-w-7xl mx-auto px-6">
-                        <div class="text-center max-w-2xl mx-auto mb-16">
-                            <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4">Um ecossistema. Toda a família.</h2>
-                            <p class="text-slate-600 text-sm">
-                                UniSmart reúne diferentes soluções inteligentes em uma única plataforma, permitindo acompanhar necessidades de cuidado, conforto e sustentabilidade de forma simples.
-                            </p>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="glass p-6 rounded-3xl hover:shadow-xl transition-all duration-300 border-t-4 border-t-blue-500 group">
-                                <div class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
-                                    <i data-lucide="baby" class="w-5 h-5"></i>
-                                </div>
-                                <h3 class="text-lg font-bold text-slate-900 mb-2">UniSmart Kids</h3>
-                                <p class="text-xs text-slate-500 leading-relaxed mb-6">
-                                    Monitoramento inteligente para crianças através da fralda renovável MamyPoko.
-                                </p>
-                                <button onclick="navigateTo('kids')" class="text-xs font-bold text-blue-600 flex items-center gap-1 group-hover:gap-2 transition-all">
-                                    Explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                                </button>
-                            </div>
-
-                            <div class="glass p-6 rounded-3xl hover:shadow-xl transition-all duration-300 border-t-4 border-t-teal-500 group">
-                                <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center mb-4">
-                                    <i data-lucide="heart-pulse" class="w-5 h-5"></i>
-                                </div>
-                                <h3 class="text-lg font-bold text-slate-900 mb-2">UniSmart Care</h3>
-                                <p class="text-xs text-slate-500 leading-relaxed mb-6">
-                                    Mais conforto, dignidade e acompanhamento preditivo para adultos e idosos com Lifree.
-                                </p>
-                                <button onclick="navigateTo('care')" class="text-xs font-bold text-teal-600 flex items-center gap-1 group-hover:gap-2 transition-all">
-                                    Explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                                </button>
-                            </div>
-
-                            <div class="glass p-6 rounded-3xl hover:shadow-xl transition-all duration-300 border-t-4 border-t-pink-500 group">
-                                <div class="w-10 h-10 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center mb-4">
-                                    <i data-lucide="flower2" class="w-5 h-5"></i>
-                                </div>
-                                <h3 class="text-lg font-bold text-slate-900 mb-2">UniSmart Women</h3>
-                                <p class="text-xs text-slate-500 leading-relaxed mb-6">
-                                    Tecnologia voltada ao bem-estar e à saúde íntima integrada à linha Sofy.
-                                </p>
-                                <button onclick="navigateTo('women')" class="text-xs font-bold text-pink-600 flex items-center gap-1 group-hover:gap-2 transition-all">
-                                    Explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                                </button>
-                            </div>
-
-                            <div class="glass p-6 rounded-3xl hover:shadow-xl transition-all duration-300 border-t-4 border-t-emerald-500 group">
-                                <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
-                                    <i data-lucide="recycle" class="w-5 h-5"></i>
-                                </div>
-                                <h3 class="text-lg font-bold text-slate-900 mb-2">UniSmart Bin</h3>
-                                <p class="text-xs text-slate-500 leading-relaxed mb-6">
-                                    Logística reversa inteligente para transformar consumo em sustentabilidade real.
-                                </p>
-                                <button onclick="navigateTo('bin')" class="text-xs font-bold text-emerald-600 flex items-center gap-1 group-hover:gap-2 transition-all">
-                                    Explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `,
-
-            ecossistema: `
-                <section class="max-w-7xl mx-auto px-6 py-16">
-                    <div class="text-center max-w-3xl mx-auto mb-16">
-                        <h1 class="text-4xl font-extrabold text-slate-900 mb-4">O Ecossistema Integrado</h1>
-                        <p class="text-slate-600">A visão unificada onde dispositivos discretos, inteligência de dados e produtos de bem-estar atuam em perfeita harmonia.</p>
-                    </div>
-
-                    <div class="glass-dark text-white p-8 md:p-12 rounded-3xl mb-12 relative overflow-hidden">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
-                                <div class="text-blue-400 font-bold mb-1">1. Sensores</div>
-                                <div class="text-xs text-slate-300">UniSmart Tag & Devices</div>
-                            </div>
-                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
-                                <div class="text-cyan-400 font-bold mb-1">2. Processamento</div>
-                                <div class="text-xs text-slate-300">Algoritmos Preditivos</div>
-                            </div>
-                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
-                                <div class="text-teal-400 font-bold mb-1">3. Ação</div>
-                                <div class="text-xs text-slate-300">Alertas em Tempo Real</div>
-                            </div>
-                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
-                                <div class="text-emerald-400 font-bold mb-1">4. Sustentabilidade</div>
-                                <div class="text-xs text-slate-300">Reciclagem com Bin</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `,
-
-            kids: `
-                <section class="max-w-7xl mx-auto px-6 py-16">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Módulo Infantil</span>
-                            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-2 mb-6 leading-tight">
-                                Cuidado inteligente para quem ainda não consegue dizer o que precisa.
-                            </h1>
-                            <p class="text-slate-600 mb-8 leading-relaxed">
-                                Integrado à linha MamyPoko, o UniSmart Tag é um dispositivo magnético reutilizável que monitora o microclima da fralda sem nenhum desconforto para o bebê.
-                            </p>
-                            
-                            <div class="space-y-4">
-                                <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
-                                    <div class="p-2 bg-blue-50 text-blue-600 rounded-xl"><i data-lucide="shield-check"></i></div>
-                                    <div>
-                                        <h4 class="font-bold text-slate-900 text-sm">Monitoramento Contínuo</h4>
-                                        <p class="text-xs text-slate-500">Estimativa precisa de umidade e alerta antes de irritações na pele.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-slate-900 text-white p-6 rounded-3xl border border-slate-800 shadow-2xl">
-                            <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">L</div>
-                                    <div>
-                                        <div class="text-sm font-bold">Bebê Leo</div>
-                                        <div class="text-[10px] text-slate-400">Fralda MamyPoko Renovável</div>
-                                    </div>
-                                </div>
-                                <span class="text-xs px-2.5 py-1 bg-emerald-500/20 text-emerald-400 rounded-full border border-emerald-500/30">Pele Protegida</span>
-                            </div>
-
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between text-xs mb-1">
-                                        <span class="text-slate-400">Nível de Umidade</span>
-                                        <span class="font-bold text-blue-400">65%</span>
-                                    </div>
-                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                                        <div class="bg-blue-500 h-full w-[65%]"></div>
-                                    </div>
-                                </div>
-
-                                <div class="p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl flex items-center justify-between text-xs">
-                                    <span class="text-amber-200">Próxima troca estimada:</span>
-                                    <span class="font-bold text-amber-400">35 minutos</span>
-                                </div>
-                                <p class="text-[10px] text-slate-500 text-center italic">* Dados demonstrativos de um ambiente de simulação conceitual.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `,
-
-            care: `
-                <section class="max-w-7xl mx-auto px-6 py-16">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <span class="text-xs font-bold text-teal-600 uppercase tracking-widest">Módulo Senior & Adulto</span>
-                            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-2 mb-6 leading-tight">
-                                Mais conforto. Mais dignidade. Mais cuidado.
-                            </h1>
-                            <p class="text-slate-600 mb-8 leading-relaxed">
-                                Combinando a linha Lifree ao **UniSmart Mat** — um tapete biométrico ultra-fino sob o lençol —, a plataforma oferece suporte preditivo de postura e umidade sem perder o calor humano.
-                            </p>
-                        </div>
-
-                        <div class="bg-slate-900 text-white p-6 rounded-3xl border border-slate-800 shadow-2xl">
-                            <h3 class="text-sm font-bold text-slate-400 mb-4">Painel BioMat — Lifree Care</h3>
-                            <div class="grid grid-cols-2 gap-4 mb-4">
-                                <div class="bg-slate-800/80 p-4 rounded-xl">
-                                    <span class="text-xs text-slate-400 block">Posição Atual</span>
-                                    <span class="text-lg font-bold text-teal-400">Lateral Direita</span>
-                                </div>
-                                <div class="bg-slate-800/80 p-4 rounded-xl">
-                                    <span class="text-xs text-slate-400 block">Tempo Estático</span>
-                                    <span class="text-lg font-bold text-amber-400">1h 45min</span>
-                                </div>
-                            </div>
-                            <div class="p-4 bg-teal-500/10 border border-teal-500/30 rounded-xl text-xs text-teal-300">
-                                💡 Recomendação: Alterar posição do paciente em aproximadamente 15 minutos.
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `,
-
-            women: `
-                <section class="max-w-7xl mx-auto px-6 py-16">
-                    <div class="max-w-3xl mx-auto text-center mb-12">
-                        <span class="text-xs font-bold text-pink-600 uppercase tracking-widest">Módulo Feminino</span>
-                        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">Tecnologia que entende o seu ritmo.</h1>
-                        <p class="text-slate-600 text-sm">Dispositivos conceituais discretos como o UniSmart Clip oferecem acompanhamento térmico e suporte ao bem-estar íntimo em harmonia com a linha Sofy.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div class="p-4 rounded-2xl border border-pink-200 bg-pink-50/50">
-                            <div class="text-xs font-bold text-pink-600 mb-1">Fase 1</div>
-                            <div class="text-sm font-bold text-slate-800">Menstruação</div>
-                        </div>
-                        <div class="p-4 rounded-2xl border border-pink-500 bg-pink-500 text-white">
-                            <div class="text-xs font-semibold opacity-80 mb-1">Fase 2 (Atual)</div>
-                            <div class="text-sm font-bold">Folicular</div>
-                        </div>
-                        <div class="p-4 rounded-2xl border border-pink-200 bg-pink-50/50">
-                            <div class="text-xs font-bold text-pink-600 mb-1">Fase 3</div>
-                            <div class="text-sm font-bold text-slate-800">Ovulatória</div>
-                        </div>
-                        <div class="p-4 rounded-2xl border border-pink-200 bg-pink-50/50">
-                            <div class="text-xs font-bold text-pink-600 mb-1">Fase 4</div>
-                            <div class="text-sm font-bold text-slate-800">Lútea</div>
-                        </div>
-                    </div>
-                </section>
-            `,
-
-            bin: `
-                <section class="max-w-7xl mx-auto px-6 py-16">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Sustentabilidade Ativa</span>
-                            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-2 mb-6">
-                                Quando o cuidado termina, a sustentabilidade começa.
-                            </h1>
-                            <p class="text-slate-600 leading-relaxed mb-6">
-                                O **UniSmart Bin** é uma lixeira residencial conectada que sela, quantifica e otimiza a coleta de resíduos recicláveis, transformando descarte em pontos e ciclos renováveis.
-                            </p>
-                        </div>
-                        <div class="glass-dark p-8 rounded-3xl text-white">
-                            <div class="text-center pb-6 border-b border-slate-800">
-                                <div class="text-4xl font-extrabold text-emerald-400">12 kg</div>
-                                <div class="text-xs text-slate-400 mt-1">Resíduos Evitados / Reciclados</div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4 pt-6 text-center">
-                                <div>
-                                    <div class="text-xl font-bold text-white">1.200</div>
-                                    <div class="text-[10px] text-slate-400">Pontos Acumulados</div>
-                                </div>
-                                <div>
-                                    <div class="text-xl font-bold text-white">Quarta-feira</div>
-                                    <div class="text-[10px] text-slate-400">Próxima Coleta Inteligente</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `,
-
-            tecnologia: `
-                <section class="max-w-7xl mx-auto px-6 py-16">
-                    <div class="text-center max-w-3xl mx-auto mb-16">
-                        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">Tecnologia Preditiva & Invisível</h1>
-                        <p class="text-slate-600">Dispositivos ultra-eficientes, seguros e projetados para desaparecerem no cotidiano.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                            <i data-lucide="cpu" class="w-8 h-8 text-blue-600 mb-4"></i>
-                            <h3 class="font-bold text-slate-900 mb-2">Algoritmos Avançados</h3>
-                            <p class="text-xs text-slate-500">Identificação prévia de padrões biológicos antes do desconforto ocorrer.</p>
-                        </div>
-                        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                            <i data-lucide="wifi-off" class="w-8 h-8 text-blue-600 mb-4"></i>
-                            <h3 class="font-bold text-slate-900 mb-2">Baixa Emissão Rádio</h3>
-                            <p class="text-xs text-slate-500">Comunicação ultra-eficiente por pulsos seguros e de alcance restrito.</p>
-                        </div>
-                        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                            <i data-lucide="lock" class="w-8 h-8 text-blue-600 mb-4"></i>
-                            <h3 class="font-bold text-slate-900 mb-2">Criptografia Ponta a Ponta</h3>
-                            <p class="text-xs text-slate-500">Proteção total dos dados de saúde da sua família.</p>
-                        </div>
-                    </div>
-                </section>
-            `,
-
-            sobre: `
-                <section class="max-w-5xl mx-auto px-6 py-16">
-                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Inovação Corporativa</span>
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-6">Inovação que começa com o cuidado.</h1>
-                    <p class="text-slate-600 leading-relaxed mb-6">
-                        O UniSmart é a expressão mais avançada da visão de futuro da Unicharm. Buscamos integrar ciência de dados, biomateriais e sustentabilidade para libertar as pessoas dos incômodos do dia a dia.
-                    </p>
-                </section>
-            `,
-
-            privacidade: `
-                <section class="max-w-4xl mx-auto px-6 py-16">
-                    <h1 class="text-3xl font-bold text-slate-900 mb-6">Seus dados merecem o mesmo cuidado que você.</h1>
-                    <div class="prose prose-slate text-sm space-y-4 text-slate-600">
-                        <p>No ecossistema UniSmart, a privacidade é um pilar estrutural. Todos os dados coletados por sensores conceituais são anonimizados e criptografados localmente.</p>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li>Controle total do usuário sobre o compartilhamento de dados.</li>
-                            <li>Ausência de comercialização de perfis biológicos.</li>
-                            <li>Conformidade integral com os padrões mundiais de proteção de dados (LGPD/GDPR).</li>
-                        </ul>
-                    </div>
-                </section>
-            `,
-
-            contato: `
-                <section class="max-w-xl mx-auto px-6 py-16">
-                    <h1 class="text-3xl font-bold text-slate-900 mb-4 text-center">Entre em contato</h1>
-                    <p class="text-slate-600 text-sm text-center mb-8">Fale com a equipe de desenvolvimento conceitual do UniSmart.</p>
-                    
-                    <form onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso (Simulação)');" class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Nome Completo</label>
-                            <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">E-mail</label>
-                            <input type="email" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Mensagem</label>
-                            <textarea rows="4" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 text-white font-medium py-3 rounded-xl hover:bg-blue-700 transition">Enviar Mensagem</button>
-                    </form>
-                </section>
-            `
-        };
-
-        // ROTEADOR DA APLICAÇÃO
-        function navigateTo(pageId) {
-            const contentDiv = document.getElementById('app-content');
-            if (pages[pageId]) {
-                contentDiv.innerHTML = pages[pageId];
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                lucide.createIcons(); // Re-renderizar ícones da página inserida
-            }
-        }
-
-        // CARREGAMENTO INICIAL (HOME)
-        document.addEventListener('DOMContentLoaded', () => {
-            navigateTo('home');
-        });
-    </script>
 </body>
 </html>
