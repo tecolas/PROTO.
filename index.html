@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jaguariúna Conecta | Mobilidade e Transporte Inteligente</title>
+    <title>Jaguariúna Conecta | Transporte Público em Tempo Real</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,9 +11,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         brand: {
                             50: '#eff6ff',
@@ -30,422 +28,253 @@
         }
     </script>
     <style>
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-        }
-        .gradient-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
-        }
+        .glass-header { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); }
+        .live-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white pb-12">
 
-    <header class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-slate-200/80 transition-all duration-300">
+    <!-- Navbar Ativa -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
                     <i class="fa-solid fa-bus"></i>
                 </div>
                 <div>
-                    <span class="text-xl font-bold tracking-tight text-slate-900 block leading-none">Jaguariúna<span class="text-brand-600">Conecta</span></span>
-                    <span class="text-xs text-slate-500 font-medium tracking-wide uppercase">Plataforma de Mobilidade</span>
+                    <span class="text-xl font-bold tracking-tight text-white block leading-none">Jaguariúna<span class="text-brand-500">Conecta</span></span>
+                    <span class="text-[10px] text-emerald-400 font-semibold tracking-wider uppercase flex items-center gap-1 mt-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 live-pulse"></span> Sistema Operacional
+                    </span>
                 </div>
             </div>
             
-            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
-                <a href="#lacuna" class="hover:text-brand-600 transition-colors">O Desafio</a>
-                <a href="#proposta" class="hover:text-brand-600 transition-colors">A Proposta</a>
-                <a href="#objetivos" class="hover:text-brand-600 transition-colors">Objetivos</a>
-                <a href="#funcionamento" class="hover:text-brand-600 transition-colors">Como Funciona</a>
-                <a href="#publico" class="hover:text-brand-600 transition-colors">Público-Alvo</a>
-                <a href="#resultados" class="hover:text-brand-600 transition-colors">Impacto</a>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="#mapa" class="hover:text-brand-400 transition-colors">Mapa Ao Vivo</a>
+                <a href="#linhas" class="hover:text-brand-400 transition-colors">Horários</a>
+                <a href="#reportar" class="hover:text-brand-400 transition-colors">Reportar Problema</a>
+                <a href="#projeto" class="hover:text-brand-400 transition-colors">Sobre o Projeto</a>
             </nav>
 
-            <div class="hidden sm:flex items-center gap-3">
-                <a href="#demonstracao" class="px-5 py-2.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md shadow-brand-600/20 transition-all hover:shadow-lg hover:-translate-y-0.5">
-                    Acessar Plataforma
+            <div class="flex items-center gap-3">
+                <a href="#reportar" class="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white font-medium text-xs sm:text-sm transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Alertar Falha
                 </a>
             </div>
         </div>
     </header>
 
-    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 gradient-bg text-white overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold uppercase tracking-wider text-brand-100 mb-6">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Projeto de Inovação Urbana
+    <!-- Hero / Terminal ao Vivo -->
+    <section id="mapa" class="pt-28 pb-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Dashboard Status Banner -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700/60">
+                <span class="text-slate-400 text-xs block mb-1">Frota em Operação</span>
+                <span class="text-2xl font-bold text-white flex items-center gap-2">
+                    28 Ônibus <span class="text-xs text-emerald-400 font-normal">100% GPS</span>
+                </span>
+            </div>
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700/60">
+                <span class="text-slate-400 text-xs block mb-1">Pontualidade Média</span>
+                <span class="text-2xl font-bold text-emerald-400">94.2%</span>
+            </div>
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700/60">
+                <span class="text-slate-400 text-xs block mb-1">Passageiros Hoje</span>
+                <span class="text-2xl font-bold text-white">12.450</span>
+            </div>
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700/60">
+                <span class="text-slate-400 text-xs block mb-1">Ocorrências Abertas</span>
+                <span class="text-2xl font-bold text-amber-400">3 Registros</span>
+            </div>
+        </div>
+
+        <!-- Simulated Interactive Map Frame -->
+        <div class="relative bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden h-[420px] flex flex-col justify-between p-6 shadow-2xl">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-20"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-slate-900/80"></div>
+            
+            <!-- Map Overlay Controls -->
+            <div class="relative z-10 flex justify-between items-start">
+                <div class="bg-slate-900/90 backdrop-blur-md p-3 rounded-xl border border-slate-700 max-w-xs">
+                    <span class="text-xs font-semibold text-brand-400 uppercase tracking-wider block">Localizador de Linhas</span>
+                    <p class="text-sm text-slate-200 mt-1 font-medium">Selecione seu Ponto em Jaguariúna</p>
                 </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
-                    Conectando você ao transporte com <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-indigo-200">tecnologia e precisão</span>.
-                </h1>
-                <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed mb-8">
-                    O Jaguariúna Conecta é a solução moderna criada para otimizar o deslocamento urbano, aproximar a população da gestão municipal e transformar o transporte público em uma experiência ágil e transparente.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#proposta" class="px-8 py-4 rounded-xl bg-white text-slate-900 font-bold text-center hover:bg-slate-100 transition-all shadow-xl hover:-translate-y-0.5">
-                        Conhecer o Projeto
-                    </a>
-                    <a href="#funcionamento" class="px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-center border border-white/20 transition-all backdrop-blur-sm">
-                        Ver Como Funciona
-                    </a>
+                <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 live-pulse"></span> GPS Ativo
+                </span>
+            </div>
+
+            <!-- Simulated Bus Markers -->
+            <div class="relative z-10 grid sm:grid-cols-3 gap-4">
+                <div class="bg-slate-900/90 backdrop-blur-md p-4 rounded-xl border border-brand-500/40">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="bg-brand-600 text-white font-bold text-xs px-2 py-0.5 rounded">Linha 01</span>
+                        <span class="text-xs text-emerald-400 font-semibold">A caminho (3 min)</span>
+                    </div>
+                    <p class="text-sm font-semibold text-white">Centro ➔ UniFAJ Campus II</p>
+                    <p class="text-xs text-slate-400 mt-1">Próxima parada: Praça da Matriz</p>
+                </div>
+
+                <div class="bg-slate-900/90 backdrop-blur-md p-4 rounded-xl border border-slate-700">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="bg-indigo-600 text-white font-bold text-xs px-2 py-0.5 rounded">Linha 04</span>
+                        <span class="text-xs text-emerald-400 font-semibold">No Ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-white">Distrito Industrial ➔ Roseira</p>
+                    <p class="text-xs text-slate-400 mt-1">Próxima parada: Portaria Ambev</p>
+                </div>
+
+                <div class="bg-slate-900/90 backdrop-blur-md p-4 rounded-xl border border-amber-500/40 hidden sm:block">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="bg-amber-600 text-white font-bold text-xs px-2 py-0.5 rounded">Linha 07</span>
+                        <span class="text-xs text-amber-400 font-semibold">Atraso (+6 min)</span>
+                    </div>
+                    <p class="text-sm font-semibold text-white">Nova Jaguariúna ➔ Capela</p>
+                    <p class="text-xs text-slate-400 mt-1">Tráfego intenso na Av. Marginal</p>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Monitoramento de Linhas e Horários -->
+    <section id="linhas" class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <i class="fa-solid fa-clock text-brand-500"></i> Horários e Linhas Ativas
+        </h2>
         
-        <div class="absolute bottom-0 left-0 right-0 h-12 bg-slate-50 [clip-path:polygon(0_100%,100%_100%,100%_0)]"></div>
-    </section>
-
-    <section id="lacuna" class="py-16 md:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        01. Desafio Urbano
-                    </div>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-6">
-                        A Lacuna Identificada na Mobilidade Local
-                    </h2>
-                    <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                        Atualmente, uma das principais dificuldades enfrentadas em Jaguariúna está relacionada à mobilidade urbana. A imprevisibilidade e a falta de informações centralizadas impactam diretamente a rotina dos cidadãos.
-                    </p>
-                    <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl mb-6">
-                        <div class="flex items-start gap-3">
-                            <i class="fa-solid fa-clock text-amber-600 text-xl mt-1"></i>
-                            <div>
-                                <h4 class="font-bold text-amber-900">O Problema Central</h4>
-                                <p class="text-sm text-amber-800 mt-1">A grande dificuldade que parte da população enfrenta para se deslocar pela cidade com rapidez, segurança e praticidade diária.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="bg-gradient-to-tr from-brand-600 to-indigo-600 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
-                        <div class="absolute -right-10 -bottom-10 opacity-10 text-white">
-                            <i class="fa-solid fa-route text-9xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Gargalos Atuais</h3>
-                        <ul class="space-y-4">
-                            <li class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark text-rose-300"></i></span>
-                                <span>Falta de previsibilidade nos horários dos ônibus</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark text-rose-300"></i></span>
-                                <span>Dificuldade para localizar pontos de embarque</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0"><i class="fa-solid fa-xmark text-rose-300"></i></span>
-                                <span>Canal ineficiente para reporte de problemas operacionais</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-300">
+                    <thead class="bg-slate-900/80 text-xs uppercase text-slate-400 border-b border-slate-700">
+                        <tr>
+                            <th class="p-4">Linha</th>
+                            <th class="p-4">Itinerário</th>
+                            <th class="p-4">Próxima Saída</th>
+                            <th class="p-4">Frequência</th>
+                            <th class="p-4">Status da Linha</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-700/50">
+                        <tr class="hover:bg-slate-700/30 transition-colors">
+                            <td class="p-4 font-bold text-white">01 - Universitária</td>
+                            <td class="p-4">Terminal Central / UniFAJ I & II</td>
+                            <td class="p-4 font-mono text-brand-400">14:15 (em 8 min)</td>
+                            <td class="p-4">A cada 20 min</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Normal</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors">
+                            <td class="p-4 font-bold text-white">02 - Industrial Express</td>
+                            <td class="p-4">João Aldo Nassif / Distrito Industrial</td>
+                            <td class="p-4 font-mono text-brand-400">14:30 (em 23 min)</td>
+                            <td class="p-4">A cada 30 min</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Normal</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors">
+                            <td class="p-4 font-bold text-white">03 - Circular Bairros</td>
+                            <td class="p-4">Nova Jaguariúna / Roseira / Sambódromo</td>
+                            <td class="p-4 font-mono text-brand-400">14:22 (em 15 min)</td>
+                            <td class="p-4">A cada 15 min</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">Lento (Trânsito)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
-    <section id="proposta" class="py-16 md:py-24 bg-slate-100/70 border-y border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
-                    <i class="fa-solid fa-lightbulb"></i>
-                    02. Solução Tecnológica
+    <!-- Formulário Interativo: Reportar Problema (Crowdsourcing) -->
+    <section id="reportar" class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1">
+                <div class="inline-flex items-center gap-2 text-rose-500 font-bold text-xs uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-bullhorn"></i> Colaboração Cidadã
                 </div>
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                    A Proposta: Jaguariúna Conecta
-                </h2>
-                <p class="text-slate-600 text-lg mt-4">
-                    Um projeto concebido para modernizar o transporte e transformar a maneira como os moradores se movem pela cidade.
+                <h2 class="text-2xl font-bold text-white mb-4">Reporte um Problema na Linha ou Ponto</h2>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    Sua informação é enviada diretamente para a equipe de fiscalização da Prefeitura de Jaguariúna e compartilhada em tempo real com outros passageiros.
                 </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-all">
-                    <div class="w-14 h-14 bg-blue-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                        <i class="fa-solid fa-mobile-screen-button"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Acesso Digital Centralizado</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Plataforma acessível diretamente pelo celular ou computador, unificando dados de linhas, itinerários e pontos de ônibus em uma interface intuitiva.
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-all">
-                    <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Monitoramento & Atrasos</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Informa horários atualizados e alerta sobre possíveis atrasos ou alterações nas rotas, permitindo um planejamento prévio eficiente.
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-all">
-                    <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                        <i class="fa-solid fa-comments"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Participação Cidadã</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Permite que os moradores enviem alertas e reportem problemas estruturais em pontos ou falhas na operação das linhas em tempo real.
-                    </p>
+                <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700">
+                    <h4 class="font-semibold text-white text-sm mb-2"><i class="fa-solid fa-shield-halved text-brand-400 mr-2"></i>Atendimento Transparente</h4>
+                    <p class="text-xs text-slate-400">80% das solicitações sobre estrutura de pontos são respondidas em até 15 dias úteis.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="objetivos" class="py-16 md:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
-                    <i class="fa-solid fa-bullseye"></i>
-                    03. Metas do Projeto
-                </div>
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                    Objetivos Estratégicos
-                </h2>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">1</div>
-                    <div>
-                        <h4 class="font-bold text-slate-900 mb-1">Acesso Descomplicado</h4>
-                        <p class="text-sm text-slate-600">Facilitar o acesso completo às informações sobre o sistema de transporte público local.</p>
-                    </div>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">2</div>
-                    <div>
-                        <h4 class="font-bold text-slate-900 mb-1">Redução de Espera</h4>
-                        <p class="text-sm text-slate-600">Diminuir consideravelmente o tempo de espera dos passageiros nos pontos de ônibus.</p>
-                    </div>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">3</div>
-                    <div>
-                        <h4 class="font-bold text-slate-900 mb-1">Comunicação Direta</h4>
-                        <p class="text-sm text-slate-600">Melhorar e agilizar a ponte de comunicação entre a população e a Prefeitura.</p>
-                    </div>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">4</div>
-                    <div>
-                        <h4 class="font-bold text-slate-900 mb-1">Mapeamento de Gargalos</h4>
-                        <p class="text-sm text-slate-600">Identificar com precisão geográfica os locais e linhas que mais necessitam de intervenções.</p>
-                    </div>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold shrink-0">5</div>
-                    <div>
-                        <h4 class="font-bold text-slate-900 mb-1">Organização & Acessibilidade</h4>
-                        <p class="text-sm text-slate-600">Tornar a rede de transporte urbano substancialmente mais organizada, inclusiva e acessível.</p>
-                    </div>
-                </div>
-
-                <div class="p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-blue-100 border border-brand-200 flex items-center justify-center text-center">
-                    <div>
-                        <i class="fa-solid fa-chart-line text-brand-600 text-2xl mb-2"></i>
-                        <h4 class="font-bold text-brand-900">Eficiência Comprovada</h4>
-                        <p class="text-xs text-brand-700 mt-1">Foco na melhoria contínua dos serviços urbanos</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="funcionamento" class="py-16 md:py-24 bg-slate-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <div class="inline-flex items-center gap-2 text-brand-400 font-bold text-sm uppercase tracking-wider mb-2">
-                    <i class="fa-solid fa-gears"></i>
-                    04. Operação
-                </div>
-                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
-                    Como Funcionaria na Prática
-                </h2>
-                <p class="text-slate-400 text-lg mt-4">
-                    Integração simples em duas pontas para garantir eficiência e rápida tomada de decisão.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="bg-slate-800/80 rounded-2xl p-8 border border-slate-700 relative">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-xs font-bold uppercase mb-6">
-                        <i class="fa-solid fa-user"></i> Visão do Cidadão
-                    </div>
-                    <h3 class="text-2xl font-bold mb-6">Interface do Usuário</h3>
-                    <ul class="space-y-4 text-slate-300">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
-                            <span>Acessa a plataforma via aplicativo no smartphone ou pelo site.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
-                            <span>Consulta em tempo real sua linha de ônibus, horários e pontos próximos.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
-                            <span>Envia de forma simples e rápida reclamações, alertas de atraso ou sugestões.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-slate-800/80 rounded-2xl p-8 border border-slate-700 relative">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase mb-6">
-                        <i class="fa-solid fa-building-flag"></i> Visão da Gestão
-                    </div>
-                    <h3 class="text-2xl font-bold mb-6">Painel Administrativo</h3>
-                    <ul class="space-y-4 text-slate-300">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-indigo-400 mt-1"></i>
-                            <span>A Prefeitura recebe e centraliza dados consolidados sobre o fluxo e reclamações.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-indigo-400 mt-1"></i>
-                            <span>Mapeia e identifica com agilidade os problemas recorrentes no sistema.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-indigo-400 mt-1"></i>
-                            <span>Utiliza os relatórios estratégicos para planejar melhorias reais no transporte urbano.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="publico" class="py-16 md:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
-                    <i class="fa-solid fa-users"></i>
-                    05. Beneficiários
-                </div>
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                    Público-Alvo do Projeto
-                </h2>
-                <p class="text-slate-600 text-lg mt-4">
-                    O Jaguariúna Conecta foi pensado primordialmente para quem depende do transporte coletivo no dia a dia.
-                </p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center hover:-translate-y-1 transition-all">
-                    <div class="w-16 h-16 bg-blue-100 text-brand-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fa-solid fa-person-walking-luggage"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 text-lg">Passageiros Gerais</h4>
-                    <p class="text-slate-500 text-sm mt-2">Moradores que utilizam o transporte público para seus deslocamentos diários na cidade.</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center hover:-translate-y-1 transition-all">
-                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 text-lg">Estudantes</h4>
-                    <p class="text-slate-500 text-sm mt-2">Jovens e universitários que precisam de pontualidade no deslocamento para as instituições de ensino.</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center hover:-translate-y-1 transition-all">
-                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fa-solid fa-briefcase"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 text-lg">Trabalhadores</h4>
-                    <p class="text-slate-500 text-sm mt-2">Profissionais que dependem do cumprimento estrito de rotas para chegar a seus empregos.</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center hover:-translate-y-1 transition-all">
-                    <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fa-solid fa-person-cane"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 text-lg">Idosos</h4>
-                    <p class="text-slate-500 text-sm mt-2">Cidadãos da terceira idade que necessitam de mais praticidade, conforto e acessibilidade.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="resultados" class="py-16 md:py-24 bg-slate-100/70 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div>
-                    <div class="inline-flex items-center gap-2 text-brand-600 font-bold text-sm uppercase tracking-wider mb-2">
-                        <i class="fa-solid fa-square-poll-vertical"></i>
-                        06. Impacto Estimado
-                    </div>
-                    <h2 class="text-3xl font-bold text-slate-900 tracking-tight mb-6">
-                        Resultados Esperados
-                    </h2>
-                    <div class="space-y-4">
-                        <div class="p-5 bg-white rounded-xl border border-slate-200 flex items-start gap-4">
-                            <i class="fa-solid fa-face-smile text-emerald-500 text-2xl mt-1"></i>
-                            <div>
-                                <h4 class="font-bold text-slate-900">Melhoria da Experiência</h4>
-                                <p class="text-sm text-slate-600">Proporcionar um deslocamento mais previsível, confortável e menos estressante aos passageiros.</p>
-                            </div>
+            <div class="lg:col-span-2 bg-slate-800 p-6 sm:p-8 rounded-2xl border border-slate-700">
+                <form onsubmit="event.preventDefault(); alert('Relato enviado com sucesso para a Central de Mobilidade!');" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Tipo de Ocorrência</label>
+                            <select class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none">
+                                <option>Atraso excessivo da linha</option>
+                                <option>Ponto de ônibus danificado/sem cobertura</option>
+                                <option>Lotação acima do permitido</option>
+                                <option>Problema com acessibilidade</option>
+                                <option>Outros</option>
+                            </select>
                         </div>
-
-                        <div class="p-5 bg-white rounded-xl border border-slate-200 flex items-start gap-4">
-                            <i class="fa-solid fa-calendar-check text-brand-500 text-2xl mt-1"></i>
-                            <div>
-                                <h4 class="font-bold text-slate-900">Planejamento Eficiente</h4>
-                                <p class="text-sm text-slate-600">Facilitar a programação diária de viagens do morador, reduzindo esperas desnecessárias.</p>
-                            </div>
-                        </div>
-
-                        <div class="p-5 bg-white rounded-xl border border-slate-200 flex items-start gap-4">
-                            <i class="fa-solid fa-sliders text-indigo-500 text-2xl mt-1"></i>
-                            <div>
-                                <h4 class="font-bold text-slate-900">Tomada de Decisão Baseada em Dados</h4>
-                                <p class="text-sm text-slate-600">Oferecer subsídios reais e consolidados para a Prefeitura investir onde a população realmente precisa.</p>
-                            </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Linha ou Ponto Afetado</label>
+                            <input type="text" placeholder="Ex: Linha 01 ou Ponto da Matriz" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none">
                         </div>
                     </div>
-                </div>
-
-                <div class="bg-gradient-to-br from-slate-900 to-brand-950 rounded-3xl p-8 text-white flex flex-col justify-between shadow-xl">
                     <div>
-                        <div class="inline-flex items-center gap-2 text-brand-400 font-bold text-sm uppercase tracking-wider mb-4">
-                            <i class="fa-solid fa-flag"></i>
-                            07. Conclusão do Relatório
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Um Passo em Direção ao Futuro</h3>
-                        <p class="text-slate-300 leading-relaxed mb-6">
-                            O <strong class="text-white">Jaguariúna Conecta</strong> preencheria uma lacuna importante ao aproximar a população do serviço de transporte público por meio da tecnologia.
-                        </p>
-                        <p class="text-slate-300 leading-relaxed">
-                            Trata-se de um projeto simples, moderno e altamente escalável, que pode ser desenvolvido gradualmente: iniciando por um portal ou aplicativo básico e recebendo novas funcionalidades conforme o uso da comunidade.
-                        </p>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Descrição do Problema</label>
+                        <textarea rows="3" placeholder="Descreva brevemente o ocorrido para nos ajudar a identificar a solução..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-slate-200 focus:border-brand-500 focus:outline-none"></textarea>
                     </div>
-                    <div class="pt-8 border-t border-slate-800 mt-8 flex items-center justify-between">
-                        <span class="text-xs text-slate-400">Status do Projeto: <span class="text-emerald-400 font-semibold">Proposta Conceitual</span></span>
-                        <i class="fa-solid fa-city text-2xl text-slate-600"></i>
-                    </div>
-                </div>
+                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-lg text-sm transition-all shadow-lg shadow-brand-600/20">
+                        Enviar Alerta em Tempo Real
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
-    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-base">
-                    <i class="fa-solid fa-bus"></i>
-                </div>
-                <span class="text-lg font-bold text-white tracking-tight">Jaguariúna<span class="text-brand-500">Conecta</span></span>
-            </div>
-            <p class="text-sm">
-                Relatório de Projeto - Mobilidade e Transporte Urbano © Jaguariúna.
-            </p>
+    <!-- Detalhes Expandidos do Projeto -->
+    <section id="projeto" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 mt-12">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl font-bold text-white">Relatório Completo de Projeto</h2>
+            <p class="text-slate-400 text-sm mt-2">Especificações da infraestrutura e modelo de gestão do Jaguariúna Conecta.</p>
         </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
+                <i class="fa-solid fa-list-check text-brand-400 text-2xl mb-4"></i>
+                <h3 class="font-bold text-white text-lg mb-2">Cronograma Executado</h3>
+                <ul class="text-xs text-slate-400 space-y-2">
+                    <li><strong class="text-slate-200">Fase 1:</strong> Rastreamento GPS e padrão GTFS na frota.</li>
+                    <li><strong class="text-slate-200">Fase 2:</strong> Testes com alunos UniFAJ e trabalhadores.</li>
+                    <li><strong class="text-slate-200">Fase 3:</strong> Operação total e painel da Prefeitura.</li>
+                </ul>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
+                <i class="fa-solid fa-chart-pie text-brand-400 text-2xl mb-4"></i>
+                <h3 class="font-bold text-white text-lg mb-2">Metas Alcançadas (KPIs)</h3>
+                <ul class="text-xs text-slate-400 space-y-2">
+                    <li><strong class="text-slate-200">Adesão:</strong> +60% dos passageiros cadastrados.</li>
+                    <li><strong class="text-slate-200">Tempo de Espera:</strong> Redução de 25% nos pontos.</li>
+                    <li><strong class="text-slate-200">Atendimento:</strong> 80% das queixas resolvidas.</li>
+                </ul>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
+                <i class="fa-solid fa-handshake text-brand-400 text-2xl mb-4"></i>
+                <h3 class="font-bold text-white text-lg mb-2">Rede de Parcerias</h3>
+                <ul class="text-xs text-slate-400 space-y-2">
+                    <li><strong class="text-slate-200">Prefeitura:</strong> Gestão de dados e zeladoria urbana.</li>
+                    <li><strong class="text-slate-200">Concessionárias:</strong> Telemetria e frota integrada.</li>
+                    <li><strong class="text-slate-200">UniFAJ:</strong> Pesquisa e aprimoramento de algoritmos.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-800">
+        Jaguariúna Conecta — Sistema Integrado de Mobilidade Urbana © 2026
     </footer>
 
 </body>
