@@ -1,789 +1,566 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Imperium & Co | Alta Relojoaria Metálica</title>
+    <title>UniSmart — Tecnologia que cuida. Inteligência que conecta.</title>
+    <meta name="description" content="Ecossistema de saúde preditiva e sustentabilidade da Unicharm.">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
-
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0066FF',
+                            cyan: '#00F0FF',
+                            green: '#10B981',
+                            dark: '#0A0F1D',
+                            card: 'rgba(255, 255, 255, 0.05)',
+                        },
+                        module: {
+                            kids: '#3B82F6',
+                            care: '#14B8A6',
+                            women: '#EC4899',
+                            bin: '#10B981',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* ==========================================================================
-           1. VARIÁVEIS - TEMA METÁLICO
-           ========================================================================== */
-        :root {
-            --bg-primary: linear-gradient(160deg, #f0f2f5 0%, #e1e6ed 100%);
-            --bg-secondary: linear-gradient(145deg, #ffffff 0%, #e8ecf1 50%, #d1d8e0 100%);
-            --text-primary: #121c2d;
-            --text-secondary: #5c6c85;
-            
-            --accent-royal-grad: linear-gradient(135deg, #0052cc 0%, #0033A0 40%, #00164a 100%);
-            --accent-royal-light: linear-gradient(135deg, #3377ff 0%, #0033A0 100%);
-            --accent-royal: #0033A0;
-            --accent-royal-hover: #002277;
-            
-            --border-light: rgba(255, 255, 255, 0.9);
-            --border-dark: rgba(160, 170, 190, 0.5);
-            --glass-bg: rgba(225, 230, 237, 0.65);
-            --card-bg: linear-gradient(145deg, #fdfdfd 0%, #eaedf2 100%);
-            
-            --shadow-3d: 
-                8px 8px 16px rgba(180, 190, 205, 0.6), 
-                -8px -8px 16px rgba(255, 255, 255, 0.9);
-            --shadow-inset: 
-                inset 4px 4px 8px rgba(180, 190, 205, 0.5), 
-                inset -4px -4px 8px rgba(255, 255, 255, 0.9);
-
-            --font-display: 'Cinzel', serif;
-            --font-body: 'Montserrat', sans-serif;
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-
-        [data-theme="dark"] {
-            --bg-primary: linear-gradient(160deg, #0b111e 0%, #05080f 100%);
-            --bg-secondary: linear-gradient(145deg, #162032 0%, #0b111e 50%, #03050a 100%);
-            --text-primary: #e2e8f0;
-            --text-secondary: #8b9bb4;
-            
-            --accent-royal-grad: linear-gradient(135deg, #4169E1 0%, #0033A0 50%, #001233 100%);
-            --accent-royal-light: linear-gradient(135deg, #668cff 0%, #2b55d6 100%);
-            --accent-royal: #4169E1;
-            
-            --border-light: rgba(255, 255, 255, 0.1);
-            --border-dark: rgba(0, 0, 0, 0.8);
-            --glass-bg: rgba(11, 17, 30, 0.75);
-            --card-bg: linear-gradient(145deg, #1c273c 0%, #0d1424 100%);
-            
-            --shadow-3d: 
-                8px 8px 16px rgba(0, 0, 0, 0.7), 
-                -8px -8px 16px rgba(30, 42, 60, 0.4);
-            --shadow-inset: 
-                inset 4px 4px 8px rgba(0, 0, 0, 0.6), 
-                inset -4px -4px 8px rgba(30, 42, 60, 0.3);
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: var(--transition);
+        .glow-blue {
+            box-shadow: 0 0 50px -10px rgba(0, 102, 255, 0.3);
         }
-
-        h1, h2, h3, h4, .brand {
-            font-family: var(--font-display);
-            font-weight: 500;
+        .pulse-line {
+            stroke-dasharray: 10;
+            animation: dash 20s linear infinite;
         }
-
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
-        ul { list-style: none; }
-
-        .text-metallic {
-            background: var(--accent-royal-grad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        /* ==========================================================================
-           2. COMPONENTES GERAIS
-           ========================================================================== */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-light);
-            border-bottom: 2px solid var(--border-dark);
-            border-right: 2px solid var(--border-dark);
-            border-radius: 4px;
-            box-shadow: var(--shadow-3d);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .btn::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-20deg); transition: var(--transition);
-        }
-
-        .btn:hover::before { left: 150%; transition: 0.7s; }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-inset);
-            color: var(--accent-royal);
-        }
-
-        .btn-solid {
-            background: var(--accent-royal-grad);
-            color: #ffffff;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-bottom: 2px solid #001233;
-            border-right: 2px solid #001233;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .btn-solid:hover { color: #ffffff; }
-
-        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        /* ==========================================================================
-           3. HEADER
-           ========================================================================== */
-        header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-light);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-
-        .nav-container {
-            max-width: 1440px; margin: 0 auto; padding: 20px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .brand { font-size: 24px; letter-spacing: 4px; font-weight: 700; }
-
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; position: relative; }
-        
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 2px;
-            bottom: -6px; left: 0; background: var(--accent-royal-grad); transition: var(--transition);
-        }
-        .nav-links a:hover::after { width: 100%; }
-
-        .nav-icons { display: flex; gap: 24px; align-items: center; }
-        
-        .icon-btn {
-            background: var(--bg-secondary); border: none; width: 40px; height: 40px;
-            border-radius: 50%; color: var(--text-primary); cursor: pointer;
-            box-shadow: var(--shadow-3d); border: 1px solid var(--border-light);
-            display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); position: relative;
-        }
-        .icon-btn:hover { box-shadow: var(--shadow-inset); color: var(--accent-royal); }
-
-        .cart-count {
-            position: absolute; top: -5px; right: -5px;
-            background: var(--accent-royal-grad); color: #fff;
-            font-size: 10px; padding: 2px 6px; border-radius: 50%;
-            font-weight: 700; border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        /* ==========================================================================
-           4. HERO
-           ========================================================================== */
-        .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            position: relative;
-            background: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2000&auto=format&fit=crop') center/cover fixed no-repeat;
-        }
-        .hero::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(0, 15, 45, 0.8) 0%, rgba(0, 5, 20, 0.95) 100%); z-index: 1;
-        }
-
-        .hero-content {
-            position: relative; z-index: 2; text-align: center; color: #ffffff;
-            max-width: 800px; padding: 0 20px;
-        }
-        .hero-subtitle { font-size: 14px; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 20px; display: block; font-weight: 600; color: #c4cce0;}
-        .hero h1 { font-size: 56px; line-height: 1.2; margin-bottom: 30px; letter-spacing: 2px; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); }
-
-        /* ==========================================================================
-           5. VITRINE DE PRODUTOS
-           ========================================================================== */
-        .section { padding: 100px 40px; max-width: 1440px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 36px; margin-bottom: 15px; }
-        .section-header p { color: var(--text-secondary); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;}
-
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            border: 1px solid var(--border-light);
-            border-bottom: 2px solid var(--border-dark);
-            border-right: 2px solid var(--border-dark);
-            box-shadow: var(--shadow-3d);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
-        }
-
-        .product-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); z-index: 10;
-        }
-
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 51, 160, 0.15); }
-
-        .product-img-wrap {
-            position: relative; overflow: hidden; height: 320px;
-            display: flex; align-items: center; justify-content: center;
-            background: var(--shadow-inset);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .product-img-wrap img { width: 85%; height: 85%; object-fit: contain; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)); transition: transform 0.6s ease; }
-        .product-card:hover .product-img-wrap img { transform: scale(1.08); }
-
-        .badge {
-            position: absolute; top: 15px; left: 15px;
-            background: var(--accent-royal-grad); color: #fff;
-            padding: 6px 12px; font-size: 10px; letter-spacing: 1px;
-            text-transform: uppercase; z-index: 2; border-radius: 3px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.3);
-            font-weight: 600;
-        }
-
-        .badge-danger { background: linear-gradient(135deg, #d9534f 0%, #b52b27 100%); }
-
-        .product-info { padding: 25px 20px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
-        .product-brand { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; font-weight: 600;}
-        .product-name { font-size: 15px; margin-bottom: 12px; font-weight: 700; line-height: 1.4; min-height: 42px; }
-        .old-price { font-size: 13px; color: var(--text-secondary); text-decoration: line-through; margin-bottom: 2px; }
-        .product-price { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
-
-        /* ==========================================================================
-           6. MODAL DE DETALHES DO PRODUTO (PÁGINA DO PRODUTO)
-           ========================================================================== */
-        .product-modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 10, 25, 0.8); backdrop-filter: blur(10px);
-            z-index: 3000; opacity: 0; visibility: hidden; transition: var(--transition);
-            display: flex; align-items: center; justify-content: center; padding: 20px;
-        }
-        .product-modal-overlay.active { opacity: 1; visibility: visible; }
-
-        .product-modal {
-            background: var(--bg-primary);
-            max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto;
-            border-radius: 12px; border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-3d); position: relative; display: grid;
-            grid-template-columns: 1fr 1fr; gap: 30px; padding: 40px;
-        }
-
-        .close-modal {
-            position: absolute; top: 20px; right: 20px; background: none; border: none;
-            color: var(--text-primary); cursor: pointer; font-size: 24px; transition: var(--transition);
-            z-index: 10;
-        }
-        .close-modal:hover { color: var(--accent-royal); transform: scale(1.1); }
-
-        .modal-img-container {
-            background: var(--card-bg); border-radius: 8px; padding: 20px;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid var(--border-light); box-shadow: var(--shadow-inset);
-        }
-        .modal-img-container img { width: 100%; height: auto; max-height: 380px; object-fit: contain; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)); }
-
-        .modal-details { display: flex; flex-direction: column; justify-content: space-between; }
-        .modal-brand { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); font-weight: 600; }
-        .modal-title { font-size: 22px; margin: 8px 0 15px; font-weight: 700; line-height: 1.3; }
-        .modal-rating { color: #f39c12; font-size: 13px; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
-        .modal-prices { margin-bottom: 20px; }
-        .modal-old-price { text-decoration: line-through; color: var(--text-secondary); font-size: 14px; }
-        .modal-current-price { font-size: 28px; font-weight: 700; }
-        .modal-installments { font-size: 12px; color: #27ae60; font-weight: 600; }
-
-        .modal-specs { margin: 15px 0; font-size: 13px; color: var(--text-secondary); }
-        .modal-specs ul { list-style: disc; padding-left: 20px; margin-top: 8px; }
-        .modal-specs li { margin-bottom: 5px; }
-
-        .modal-actions { display: flex; gap: 15px; flex-direction: column; margin-top: 20px; }
-
-        /* ==========================================================================
-           7. DIFERENCIAIS, CARRINHO LATERAL E FOOTER
-           ========================================================================== */
-        .features {
-            background: var(--bg-secondary); padding: 80px 40px;
-            border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-dark);
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
-        }
-        .features-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
-        
-        .feature-icon-wrap {
-            width: 70px; height: 70px; margin: 0 auto 20px;
-            background: var(--card-bg); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: var(--shadow-3d); border: 1px solid var(--border-light);
-        }
-        .feature-icon { stroke: url(#blueGradient); }
-
-        .feature-item h3 { font-size: 16px; margin-bottom: 10px; font-weight: 700; }
-        .feature-item p { font-size: 13px; color: var(--text-secondary); }
-
-        .cart-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 15, 30, 0.6); backdrop-filter: blur(8px);
-            z-index: 2000; opacity: 0; visibility: hidden; transition: var(--transition);
-        }
-        .cart-overlay.active { opacity: 1; visibility: visible; }
-
-        .cart-sidebar {
-            position: fixed; top: 0; right: -450px; width: 100%; max-width: 450px; height: 100vh;
-            background: var(--bg-primary); z-index: 2001;
-            box-shadow: -10px 0 40px rgba(0,0,0,0.3); border-left: 1px solid var(--border-light);
-            transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: flex; flex-direction: column;
-        }
-        .cart-sidebar.active { right: 0; }
-
-        .cart-header { padding: 30px; border-bottom: 1px solid var(--border-dark); display: flex; justify-content: space-between; align-items: center; background: var(--bg-secondary);}
-        .close-cart { background: none; border: none; color: var(--text-primary); cursor: pointer; transition: var(--transition); }
-        .close-cart:hover { color: var(--accent-royal); transform: scale(1.1); }
-
-        .cart-items { flex: 1; padding: 30px; overflow-y: auto; }
-        .cart-item { display: flex; gap: 20px; margin-bottom: 30px; padding: 15px; border-radius: 8px; background: var(--card-bg); box-shadow: var(--shadow-3d); border: 1px solid var(--border-light);}
-        .cart-item img { width: 80px; height: 80px; object-fit: contain; background: var(--shadow-inset); border-radius: 4px; padding: 5px; }
-        .cart-item-details h4 { font-size: 14px; margin-bottom: 5px; }
-        .cart-item-details p { font-weight: 700; font-size: 14px; }
-
-        .cart-footer { padding: 30px; border-top: 1px solid var(--border-light); background: var(--bg-secondary); box-shadow: 0 -10px 20px rgba(0,0,0,0.05);}
-        .cart-total { display: flex; justify-content: space-between; font-size: 18px; font-family: var(--font-display); margin-bottom: 20px; font-weight: 700; }
-
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white;
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 25px rgba(37,211,102,0.4), inset 0 4px 8px rgba(255,255,255,0.4);
-            border: 2px solid rgba(255,255,255,0.2); z-index: 1000; transition: var(--transition);
-        }
-        .whatsapp-float:hover { transform: scale(1.1) rotate(5deg); color: white;}
-
-        footer { background: var(--bg-secondary); border-top: 1px solid var(--border-light); padding: 80px 40px 30px; text-align: center; box-shadow: inset 0 20px 40px rgba(0,0,0,0.02);}
-        .footer-logo { font-size: 32px; margin-bottom: 20px; display: inline-block; font-weight: 700; }
-        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; flex-wrap: wrap; }
-        .footer-links a { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); font-weight: 600;}
-        .footer-links a:hover { color: var(--accent-royal); }
-        .copyright { font-size: 12px; color: var(--text-secondary); border-top: 1px solid var(--border-dark); padding-top: 30px; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 36px; }
-            .section { padding: 60px 20px; }
-            .cart-sidebar { max-width: 100%; }
-            .product-modal { grid-template-columns: 1fr; padding: 25px; }
+        @keyframes dash {
+            to { stroke-dashoffset: -1000; }
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-500 selection:text-white">
 
-    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
-      <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#3377ff" />
-        <stop offset="50%" stop-color="#0033A0" />
-        <stop offset="100%" stop-color="#00164a" />
-      </linearGradient>
-    </svg>
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-6 py-4">
+            <div class="glass rounded-full px-6 py-3 flex items-center justify-between shadow-sm">
+                <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900">
+                    <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white text-sm">U</span>
+                    UniSmart
+                </a>
 
-    <!-- OVERLAY DO CARRINHO -->
-    <div class="cart-overlay" id="cartOverlay"></div>
-
-    <!-- SIDEBAR DO CARRINHO -->
-    <aside class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3 class="text-metallic">Seu Carrinho</h3>
-            <button class="close-cart" id="closeCart"><i data-feather="x"></i></button>
-        </div>
-        <div class="cart-items">
-            <div class="cart-item">
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_669770-MLB113946237148_072026-F-relogio-poedagar-de-luxo-aco-com-caixa-e-ajuste-de-pulseira.webp" alt="Relógio Poedagar">
-                <div class="cart-item-details">
-                    <h4>Relógio Poedagar De Luxo Aço</h4>
-                    <p class="text-metallic">R$ 97,75</p>
-                    <span style="font-size:12px; color:var(--text-secondary); font-weight: 600;">Qtd: 1</span>
+                <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600">
+                    <a href="#ecossistema" onclick="navigateTo('ecossistema')" class="hover:text-blue-600 transition">Ecossistema</a>
+                    <a href="#kids" onclick="navigateTo('kids')" class="hover:text-blue-500 transition">UniSmart Kids</a>
+                    <a href="#care" onclick="navigateTo('care')" class="hover:text-teal-600 transition">UniSmart Care</a>
+                    <a href="#women" onclick="navigateTo('women')" class="hover:text-pink-500 transition">UniSmart Women</a>
+                    <a href="#bin" onclick="navigateTo('bin')" class="hover:text-emerald-600 transition">Sustentabilidade</a>
+                    <a href="#tecnologia" onclick="navigateTo('tecnologia')" class="hover:text-blue-600 transition">Tecnologia</a>
                 </div>
-            </div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Subtotal</span>
-                <span class="text-metallic">R$ 97,75</span>
-            </div>
-            <!-- Link do Checkout do Carrinho para a Cakto -->
-            <a href="https://pay.cakto.com.br/SEU_LINK_GERAL_AQUI" id="cartCheckoutBtn" class="btn btn-solid" style="width: 100%; margin-bottom: 10px; display: block; text-align: center;" target="_blank">Finalizar Compra Segura</a>
-            <p style="font-size: 10px; text-align:center; color: var(--text-secondary); font-weight: 600;">Pagamento via Pix, Cartão ou Boleto. Criptografia SSL 256-bit.</p>
-        </div>
-    </aside>
 
-    <!-- HEADER / NAVEGAÇÃO -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="brand text-metallic">Royal Imperium & Co</a>
-            <nav class="nav-links">
-                <a href="#colecoes">Coleções</a>
-                <a href="#lancamentos">Lançamentos</a>
-                <a href="#sobre">A Maison</a>
-            </nav>
-            <div class="nav-icons">
-                <button class="icon-btn" title="Pesquisa Inteligente"><i data-feather="search"></i></button>
-                <button class="icon-btn" title="Minha Conta"><i data-feather="user"></i></button>
-                <button class="icon-btn" id="themeToggle" title="Modo Escuro (Titânio)"><i data-feather="moon"></i></button>
-                <button class="icon-btn" id="openCart" title="Carrinho">
-                    <i data-feather="shopping-bag"></i>
-                    <span class="cart-count">1</span>
+                <button onclick="navigateTo('ecossistema')" class="hidden sm:flex items-center gap-2 bg-slate-900 hover:bg-blue-600 text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
+                    Conheça o UniSmart <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-700">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content fade-in">
-            <span class="hero-subtitle">A Essência do Tempo</span>
-            <h1 class="text-metallic">Precisão e Imponência<br>para o Sucesso</h1>
-            <p style="margin-bottom: 40px; font-weight: 500; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Descubra a nossa coleção exclusiva de alta relojoaria masculina.</p>
-            <a href="#colecoes" class="btn btn-solid">Explorar Coleção</a>
-        </div>
-    </section>
+    <main id="app-content" class="pt-24 min-h-screen">
+        </main>
 
-    <!-- DIFERENCIAIS -->
-    <section class="features">
-        <div class="features-grid">
-            <div class="feature-item fade-in">
-                <div class="feature-icon-wrap"><i data-feather="shield" class="feature-icon" width="32" height="32"></i></div>
-                <h3 class="text-metallic">Garantia Internacional</h3>
-                <p>Cobertura completa de 5 anos em todo o maquinário.</p>
-            </div>
-            <div class="feature-item fade-in" style="transition-delay: 0.2s">
-                <div class="feature-icon-wrap"><i data-feather="truck" class="feature-icon" width="32" height="32"></i></div>
-                <h3 class="text-metallic">Envio Expresso Segurado</h3>
-                <p>Entrega rápida com seguro total contra extravios.</p>
-            </div>
-            <div class="feature-item fade-in" style="transition-delay: 0.4s">
-                <div class="feature-icon-wrap"><i data-feather="lock" class="feature-icon" width="32" height="32"></i></div>
-                <h3 class="text-metallic">Transação Segura</h3>
-                <p>Checkout criptografado de ponta a ponta.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- VITRINE DE PRODUTOS POEDAGAR -->
-    <section class="section" id="colecoes">
-        <div class="section-header fade-in">
-            <p>Seleção Exclusiva Poedagar</p>
-            <h2 class="text-metallic">Coleção Executiva</h2>
-        </div>
-        
-        <div class="product-grid">
-            <!-- Produto 1 -->
-            <div class="product-card fade-in" onclick="openProductModal(1)">
-                <span class="badge">15% OFF</span>
-                <div class="product-img-wrap">
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_669770-MLB113946237148_072026-F-relogio-poedagar-de-luxo-aco-com-caixa-e-ajuste-de-pulseira.webp" alt="Relógio Poedagar De Luxo Aço">
+    <footer class="bg-slate-950 text-white pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 font-bold text-xl tracking-tight">
+                    <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white text-sm">U</span>
+                    UniSmart
                 </div>
-                <div class="product-info">
-                    <div>
-                        <span class="product-brand">POEDAGAR</span>
-                        <h3 class="product-name text-metallic">Relógio Poedagar De Luxo Aço Com Caixa E Ajuste De Pulseira</h3>
-                        <div class="old-price">R$ 115,00</div>
-                        <div class="product-price text-metallic">R$ 97,75</div>
-                    </div>
-                    <button class="btn btn-solid btn-add-cart" style="width: 100%;" onclick="event.stopPropagation(); addToCartDirect('Relógio Poedagar De Luxo Aço', '97.75')">Adicionar ao Carrinho</button>
-                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Tecnologia que cuida. Inteligência que conecta.<br>
+                    Um ecossistema conceitual desenvolvido sob a visão de inovação Unicharm.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="text-sm font-semibold mb-4 text-slate-200">Módulos</h4>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li><a href="#kids" onclick="navigateTo('kids')" class="hover:text-white transition">UniSmart Kids</a></li>
+                    <li><a href="#care" onclick="navigateTo('care')" class="hover:text-white transition">UniSmart Care</a></li>
+                    <li><a href="#women" onclick="navigateTo('women')" class="hover:text-white transition">UniSmart Women</a></li>
+                    <li><a href="#bin" onclick="navigateTo('bin')" class="hover:text-white transition">UniSmart Bin</a></li>
+                </ul>
             </div>
 
-            <!-- Produto 2 -->
-            <div class="product-card fade-in" style="transition-delay: 0.2s" onclick="openProductModal(2)">
-                <span class="badge badge-danger">ÚLTIMAS 2 UNIDADES (51% OFF)</span>
-                <div class="product-img-wrap">
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_977160-MLA111091578712_052026-F.webp" alt="Relógio De Pulso Masculino Poedagar 613 Branco">
-                </div>
-                <div class="product-info">
-                    <div>
-                        <span class="product-brand">POEDAGAR</span>
-                        <h3 class="product-name text-metallic">Relógio De Pulso Masculino Poedagar 613 Branco, Quartzo</h3>
-                        <div class="old-price">R$ 199,00</div>
-                        <div class="product-price text-metallic">R$ 95,99</div>
-                    </div>
-                    <button class="btn btn-solid btn-add-cart" style="width: 100%;" onclick="event.stopPropagation(); addToCartDirect('Relógio Poedagar 613 Branco', '95.99')">Adicionar ao Carrinho</button>
-                </div>
+            <div>
+                <h4 class="text-sm font-semibold mb-4 text-slate-200">Institucional</h4>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li><a href="#ecossistema" onclick="navigateTo('ecossistema')" class="hover:text-white transition">O Ecossistema</a></li>
+                    <li><a href="#tecnologia" onclick="navigateTo('tecnologia')" class="hover:text-white transition">Tecnologia Preditiva</a></li>
+                    <li><a href="#sobre" onclick="navigateTo('sobre')" class="hover:text-white transition">Sobre a Unicharm</a></li>
+                    <li><a href="#privacidade" onclick="navigateTo('privacidade')" class="hover:text-white transition">Privacidade e Dados</a></li>
+                </ul>
             </div>
 
-            <!-- Produto 3 -->
-            <div class="product-card fade-in" style="transition-delay: 0.4s" onclick="openProductModal(3)">
-                <span class="badge">12% OFF</span>
-                <div class="product-img-wrap">
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_820004-MLB108124612115_032026-F-relogio-masculino-classico-luxo-social-aco-inox-porto-old-mo.webp" alt="Relógio Masculino Clássico Luxo Social">
-                </div>
-                <div class="product-info">
-                    <div>
-                        <span class="product-brand">POEDAGAR</span>
-                        <h3 class="product-name text-metallic">Relógio Masculino Clássico Luxo Social Aço Inox Porto Old Mo</h3>
-                        <div class="old-price">R$ 130,00</div>
-                        <div class="product-price text-metallic">R$ 113,49</div>
-                    </div>
-                    <button class="btn btn-solid btn-add-cart" style="width: 100%;" onclick="event.stopPropagation(); addToCartDirect('Relógio Poedagar Clássico Luxo', '113.49')">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-
-            <!-- Produto 4 -->
-            <div class="product-card fade-in" style="transition-delay: 0.6s" onclick="openProductModal(4)">
-                <span class="badge" style="background: linear-gradient(135deg, #111, #333);">MAIS VENDIDO (6% OFF)</span>
-                <div class="product-img-wrap">
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_887652-MLA99972973535_112025-F.webp" alt="Relógio de Pulso Poedagar 613">
-                </div>
-                <div class="product-info">
-                    <div>
-                        <span class="product-brand">POEDAGAR / CRISTALLANDIA</span>
-                        <h3 class="product-name text-metallic">Relógio de Pulso Poedagar 613 com Correia de Aço Inoxidável</h3>
-                        <div class="old-price">R$ 98,42</div>
-                        <div class="product-price text-metallic">R$ 92,00</div>
-                    </div>
-                    <button class="btn btn-solid btn-add-cart" style="width: 100%;" onclick="event.stopPropagation(); addToCartDirect('Relógio Poedagar 613 Aço Inox', '92.00')">Adicionar ao Carrinho</button>
+            <div>
+                <h4 class="text-sm font-semibold mb-4 text-slate-200">Contato & Suporte</h4>
+                <ul class="space-y-2 text-xs text-slate-400 mb-4">
+                    <li><a href="#contato" onclick="navigateTo('contato')" class="hover:text-white transition">Central de Inovação</a></li>
+                    <li><span class="text-slate-500">São Paulo / Tokyo</span></li>
+                </ul>
+                <div class="inline-block px-3 py-1 bg-slate-900 border border-slate-800 rounded-full text-[10px] text-slate-400">
+                    Conceito Tecnológico — 2026
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- MODAL DE DETALHES DO PRODUTO -->
-    <div class="product-modal-overlay" id="productModalOverlay">
-        <div class="product-modal">
-            <button class="close-modal" id="closeModal">&times;</button>
-            <div class="modal-img-container">
-                <img id="modalImg" src="" alt="Produto">
-            </div>
-            <div class="modal-details">
-                <div>
-                    <span class="modal-brand" id="modalBrand">POEDAGAR</span>
-                    <h2 class="modal-title text-metallic" id="modalTitle">Título do Produto</h2>
-                    <div class="modal-rating">
-                        ★ ★ ★ ★ ★ <span id="modalRatingText" style="color:var(--text-secondary);">(4.9 - +100 vendidos)</span>
-                    </div>
-                    <div class="modal-prices">
-                        <div class="modal-old-price" id="modalOldPrice">R$ 0,00</div>
-                        <div class="modal-current-price text-metallic" id="modalCurrentPrice">R$ 0,00</div>
-                        <div class="modal-installments">em até 12x no cartão ou Pix com desconto</div>
-                    </div>
-                    <div class="modal-specs">
-                        <strong>Destaques do Produto:</strong>
-                        <ul id="modalSpecsList">
-                            <!-- Inserido dinamicamente -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="modal-actions">
-                    <!-- Botão Comprar Agora direciona para o checkout da Cakto -->
-                    <a href="#" class="btn btn-solid" id="modalBuyNowBtn" style="display: block; text-align: center;" target="_blank">Comprar Agora</a>
-                    <button class="btn" id="modalAddToCartBtn">Adicionar ao Carrinho</button>
-                </div>
+        <div class="max-w-7xl mx-auto px-6 mt-8 flex flex-col md:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
+            <p>© 2026 UniSmart — Todos os direitos reservados. Os dados e métricas apresentados possuem caráter puramente conceitual e demonstrativo.</p>
+            <div class="flex gap-4">
+                <a href="#privacidade" onclick="navigateTo('privacidade')" class="hover:underline">Privacidade</a>
+                <a href="#contato" onclick="navigateTo('contato')" class="hover:underline">Termos de Uso</a>
             </div>
         </div>
-    </div>
-
-    <!-- WHATSAPP FLOATING BUTTON -->
-    <a href="https://wa.me/5519982865594?text=Olá! Gostaria de falar com um Consultor VIP da Royal Imperium." target="_blank" class="whatsapp-float" title="Fale com um Consultor VIP">
-        <i data-feather="message-circle" width="30" height="30"></i>
-    </a>
-
-    <!-- FOOTER -->
-    <footer>
-        <a href="#" class="footer-logo brand text-metallic">Royal Imperium & Co</a>
-        <div class="footer-links">
-            <a href="#">Catálogo Completo</a>
-            <a href="#">Rastreamento de Pedido</a>
-            <a href="#">Política de Garantia</a>
-            <a href="#">Privacidade & Termos</a>
-            <a href="#">Contato Corporativo</a>
-        </div>
-        <p class="copyright">&copy; 2026 Royal Imperium & Co. Todos os direitos reservados. E-commerce Premium.</p>
     </footer>
 
     <script>
-        feather.replace();
+        // ROTAS E COMPONENTES DAS 11 PÁGINAS
+        const pages = {
+            home: `
+                <section class="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-semibold">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> O futuro da higiene pessoal
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
+                            O futuro do cuidado começa aqui.
+                        </h1>
+                        <p class="text-lg text-slate-600 font-normal leading-relaxed">
+                            UniSmart conecta pessoas, produtos e tecnologia para transformar higiene, saúde e sustentabilidade em uma experiência inteligente e preditiva.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <button onclick="navigateTo('ecossistema')" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3.5 rounded-full shadow-lg hover:shadow-blue-500/25 transition">
+                                Explorar o UniSmart
+                            </button>
+                            <button onclick="navigateTo('tecnologia')" class="bg-white hover:bg-slate-100 text-slate-700 font-medium px-8 py-3.5 rounded-full border border-slate-200 shadow-sm transition">
+                                Conhecer o aplicativo
+                            </button>
+                        </div>
+                    </div>
 
-        // BASE DE DADOS DOS PRODUTOS
-        // COLE OS SEUS LINKS DO CHECKOUT CAKTO ABAIXO:
-        const productsData = {
-            1: {
-                brand: "POEDAGAR (Vendido por SINGULIERBR)",
-                title: "Relógio Poedagar De Luxo Aço Com Caixa E Ajuste De Pulseira",
-                oldPrice: "R$ 115,00",
-                currentPrice: "R$ 97,75",
-                rating: "4.9 ★★★★★ (8 avaliações) | +100 vendidos",
-                img: "https://http2.mlstatic.com/D_NQ_NP_2X_669770-MLB113946237148_072026-F-relogio-poedagar-de-luxo-aco-com-caixa-e-ajuste-de-pulseira.webp",
-                caktoCheckoutUrl: "https://pay.cakto.com.br/txtq3bm_1053099",
-                specs: [
-                    "Modelo: 613 (Masculino - Adultos)",
-                    "Material da correia & caixa: Aço inoxidável (Prateado)",
-                    "Cor do fundo e caixa: Preto | Cor do bisel: Prateado",
-                    "Tipo de fecho: Dobrável",
-                    "Tipo de movimento: Quartzo (Bateria Íon de lítio)",
-                    "Resistência à água: Sim (Até 30 metros de profundidade)",
-                    "Peso: 100 g",
-                    "Envio: Frete Grátis e Rápido com rastreamento",
-                    "Garantia: 30 dias de garantia de fábrica + Compra Garantida",
-                    "Pagamento: Até 12x de R$ 9,63 (Cartões, Pix, Mercado Pago e Boleto)"
-                ]
-            },
-            2: {
-                brand: "POEDAGAR",
-                title: "Relógio De Pulso Masculino Poedagar 613 Branco, Quartzo",
-                oldPrice: "R$ 199,00",
-                currentPrice: "R$ 95,99",
-                rating: "4.9 (+500 vendidos)",
-                img: "https://http2.mlstatic.com/D_NQ_NP_2X_977160-MLA111091578712_052026-F.webp",
-                caktoCheckoutUrl: "COLE_O_LINK_CAKTO_DO_PRODUTO_2_AQUI",
-                specs: [
-                    "Mostrador Branco Elegante modelo 613",
-                    "Frete Grátis para todo o Brasil",
-                    "Pulseira em Aço Inoxidável Polido",
-                    "Calendário funcional e marcadores fosforescentes"
-                ]
-            },
-            3: {
-                brand: "POEDAGAR",
-                title: "Relógio Masculino Clássico Luxo Social Aço Inox Porto Old Mo",
-                oldPrice: "R$ 130,00",
-                currentPrice: "R$ 113,49",
-                rating: "4.7 (+100 vendidos)",
-                img: "https://http2.mlstatic.com/D_NQ_NP_2X_820004-MLB108124612115_032026-F-relogio-masculino-classico-luxo-social-aco-inox-porto-old-mo.webp",
-                caktoCheckoutUrl: "COLE_O_LINK_CAKTO_DO_PRODUTO_3_AQUI",
-                specs: [
-                    "Exibição dupla de dia da semana e data do mês",
-                    "Design Clássico Social Porto Old Mo",
-                    "Caixa em Aço com Acabamento Premium",
-                    "Frete grátis com envio rápido"
-                ]
-            },
-            4: {
-                brand: "POEDAGAR / CRISTALLANDIA",
-                title: "Relógio de Pulso Poedagar 613 com Correia de Aço Inoxidável",
-                oldPrice: "R$ 98,42",
-                currentPrice: "R$ 92,00",
-                rating: "4.8 (+10mil vendidos)",
-                img: "https://http2.mlstatic.com/D_NQ_NP_2X_887652-MLA99972973535_112025-F.webp",
-                caktoCheckoutUrl: "COLE_O_LINK_CAKTO_DO_PRODUTO_4_AQUI",
-                specs: [
-                    "Modelo Campeão de Vendas com mais de 10 mil unidades",
-                    "Construção robusta e confortável para o dia a dia",
-                    "Fecho dobrável com trava de segurança",
-                    "Acompanha estojo de proteção da marca"
-                ]
-            }
+                    <div class="relative flex items-center justify-center p-8">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-400/20 to-teal-400/20 rounded-full blur-3xl -z-10"></div>
+                        
+                        <div class="relative w-full max-w-md bg-slate-900 rounded-[40px] p-6 shadow-2xl border border-slate-800 text-white glow-blue">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <span class="text-[10px] text-slate-400 uppercase tracking-widest block">Dashboard Familiar</span>
+                                    <h3 class="text-base font-bold text-white">Ecossistema UniSmart</h3>
+                                </div>
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 mb-4">
+                                <div class="bg-slate-800/60 p-3 rounded-2xl border border-blue-500/20">
+                                    <div class="flex items-center gap-2 text-blue-400 text-xs font-semibold mb-1">
+                                        <i data-lucide="baby" class="w-4 h-4"></i> Kids
+                                    </div>
+                                    <div class="text-sm font-medium">Fralda Leo</div>
+                                    <div class="text-[10px] text-slate-400">Umidade: 65%</div>
+                                </div>
+
+                                <div class="bg-slate-800/60 p-3 rounded-2xl border border-teal-500/20">
+                                    <div class="flex items-center gap-2 text-teal-400 text-xs font-semibold mb-1">
+                                        <i data-lucide="heart-pulse" class="w-4 h-4"></i> Care
+                                    </div>
+                                    <div class="text-sm font-medium">Mat Bio</div>
+                                    <div class="text-[10px] text-slate-400">Posição: De lado</div>
+                                </div>
+
+                                <div class="bg-slate-800/60 p-3 rounded-2xl border border-pink-500/20">
+                                    <div class="flex items-center gap-2 text-pink-400 text-xs font-semibold mb-1">
+                                        <i data-lucide="flower2" class="w-4 h-4"></i> Women
+                                    </div>
+                                    <div class="text-sm font-medium">Ciclo Íntimo</div>
+                                    <div class="text-[10px] text-slate-400">Fase Folicular</div>
+                                </div>
+
+                                <div class="bg-slate-800/60 p-3 rounded-2xl border border-emerald-500/20">
+                                    <div class="flex items-center gap-2 text-emerald-400 text-xs font-semibold mb-1">
+                                        <i data-lucide="recycle" class="w-4 h-4"></i> Bin
+                                    </div>
+                                    <div class="text-sm font-medium">Descarte Smart</div>
+                                    <div class="text-[10px] text-slate-400">Capacidade: 80%</div>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-600/20 border border-blue-500/30 p-3 rounded-xl flex items-center justify-between text-xs">
+                                <span class="text-blue-200">Status da Rede Preditiva</span>
+                                <span class="font-bold text-blue-400">100% Conectado</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="py-20 bg-white border-t border-slate-100">
+                    <div class="max-w-7xl mx-auto px-6">
+                        <div class="text-center max-w-2xl mx-auto mb-16">
+                            <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4">Um ecossistema. Toda a família.</h2>
+                            <p class="text-slate-600 text-sm">
+                                UniSmart reúne diferentes soluções inteligentes em uma única plataforma, permitindo acompanhar necessidades de cuidado, conforto e sustentabilidade de forma simples.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="glass p-6 rounded-3xl hover:shadow-xl transition-all duration-300 border-t-4 border-t-blue-500 group">
+                                <div class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                                    <i data-lucide="baby" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">UniSmart Kids</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-6">
+                                    Monitoramento inteligente para crianças através da fralda renovável MamyPoko.
+                                </p>
+                                <button onclick="navigateTo('kids')" class="text-xs font-bold text-blue-600 flex items-center gap-1 group-hover:gap-2 transition-all">
+                                    Explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+
+                            <div class="glass p-6 rounded-3xl hover:shadow-xl transition-all duration-300 border-t-4 border-t-teal-500 group">
+                                <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center mb-4">
+                                    <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">UniSmart Care</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-6">
+                                    Mais conforto, dignidade e acompanhamento preditivo para adultos e idosos com Lifree.
+                                </p>
+                                <button onclick="navigateTo('care')" class="text-xs font-bold text-teal-600 flex items-center gap-1 group-hover:gap-2 transition-all">
+                                    Explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+
+                            <div class="glass p-6 rounded-3xl hover:shadow-xl transition-all duration-300 border-t-4 border-t-pink-500 group">
+                                <div class="w-10 h-10 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center mb-4">
+                                    <i data-lucide="flower2" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">UniSmart Women</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-6">
+                                    Tecnologia voltada ao bem-estar e à saúde íntima integrada à linha Sofy.
+                                </p>
+                                <button onclick="navigateTo('women')" class="text-xs font-bold text-pink-600 flex items-center gap-1 group-hover:gap-2 transition-all">
+                                    Explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+
+                            <div class="glass p-6 rounded-3xl hover:shadow-xl transition-all duration-300 border-t-4 border-t-emerald-500 group">
+                                <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
+                                    <i data-lucide="recycle" class="w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">UniSmart Bin</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-6">
+                                    Logística reversa inteligente para transformar consumo em sustentabilidade real.
+                                </p>
+                                <button onclick="navigateTo('bin')" class="text-xs font-bold text-emerald-600 flex items-center gap-1 group-hover:gap-2 transition-all">
+                                    Explorar <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            ecossistema: `
+                <section class="max-w-7xl mx-auto px-6 py-16">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h1 class="text-4xl font-extrabold text-slate-900 mb-4">O Ecossistema Integrado</h1>
+                        <p class="text-slate-600">A visão unificada onde dispositivos discretos, inteligência de dados e produtos de bem-estar atuam em perfeita harmonia.</p>
+                    </div>
+
+                    <div class="glass-dark text-white p-8 md:p-12 rounded-3xl mb-12 relative overflow-hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
+                                <div class="text-blue-400 font-bold mb-1">1. Sensores</div>
+                                <div class="text-xs text-slate-300">UniSmart Tag & Devices</div>
+                            </div>
+                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
+                                <div class="text-cyan-400 font-bold mb-1">2. Processamento</div>
+                                <div class="text-xs text-slate-300">Algoritmos Preditivos</div>
+                            </div>
+                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
+                                <div class="text-teal-400 font-bold mb-1">3. Ação</div>
+                                <div class="text-xs text-slate-300">Alertas em Tempo Real</div>
+                            </div>
+                            <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
+                                <div class="text-emerald-400 font-bold mb-1">4. Sustentabilidade</div>
+                                <div class="text-xs text-slate-300">Reciclagem com Bin</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            kids: `
+                <section class="max-w-7xl mx-auto px-6 py-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Módulo Infantil</span>
+                            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-2 mb-6 leading-tight">
+                                Cuidado inteligente para quem ainda não consegue dizer o que precisa.
+                            </h1>
+                            <p class="text-slate-600 mb-8 leading-relaxed">
+                                Integrado à linha MamyPoko, o UniSmart Tag é um dispositivo magnético reutilizável que monitora o microclima da fralda sem nenhum desconforto para o bebê.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                                    <div class="p-2 bg-blue-50 text-blue-600 rounded-xl"><i data-lucide="shield-check"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">Monitoramento Contínuo</h4>
+                                        <p class="text-xs text-slate-500">Estimativa precisa de umidade e alerta antes de irritações na pele.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900 text-white p-6 rounded-3xl border border-slate-800 shadow-2xl">
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">L</div>
+                                    <div>
+                                        <div class="text-sm font-bold">Bebê Leo</div>
+                                        <div class="text-[10px] text-slate-400">Fralda MamyPoko Renovável</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs px-2.5 py-1 bg-emerald-500/20 text-emerald-400 rounded-full border border-emerald-500/30">Pele Protegida</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-slate-400">Nível de Umidade</span>
+                                        <span class="font-bold text-blue-400">65%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-blue-500 h-full w-[65%]"></div>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl flex items-center justify-between text-xs">
+                                    <span class="text-amber-200">Próxima troca estimada:</span>
+                                    <span class="font-bold text-amber-400">35 minutos</span>
+                                </div>
+                                <p class="text-[10px] text-slate-500 text-center italic">* Dados demonstrativos de um ambiente de simulação conceitual.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            care: `
+                <section class="max-w-7xl mx-auto px-6 py-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="text-xs font-bold text-teal-600 uppercase tracking-widest">Módulo Senior & Adulto</span>
+                            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-2 mb-6 leading-tight">
+                                Mais conforto. Mais dignidade. Mais cuidado.
+                            </h1>
+                            <p class="text-slate-600 mb-8 leading-relaxed">
+                                Combinando a linha Lifree ao **UniSmart Mat** — um tapete biométrico ultra-fino sob o lençol —, a plataforma oferece suporte preditivo de postura e umidade sem perder o calor humano.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-900 text-white p-6 rounded-3xl border border-slate-800 shadow-2xl">
+                            <h3 class="text-sm font-bold text-slate-400 mb-4">Painel BioMat — Lifree Care</h3>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="bg-slate-800/80 p-4 rounded-xl">
+                                    <span class="text-xs text-slate-400 block">Posição Atual</span>
+                                    <span class="text-lg font-bold text-teal-400">Lateral Direita</span>
+                                </div>
+                                <div class="bg-slate-800/80 p-4 rounded-xl">
+                                    <span class="text-xs text-slate-400 block">Tempo Estático</span>
+                                    <span class="text-lg font-bold text-amber-400">1h 45min</span>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-teal-500/10 border border-teal-500/30 rounded-xl text-xs text-teal-300">
+                                💡 Recomendação: Alterar posição do paciente em aproximadamente 15 minutos.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            women: `
+                <section class="max-w-7xl mx-auto px-6 py-16">
+                    <div class="max-w-3xl mx-auto text-center mb-12">
+                        <span class="text-xs font-bold text-pink-600 uppercase tracking-widest">Módulo Feminino</span>
+                        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-4">Tecnologia que entende o seu ritmo.</h1>
+                        <p class="text-slate-600 text-sm">Dispositivos conceituais discretos como o UniSmart Clip oferecem acompanhamento térmico e suporte ao bem-estar íntimo em harmonia com a linha Sofy.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="p-4 rounded-2xl border border-pink-200 bg-pink-50/50">
+                            <div class="text-xs font-bold text-pink-600 mb-1">Fase 1</div>
+                            <div class="text-sm font-bold text-slate-800">Menstruação</div>
+                        </div>
+                        <div class="p-4 rounded-2xl border border-pink-500 bg-pink-500 text-white">
+                            <div class="text-xs font-semibold opacity-80 mb-1">Fase 2 (Atual)</div>
+                            <div class="text-sm font-bold">Folicular</div>
+                        </div>
+                        <div class="p-4 rounded-2xl border border-pink-200 bg-pink-50/50">
+                            <div class="text-xs font-bold text-pink-600 mb-1">Fase 3</div>
+                            <div class="text-sm font-bold text-slate-800">Ovulatória</div>
+                        </div>
+                        <div class="p-4 rounded-2xl border border-pink-200 bg-pink-50/50">
+                            <div class="text-xs font-bold text-pink-600 mb-1">Fase 4</div>
+                            <div class="text-sm font-bold text-slate-800">Lútea</div>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            bin: `
+                <section class="max-w-7xl mx-auto px-6 py-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Sustentabilidade Ativa</span>
+                            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-2 mb-6">
+                                Quando o cuidado termina, a sustentabilidade começa.
+                            </h1>
+                            <p class="text-slate-600 leading-relaxed mb-6">
+                                O **UniSmart Bin** é uma lixeira residencial conectada que sela, quantifica e otimiza a coleta de resíduos recicláveis, transformando descarte em pontos e ciclos renováveis.
+                            </p>
+                        </div>
+                        <div class="glass-dark p-8 rounded-3xl text-white">
+                            <div class="text-center pb-6 border-b border-slate-800">
+                                <div class="text-4xl font-extrabold text-emerald-400">12 kg</div>
+                                <div class="text-xs text-slate-400 mt-1">Resíduos Evitados / Reciclados</div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 pt-6 text-center">
+                                <div>
+                                    <div class="text-xl font-bold text-white">1.200</div>
+                                    <div class="text-[10px] text-slate-400">Pontos Acumulados</div>
+                                </div>
+                                <div>
+                                    <div class="text-xl font-bold text-white">Quarta-feira</div>
+                                    <div class="text-[10px] text-slate-400">Próxima Coleta Inteligente</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            tecnologia: `
+                <section class="max-w-7xl mx-auto px-6 py-16">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">Tecnologia Preditiva & Invisível</h1>
+                        <p class="text-slate-600">Dispositivos ultra-eficientes, seguros e projetados para desaparecerem no cotidiano.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                            <i data-lucide="cpu" class="w-8 h-8 text-blue-600 mb-4"></i>
+                            <h3 class="font-bold text-slate-900 mb-2">Algoritmos Avançados</h3>
+                            <p class="text-xs text-slate-500">Identificação prévia de padrões biológicos antes do desconforto ocorrer.</p>
+                        </div>
+                        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                            <i data-lucide="wifi-off" class="w-8 h-8 text-blue-600 mb-4"></i>
+                            <h3 class="font-bold text-slate-900 mb-2">Baixa Emissão Rádio</h3>
+                            <p class="text-xs text-slate-500">Comunicação ultra-eficiente por pulsos seguros e de alcance restrito.</p>
+                        </div>
+                        <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                            <i data-lucide="lock" class="w-8 h-8 text-blue-600 mb-4"></i>
+                            <h3 class="font-bold text-slate-900 mb-2">Criptografia Ponta a Ponta</h3>
+                            <p class="text-xs text-slate-500">Proteção total dos dados de saúde da sua família.</p>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            sobre: `
+                <section class="max-w-5xl mx-auto px-6 py-16">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Inovação Corporativa</span>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2 mb-6">Inovação que começa com o cuidado.</h1>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        O UniSmart é a expressão mais avançada da visão de futuro da Unicharm. Buscamos integrar ciência de dados, biomateriais e sustentabilidade para libertar as pessoas dos incômodos do dia a dia.
+                    </p>
+                </section>
+            `,
+
+            privacidade: `
+                <section class="max-w-4xl mx-auto px-6 py-16">
+                    <h1 class="text-3xl font-bold text-slate-900 mb-6">Seus dados merecem o mesmo cuidado que você.</h1>
+                    <div class="prose prose-slate text-sm space-y-4 text-slate-600">
+                        <p>No ecossistema UniSmart, a privacidade é um pilar estrutural. Todos os dados coletados por sensores conceituais são anonimizados e criptografados localmente.</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Controle total do usuário sobre o compartilhamento de dados.</li>
+                            <li>Ausência de comercialização de perfis biológicos.</li>
+                            <li>Conformidade integral com os padrões mundiais de proteção de dados (LGPD/GDPR).</li>
+                        </ul>
+                    </div>
+                </section>
+            `,
+
+            contato: `
+                <section class="max-w-xl mx-auto px-6 py-16">
+                    <h1 class="text-3xl font-bold text-slate-900 mb-4 text-center">Entre em contato</h1>
+                    <p class="text-slate-600 text-sm text-center mb-8">Fale com a equipe de desenvolvimento conceitual do UniSmart.</p>
+                    
+                    <form onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso (Simulação)');" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">E-mail</label>
+                            <input type="email" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Mensagem</label>
+                            <textarea rows="4" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white font-medium py-3 rounded-xl hover:bg-blue-700 transition">Enviar Mensagem</button>
+                    </form>
+                </section>
+            `
         };
 
-        // Lógica do Modal do Produto
-        const modalOverlay = document.getElementById('productModalOverlay');
-        const closeModalBtn = document.getElementById('closeModal');
-
-        function openProductModal(id) {
-            const product = productsData[id];
-            if (!product) return;
-
-            document.getElementById('modalImg').src = product.img;
-            document.getElementById('modalBrand').innerText = product.brand;
-            document.getElementById('modalTitle').innerText = product.title;
-            document.getElementById('modalRatingText').innerText = `(${product.rating})`;
-            document.getElementById('modalOldPrice').innerText = product.oldPrice;
-            document.getElementById('modalCurrentPrice').innerText = product.currentPrice;
-            
-            // Define o link de checkout Cakto correspondente
-            document.getElementById('modalBuyNowBtn').href = product.caktoCheckoutUrl;
-
-            const specsContainer = document.getElementById('modalSpecsList');
-            specsContainer.innerHTML = '';
-            product.specs.forEach(spec => {
-                const li = document.createElement('li');
-                li.innerText = spec;
-                specsContainer.appendChild(li);
-            });
-
-            modalOverlay.classList.add('active');
-        }
-
-        closeModalBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) modalOverlay.classList.remove('active');
-        });
-
-        // Alternância de Tema
-        const themeToggle = document.getElementById('themeToggle');
-        const icon = themeToggle.querySelector('i');
-        let isDarkMode = false;
-
-        themeToggle.addEventListener('click', () => {
-            isDarkMode = !isDarkMode;
-            if(isDarkMode) {
-                document.body.setAttribute('data-theme', 'dark');
-                icon.setAttribute('data-feather', 'sun');
-            } else {
-                document.body.removeAttribute('data-theme');
-                icon.setAttribute('data-feather', 'moon');
+        // ROTEADOR DA APLICAÇÃO
+        function navigateTo(pageId) {
+            const contentDiv = document.getElementById('app-content');
+            if (pages[pageId]) {
+                contentDiv.innerHTML = pages[pageId];
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                lucide.createIcons(); // Re-renderizar ícones da página inserida
             }
-            feather.replace();
-        });
-
-        // Carrinho
-        const openCart = document.getElementById('openCart');
-        const closeCart = document.getElementById('closeCart');
-        const cartSidebar = document.getElementById('cartSidebar');
-        const cartOverlay = document.getElementById('cartOverlay');
-
-        function toggleCart() {
-            cartSidebar.classList.toggle('active');
-            cartOverlay.classList.toggle('active');
         }
 
-        openCart.addEventListener('click', toggleCart);
-        closeCart.addEventListener('click', toggleCart);
-        cartOverlay.addEventListener('click', toggleCart);
-
-        function addToCartDirect(name, price) {
-            toggleCart();
-        }
-
-        // Animações
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-            } else {
-                header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.1)';
-            }
+        // CARREGAMENTO INICIAL (HOME)
+        document.addEventListener('DOMContentLoaded', () => {
+            navigateTo('home');
         });
     </script>
 </body>
