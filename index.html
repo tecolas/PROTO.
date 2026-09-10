@@ -1,592 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EchoBand EB-X1 | O Futuro dos Wearables</title>
-  <style>
-    /* RESET & BASE STYLES */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      background-color: #030712;
-      color: #f3f4f6;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: #38bdf8;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    a:hover {
-      color: #7dd3fc;
-    }
-
-    /* HEADER / NAVBAR */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(3, 7, 18, 0.85);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2rem;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    nav a {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #9ca3af;
-    }
-
-    nav a:hover {
-      color: #ffffff;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #0284c7, #4f46e5);
-      color: #ffffff;
-      padding: 0.6rem 1.4rem;
-      border-radius: 9999px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.5);
-    }
-
-    /* HERO SECTION */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
-      background: radial-gradient(circle at 50% 30%, rgba(56, 189, 248, 0.15) 0%, rgba(3, 7, 18, 1) 70%);
-      text-align: center;
-    }
-
-    .hero-content {
-      max-width: 900px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 0.4rem 1rem;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 9999px;
-      color: #38bdf8;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      letter-spacing: -1px;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      color: #9ca3af;
-      margin-bottom: 2.5rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* VIRTUAL PRODUCT DISPLAY */
-    .product-preview {
-      width: 280px;
-      height: 280px;
-      margin: 2rem auto;
-      border-radius: 50%;
-      border: 2px solid rgba(56, 189, 248, 0.4);
-      background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 50px rgba(56, 189, 248, 0.2);
-      position: relative;
-    }
-
-    .laser-projection {
-      font-family: monospace;
-      color: #38bdf8;
-      font-size: 0.9rem;
-      text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
-      margin-top: 10px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 5px 10px;
-      border-radius: 4px;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-    }
-
-    /* SECTIONS COMMON */
-    section {
-      padding: 6rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-title h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .section-title p {
-      color: #9ca3af;
-      font-size: 1.1rem;
-    }
-
-    /* FEATURES GRID */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .feature-card {
-      background: rgba(17, 24, 39, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 2.5rem;
-      border-radius: 16px;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(56, 189, 248, 0.4);
-    }
-
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      display: inline-block;
-      padding: 0.8rem;
-      background: rgba(56, 189, 248, 0.1);
-      border-radius: 12px;
-      color: #38bdf8;
-    }
-
-    .feature-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .feature-card p {
-      color: #9ca3af;
-      font-size: 0.95rem;
-    }
-
-    /* TECH SPECS TABLE/GRID */
-    .specs-container {
-      background: rgba(17, 24, 39, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .specs-row {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .specs-row:last-child {
-      border-bottom: none;
-    }
-
-    .specs-label {
-      font-weight: 600;
-      color: #38bdf8;
-    }
-
-    .specs-value {
-      color: #d1d5db;
-    }
-
-    /* TIMELINE / GTM PLAN */
-    .gtm-timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      position: relative;
-    }
-
-    .gtm-item {
-      background: rgba(17, 24, 39, 0.6);
-      border-left: 4px solid #0284c7;
-      padding: 2rem;
-      border-radius: 0 16px 16px 0;
-    }
-
-    .gtm-item h3 {
-      color: #38bdf8;
-      margin-bottom: 0.5rem;
-    }
-
-    .gtm-item .phase-date {
-      font-size: 0.85rem;
-      color: #6b7280;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 1rem;
-    }
-
-    /* PRICING */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .pricing-card {
-      background: rgba(17, 24, 39, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 3rem 2rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .pricing-card.featured {
-      border-color: #38bdf8;
-      box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
-    }
-
-    .price {
-      font-size: 3rem;
-      font-weight: 800;
-      margin: 1.5rem 0;
-    }
-
-    .price span {
-      font-size: 1rem;
-      color: #9ca3af;
-      font-weight: 400;
-    }
-
-    .pricing-features {
-      list-style: none;
-      margin-bottom: 2.5rem;
-      text-align: left;
-    }
-
-    .pricing-features li {
-      margin-bottom: 0.8rem;
-      color: #d1d5db;
-      font-size: 0.95rem;
-    }
-
-    .pricing-features li::before {
-      content: "✓ ";
-      color: #38bdf8;
-      font-weight: bold;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 4rem 2rem 2rem;
-      background: #010409;
-      text-align: center;
-      color: #6b7280;
-      font-size: 0.9rem;
-    }
-
-    /* RESPONSIVE DESIGN */
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
-      .specs-row { grid-template-columns: 1fr; gap: 0.5rem; }
-      nav { display: none; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Cobrinha</title>
+    <style>
+        body {
+            background-color: #2c3e50;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            background-color: #34495e;
+            border: 4px solid #ecf0f1;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        h1 { margin-bottom: 10px; }
+        p { margin-top: 10px; color: #bdc3c7; }
+    </style>
 </head>
 <body>
 
-  <!-- HEADER NAVIGATION -->
-  <header>
-    <div class="nav-container">
-      <div class="logo">ECHOBAND</div>
-      <nav>
-        <ul>
-          <li><a href="#recursos">Tecnologia</a></li>
-          <li><a href="#especificacoes">Especificações</a></li>
-          <li><a href="#roteiro">Lançamento</a></li>
-          <li><a href="#precos">Edições</a></li>
-        </ul>
-      </nav>
-      <button class="btn-primary" onclick="alert('Inscrições para a Pioneer Edition abrem em breve!')">Garantir Acesso VIP</button>
-    </div>
-  </header>
+    <h1>Jogo da Cobrinha</h1>
+    <h2 id="score">Pontuação: 0</h2>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <p>Use as setas do teclado para jogar.</p>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <span class="badge">Apresentando o EB-X1</span>
-      <h1>Sua voz no seu toque. <span>Sua saúde na sua pele.</span></h1>
-      <p>O primeiro wearable de precisão biométrica com condução óssea fuso-digital e projeção micro-laser. Sem fones, sem telas intrusivas.</p>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
 
-      <div class="product-preview">
-        <strong style="color: #94a3b8; letter-spacing: 2px;">TITANIUM GRAU 5</strong>
-        <div class="laser-projection" id="laserDisplay">PROJETANDO: 120/80 mmHg</div>
-      </div>
+        const box = 20; // Tamanho de cada quadrado
+        let snake = [];
+        snake[0] = { x: 9 * box, y: 10 * box }; // Posição inicial
 
-      <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-        <button class="btn-primary" style="padding: 0.8rem 2rem; font-size: 1rem;" onclick="scrollToSection('precos')">Reservar Pioneer Edition ($50 Deposit)</button>
-      </div>
-    </div>
-  </section>
+        let food = {
+            x: Math.floor(Math.random() * 19 + 1) * box,
+            y: Math.floor(Math.random() * 19 + 1) * box
+        };
 
-  <!-- RECURSOS CHAVE -->
-  <section id="recursos">
-    <div class="section-title">
-      <h2>Tecnologias de Ruptura</h2>
-      <p>Engenharia avançada integrada em apenas 38,5g de titânio.</p>
-    </div>
+        let score = 0;
+        let d; // Direção
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🔊</div>
-        <h3>Condução Óssea Fuso-Digital</h3>
-        <p>Atuador PZT de alta eficiência. Encoste o dedo na orelha e ouça suas chamadas e áudios com privacidade absoluta através dos ossos da mão.</p>
-      </div>
+        // Escuta as teclas
+        document.addEventListener("keydown", direction);
 
-      <div class="feature-card">
-        <div class="feature-icon">🩸</div>
-        <h3>Glicemia & Cortisol Sem Agulhas</h3>
-        <p>Monitoramento contínuo usando espectroscopia Raman NIR e sensores microfluídicos de suor basal para análise de estresse e glicose.</p>
-      </div>
+        function direction(event) {
+            if (event.keyCode == 37 && d != "RIGHT") { d = "LEFT"; }
+            else if (event.keyCode == 38 && d != "DOWN") { d = "UP"; }
+            else if (event.keyCode == 39 && d != "LEFT") { d = "RIGHT"; }
+            else if (event.keyCode == 40 && d != "UP") { d = "DOWN"; }
+        }
 
-      <div class="feature-card">
-        <div class="feature-icon">🔦</div>
-        <h3>Micro-Display Laser LBS</h3>
-        <p>Projetor MEMS tricolor seguro que exibe notificações, chamadas e sinais vitais diretamente na palma da sua mão.</p>
-      </div>
+        function collision(head, array) {
+            for (let i = 0; i < array.length; i++) {
+                if (head.x == array[i].x && head.y == array[i].y) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
-      <div class="feature-card">
-        <div class="feature-icon">🧠</div>
-        <h3>CortiX AI (Hardware Local)</h3>
-        <p>Processador neural dedicado ARM Ethos-U55. Resposta imediata para comandos de voz sem necessidade de conexão ativa com a nuvem.</p>
-      </div>
+        function draw() {
+            // Limpa o canvas
+            ctx.fillStyle = "#34495e";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      <div class="feature-card">
-        <div class="feature-icon">🔋</div>
-        <h3>Bateria de Estado Sólido</h3>
-        <p>Tecnologia Lithium-Metal com 5 dias de autonomia contínua, recarga em 22 minutos e microgerador cinético integrado.</p>
-      </div>
+            // Desenha a cobra
+            for (let i = 0; i < snake.length; i++) {
+                ctx.fillStyle = (i == 0) ? "#2ecc71" : "#27ae60";
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
+                ctx.strokeStyle = "#2c3e50";
+                ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+            }
 
-      <div class="feature-card">
-        <div class="feature-icon">🔐</div>
-        <h3>Segurança Biométrica PulsePrint™</h3>
-        <p>Autenticação única através do padrão do seu pulso arterial para pagamentos instantâneos por NFC e proteção de dados.</p>
-      </div>
-    </div>
-  </section>
+            // Desenha a comida
+            ctx.fillStyle = "#e74c3c";
+            ctx.fillRect(food.x, food.y, box, box);
 
-  <!-- ESPECIFICAÇÕES TÉCNICAS -->
-  <section id="especificacoes">
-    <div class="section-title">
-      <h2>Especificações Técnicas</h2>
-      <p>Desenvolvido sob padrões médicos e aeroespaciais.</p>
-    </div>
+            // Posição antiga da cabeça
+            let snakeX = snake[0].x;
+            let snakeY = snake[0].y;
 
-    <div class="specs-container">
-      <div class="specs-row">
-        <div class="specs-label">Chassi & Materiais</div>
-        <div class="specs-value">Titânio Grau 5 (Ti-6Al-4V) com acabamento fosco, Pulseira FKM com microventilação, Certificação ISO 10993.</div>
-      </div>
-      <div class="specs-row">
-        <div class="specs-label">Resistência à Água</div>
-        <div class="specs-value">Certificação IP68 + Classificação 10 ATM (Até 100 metros de profundidade).</div>
-      </div>
-      <div class="specs-row">
-        <div class="specs-label">Processador & Memória</div>
-        <div class="specs-value">Dual-core ARM Cortex-M55 @ 200 MHz + NPU ARM Ethos-U55 + Subprocessador Cortex-M0+ | 16MB PSRAM + 256MB Flash.</div>
-      </div>
-      <div class="specs-row">
-        <div class="specs-label">Áudio & Microfones</div>
-        <div class="specs-value">Transdutor Piezoelétrico PZT (100Hz - 12kHz) + Matriz MEMS Dupla com Cancelamento Ativo de Ruído (ENC).</div>
-      </div>
-      <div class="specs-row">
-        <div class="specs-label">Projeção Laser</div>
-        <div class="specs-value">Micro-Laser MEMS LBS RGB (320 x 180 px equivalente), Luminosidade de 45 nits, Segurança Classe 1M Eye-Safe.</div>
-      </div>
-      <div class="specs-row">
-        <div class="specs-label">Suíte de Biossensores</div>
-        <div class="specs-value">PPG Multi-LED, Espectrometro Raman NIR (Glicemia), Microfluídica (Cortisol/Eletrólitos), GSR (Estresse), IMU 9-Eixos e Temp. Cutânea (±0,05°C).</div>
-      </div>
-      <div class="specs-row">
-        <div class="specs-label">Conectividade & SO</div>
-        <div class="specs-value">EchoOS (Kernel RTOS <5ms), Bluetooth 5.4 BLE, NFC (Google/Apple Pay), Wi-Fi 6.</div>
-      </div>
-    </div>
-  </section>
+            // Para onde vai
+            if (d == "LEFT") snakeX -= box;
+            if (d == "UP") snakeY -= box;
+            if (d == "RIGHT") snakeX += box;
+            if (d == "DOWN") snakeY += box;
 
-  <!-- ROTEIRO / PLANO DE LANÇAMENTO -->
-  <section id="roteiro">
-    <div class="section-title">
-      <h2>Estratégia de Lançamento Global</h2>
-      <p>O caminho do EchoBand até as mãos dos usuários.</p>
-    </div>
+            // Se comer a comida
+            if (snakeX == food.x && snakeY == food.y) {
+                score++;
+                document.getElementById("score").innerText = "Pontuação: " + score;
+                food = {
+                    x: Math.floor(Math.random() * 19 + 1) * box,
+                    y: Math.floor(Math.random() * 19 + 1) * box
+                };
+            } else {
+                snake.pop(); // Remove a cauda se não comeu
+            }
 
-    <div class="gtm-timeline">
-      <div class="gtm-item">
-        <div class="phase-date">Fase 1: Mês -6 ao Mês 0</div>
-        <h3>Pré-Lançamento VIP & Testes Alpha</h3>
-        <p>Entrega do lote restrito para 100 biohackers e executivos. Abertura das inscrições da Pioneer Edition limitada a 5.000 unidades com acesso exclusivo ao grupo de desenvolvimento.</p>
-      </div>
+            // Nova cabeça
+            let newHead = { x: snakeX, y: snakeY };
 
-      <div class="gtm-item">
-        <div class="phase-date">Fase 2: Mês 0 ao Mês 2</div>
-        <h3>Keynote Global & Vendas Abertas</h3>
-        <p>Evento de revelação "EchoDay" com transmissão mundial. Abertura de Pop-up Stores com cabines acústicas em São Paulo, Nova York, Londres e Tóquio.</p>
-      </div>
+            // Game Over (bater na parede ou no próprio corpo)
+            if (snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
+                clearInterval(game);
+                alert("Game Over! Sua pontuação foi: " + score + ". Atualize a página para tentar de novo.");
+            }
 
-      <div class="gtm-item">
-        <div class="phase-date">Fase 3: Mês 3 em diante</div>
-        <h3>Ecossistema & Serviços Avançados</h3>
-        <p>Lançamento da plataforma EchoCare+ para análises médicas preditivas, liberando atualizações de firmware contínuas para detecção de apneia e abertura do SDK para desenvolvedores.</p>
-      </div>
-    </div>
-  </section>
+            snake.unshift(newHead);
+        }
 
-  <!-- PREÇOS E EDICOES -->
-  <section id="precos">
-    <div class="section-title">
-      <h2>Escolha a sua Edição</h2>
-      <p>Adquira a tecnologia wearable do amanhã hoje mesmo.</p>
-    </div>
-
-    <div class="pricing-grid">
-      <!-- Standard -->
-      <div class="pricing-card">
-        <h3>EB-X1 Standard</h3>
-        <p style="color: #9ca3af;">Acabamento em Titânio Natural</p>
-        <div class="price">$599 <span>USD</span></div>
-        <ul class="pricing-features">
-          <li>Condução Óssea Fuso-Digital</li>
-          <li>Sensores Biométricos Completos</li>
-          <li>Projeção Micro-Laser Monocromática</li>
-          <li>Bateria de Estado Sólido (5 dias)</li>
-          <li>Garantia de 2 Anos</li>
-        </ul>
-        <button class="btn-primary" style="width: 100%;" onclick="alert('Redirecionando para checkout...')">Pré-Garantir</button>
-      </div>
-
-      <!-- Pioneer Edition -->
-      <div class="pricing-card featured">
-        <span class="badge">Limitado a 5.000 Unidades</span>
-        <h3>EB-X1 Pioneer Titan</h3>
-        <p style="color: #9ca3af;">Edição de Colecionador Numerada</p>
-        <div class="price">$799 <span>USD</span></div>
-        <ul class="pricing-features">
-          <li>Chassi Titânio com Gravação a Laser Numerada</li>
-          <li>Projeção Micro-Laser RGB Tricolor</li>
-          <li>1 Ano de Assinatura **EchoCare+** grátis</li>
-          <li>Acesso direto ao canal Discord com Engenheiros</li>
-          <li>Kit de substituição de cartuchos microfluídicos por 2 anos</li>
-        </ul>
-        <button class="btn-primary" style="width: 100%;" onclick="alert('Reserva efetuada! Aguarde instruções no e-mail.')">Reservar com Sinal ($50)</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2026 EchoBand Inc. Todos os direitos reservados. Projetado para inovação biométrica contínua.</p>
-    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Conforme especificações regulatórias IEC 60825-1 e ISO 10993.</p>
-  </footer>
-
-  <!-- JAVASCRIPT DINÂMICO -->
-  <script>
-    // Efeito interativo no visor virtual laser do produto
-    const laserDisplay = document.getElementById('laserDisplay');
-    const displayStates = [
-      "PROJETANDO: 120/80 mmHg",
-      "GLICEMIA: 98 mg/dL (Estável)",
-      "CORTISOL: Normal (Baixo Estresse)",
-      "CHAMADA: João Silva [Conectado]",
-      "BATERIA: 94% (Cinético Ativo)"
-    ];
-
-    let currentStateIndex = 0;
-
-    setInterval(() => {
-      currentStateIndex = (currentStateIndex + 1) % displayStates.length;
-      laserDisplay.style.opacity = 0;
-      setTimeout(() => {
-        laserDisplay.innerText = displayStates[currentStateIndex];
-        laserDisplay.style.opacity = 1;
-      }, 300);
-    }, 3000);
-
-    // Função de Rolagem Suave
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({
-        behavior: 'smooth'
-      });
-    }
-  </script>
+        // Atualiza o jogo a cada 100ms
+        let game = setInterval(draw, 100);
+    </script>
 </body>
 </html>
