@@ -3,123 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Cobrinha</title>
+    <title>Space Defender</title>
     <style>
         body {
-            background-color: #2c3e50;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
+            overflow: hidden;
+            background-color: #0b0c10;
+            color: #66fcf1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         canvas {
-            background-color: #34495e;
-            border: 4px solid #ecf0f1;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background-color: #000;
+            box-shadow: 0 0 30px #45a29e;
+            border: 2px solid #1f2833;
         }
-        h1 { margin-bottom: 10px; }
-        p { margin-top: 10px; color: #bdc3c7; }
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            pointer-events: none;
+        }
+        h1 { margin: 0; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; }
+        p { margin: 5px 0; font-size: 18px; }
     </style>
 </head>
 <body>
 
-    <h1>Jogo da Cobrinha</h1>
-    <h2 id="score">Pontuação: 0</h2>
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
-    <p>Use as setas do teclado para jogar.</p>
+    <div id="ui">
+        <h1>Space Defender</h1>
+        <p id="scoreEl">Pontos: 0</p>
+        <p>Setas para mover | ESPAÇO para atirar</p>
+    </div>
+
+    <canvas id="gameCanvas" width="500" height="700"></canvas>
 
     <script>
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
+        const scoreEl = document.getElementById("scoreEl");
 
-        const box = 20; // Tamanho de cada quadrado
-        let snake = [];
-        snake[0] = { x: 9 * box, y: 10 * box }; // Posição inicial
-
-        let food = {
-            x: Math.floor(Math.random() * 19 + 1) * box,
-            y: Math.floor(Math.random() * 19 + 1) * box
-        };
-
+        let animationId;
         let score = 0;
-        let d; // Direção
+        let isGameOver = false;
 
-        // Escuta as teclas
-        document.addEventListener("keydown", direction);
+        // Entradas do teclado
+        const keys = { ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, Space: false };
+        
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') keys.Space = true;
+            if (keys.hasOwnProperty(e.key)) keys[e.key] = true;
+        });
+        window.addEventListener('keyup', (e) => {
+            if (e.code === 'Space') keys.Space = false;
+            if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
+        });
 
-        function direction(event) {
-            if (event.keyCode == 37 && d != "RIGHT") { d = "LEFT"; }
-            else if (event.keyCode == 38 && d != "DOWN") { d = "UP"; }
-            else if (event.keyCode == 39 && d != "LEFT") { d = "RIGHT"; }
-            else if (event.keyCode == 40 && d != "UP") { d = "DOWN"; }
-        }
-
-        function collision(head, array) {
-            for (let i = 0; i < array.length; i++) {
-                if (head.x == array[i].x && head.y == array[i].y) {
-                    return true;
-                }
+        // Classes do Jogo
+        class Player {
+            constructor() {
+                this.width = 40;
+                this.height = 40;
+                this.x = canvas.width / 2 - this.width / 2;
+                this.y = canvas.height - 80;
+                this.color = "#66fcf1";
+                this.speed = 6;
+                this.cooldown = 0;
             }
-            return false;
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.moveTo(this.x + this.width / 2, this.y);
+                ctx.lineTo(this.x, this.y + this.height);
+                ctx.lineTo(this.x + this.width, this.y + this.height);
+                ctx.fill();
+            }
+            update() {
+                if (keys.ArrowLeft && this.x > 0) this.x -= this.speed;
+                if (keys.ArrowRight && this.x + this.width < canvas.width) this.x += this.speed;
+                if (keys.ArrowUp && this.y > 0) this.y -= this.speed;
+                if (keys.ArrowDown && this.y + this.height < canvas.height) this.y += this.speed;
+
+                if (keys.Space && this.cooldown <= 0) {
+                    projectiles.push(new Projectile(this.x + this.width / 2, this.y));
+                    this.cooldown = 10; // Taxa de tiro
+                }
+                if (this.cooldown > 0) this.cooldown--;
+                this.draw();
+            }
         }
 
-        function draw() {
-            // Limpa o canvas
-            ctx.fillStyle = "#34495e";
+        class Projectile {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 4;
+                this.color = "#fff";
+                this.velocity = 10;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            update() {
+                this.y -= this.velocity;
+                this.draw();
+            }
+        }
+
+        class Enemy {
+            constructor() {
+                this.width = Math.random() * 30 + 20;
+                this.height = this.width;
+                this.x = Math.random() * (canvas.width - this.width);
+                this.y = -this.height;
+                this.color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+                this.velocity = Math.random() * 2 + 1.5 + (score * 0.005); // Fica mais rápido com o tempo
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+            update() {
+                this.y += this.velocity;
+                this.draw();
+            }
+        }
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.radius = Math.random() * 3 + 1;
+                this.color = color;
+                this.velocity = { x: (Math.random() - 0.5) * 8, y: (Math.random() - 0.5) * 8 };
+                this.alpha = 1;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+            update() {
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.02;
+                this.draw();
+            }
+        }
+
+        class Star {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 1.5;
+                this.velocity = this.radius * 0.5; // Parallax
+            }
+            draw() {
+                ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            update() {
+                this.y += this.velocity;
+                if (this.y > canvas.height) {
+                    this.y = 0;
+                    this.x = Math.random() * canvas.width;
+                }
+                this.draw();
+            }
+        }
+
+        // Variáveis Globais
+        let player = new Player();
+        let projectiles = [];
+        let enemies = [];
+        let particles = [];
+        let stars = [];
+        let frames = 0;
+
+        for(let i=0; i<100; i++) stars.push(new Star());
+
+        // Sistema de Colisão (AABB)
+        function rectIntersect(x1, y1, w1, h1, x2, y2, w2, h2) {
+            return x2 < x1 + w1 && x2 + w2 > x1 && y2 < y1 + h1 && y2 + h2 > y1;
+        }
+
+        // Loop Principal
+        function animate() {
+            if (isGameOver) return;
+            animationId = requestAnimationFrame(animate);
+            
+            // Fundo escuro com leve rastro (Motion Blur)
+            ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Desenha a cobra
-            for (let i = 0; i < snake.length; i++) {
-                ctx.fillStyle = (i == 0) ? "#2ecc71" : "#27ae60";
-                ctx.fillRect(snake[i].x, snake[i].y, box, box);
-                ctx.strokeStyle = "#2c3e50";
-                ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+            stars.forEach(star => star.update());
+            player.update();
+
+            // Gerenciar Partículas
+            particles.forEach((particle, index) => {
+                if (particle.alpha <= 0) particles.splice(index, 1);
+                else particle.update();
+            });
+
+            // Gerenciar Tiros
+            projectiles.forEach((projectile, pIndex) => {
+                projectile.update();
+                if (projectile.y + projectile.radius < 0) {
+                    projectiles.splice(pIndex, 1);
+                }
+            });
+
+            // Gerar Inimigos
+            if (frames % Math.max(30, 80 - Math.floor(score/5)) === 0) {
+                enemies.push(new Enemy());
             }
 
-            // Desenha a comida
-            ctx.fillStyle = "#e74c3c";
-            ctx.fillRect(food.x, food.y, box, box);
+            // Atualizar Inimigos e Colisões
+            enemies.forEach((enemy, eIndex) => {
+                enemy.update();
 
-            // Posição antiga da cabeça
-            let snakeX = snake[0].x;
-            let snakeY = snake[0].y;
+                // Colisão: Inimigo com Jogador
+                if (rectIntersect(player.x, player.y, player.width, player.height, enemy.x, enemy.y, enemy.width, enemy.height)) {
+                    isGameOver = true;
+                    setTimeout(() => alert(`Fim de Jogo! Pontuação: ${score}\nAtualize a página para recomeçar.`), 100);
+                }
 
-            // Para onde vai
-            if (d == "LEFT") snakeX -= box;
-            if (d == "UP") snakeY -= box;
-            if (d == "RIGHT") snakeX += box;
-            if (d == "DOWN") snakeY += box;
+                // Colisão: Tiro com Inimigo
+                projectiles.forEach((projectile, pIndex) => {
+                    const hitX = projectile.x > enemy.x && projectile.x < enemy.x + enemy.width;
+                    const hitY = projectile.y > enemy.y && projectile.y < enemy.y + enemy.height;
+                    
+                    if (hitX && hitY) {
+                        // Criar Explosão
+                        for (let i = 0; i < 15; i++) {
+                            particles.push(new Particle(projectile.x, projectile.y, enemy.color));
+                        }
+                        
+                        setTimeout(() => {
+                            enemies.splice(eIndex, 1);
+                            projectiles.splice(pIndex, 1);
+                        }, 0);
+                        score += 10;
+                        scoreEl.innerText = `Pontos: ${score}`;
+                    }
+                });
 
-            // Se comer a comida
-            if (snakeX == food.x && snakeY == food.y) {
-                score++;
-                document.getElementById("score").innerText = "Pontuação: " + score;
-                food = {
-                    x: Math.floor(Math.random() * 19 + 1) * box,
-                    y: Math.floor(Math.random() * 19 + 1) * box
-                };
-            } else {
-                snake.pop(); // Remove a cauda se não comeu
-            }
+                // Remover inimigo se sair da tela
+                if (enemy.y > canvas.height) {
+                    enemies.splice(eIndex, 1);
+                }
+            });
 
-            // Nova cabeça
-            let newHead = { x: snakeX, y: snakeY };
-
-            // Game Over (bater na parede ou no próprio corpo)
-            if (snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
-                clearInterval(game);
-                alert("Game Over! Sua pontuação foi: " + score + ". Atualize a página para tentar de novo.");
-            }
-
-            snake.unshift(newHead);
+            frames++;
         }
 
-        // Atualiza o jogo a cada 100ms
-        let game = setInterval(draw, 100);
+        animate();
     </script>
 </body>
 </html>
