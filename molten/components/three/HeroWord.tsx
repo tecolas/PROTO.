@@ -34,7 +34,7 @@ export default function HeroWord() {
   return (
     <group ref={group}>
       <Text
-        font="/fonts/anton.woff"
+        font={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/fonts/anton.woff`}
         fontSize={1}
         letterSpacing={-0.01}
         anchorX="center"
