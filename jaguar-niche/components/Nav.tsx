@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { toggleCart, useCart, useUI } from "@/lib/store";
 import { scrollToTarget } from "@/lib/scroll";
+import { openWhatsApp } from "@/lib/contact";
+import Logo from "./ui/Logo";
 
 const LINKS = [
   { label: "História", href: "#historia" },
@@ -11,6 +13,7 @@ const LINKS = [
   { label: "Cores", href: "#cores" },
   { label: "Materiais", href: "#materiais" },
   { label: "Loja", href: "#loja" },
+  { label: "Contato", href: "whatsapp" },
 ];
 
 /** Uses mix-blend-difference so it stays legible over black AND white sections. */
@@ -33,6 +36,7 @@ export default function Nav() {
 
   const go = (href: string) => {
     setMenu(false);
+    if (href === "whatsapp") return openWhatsApp();
     scrollToTarget(href);
   };
 
@@ -45,11 +49,9 @@ export default function Nav() {
         className="fixed inset-x-0 top-0 z-50 px-4 pt-4 text-white mix-blend-difference md:px-8"
       >
         <nav className="mx-auto flex h-16 items-center justify-between pl-2">
-          <button onClick={() => go("#topo")} className="flex items-center gap-2.5" data-cursor="hover" aria-label="Norte — voltar ao topo">
-            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor" aria-hidden>
-              <path d="M12 1.5 21 22.5 12 17.6 3 22.5Z" />
-            </svg>
-            <span className="display text-xl tracking-tight">Norte</span>
+          <button onClick={() => go("#topo")} className="flex items-center gap-2.5" data-cursor="hover" aria-label="Jaguar Niche — voltar ao topo">
+            <Logo className="h-7 w-7" />
+            <span className="display text-lg leading-none tracking-tight md:text-xl">Jaguar <span className="font-serif font-normal normal-case italic tracking-normal">Niche</span></span>
           </button>
 
           <ul className="hidden items-center gap-8 lg:flex">

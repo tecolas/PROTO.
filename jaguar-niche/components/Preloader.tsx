@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useMotionValue, useTransform, animate } from "
 import { ui } from "@/lib/store";
 import { getLenis } from "@/lib/scroll";
 
-const WORD = "NORTE".split("");
+const WORD = "JAGUAR".split("");
 
 export default function Preloader() {
   const [done, setDone] = useState(false);
@@ -69,16 +69,17 @@ export default function Preloader() {
           transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
         >
           <div className="eyebrow flex items-start justify-between text-ash">
-            <span>Norte®</span>
+            <span>Jaguar Niche®</span>
             <span className="hidden md:block">Inverno 26</span>
             <span>Quarter Zips</span>
           </div>
 
+          <div className="flex flex-col items-center">
           <div className="flex justify-center overflow-hidden">
             {WORD.map((ch, i) => (
               <motion.span
                 key={i}
-                className="display text-[22vw] text-paper md:text-[18vw]"
+                className="display text-[17vw] text-paper md:text-[14vw]"
                 initial={{ y: "110%" }}
                 animate={{ y: "0%" }}
                 exit={{ y: "-110%" }}
@@ -87,6 +88,18 @@ export default function Preloader() {
                 {ch}
               </motion.span>
             ))}
+          </div>
+          <div className="overflow-hidden">
+            <motion.p
+              className="font-serif text-[9vw] italic leading-none text-paper/80 md:text-[5vw]"
+              initial={{ y: "110%" }}
+              animate={{ y: "0%" }}
+              exit={{ y: "-110%" }}
+              transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Niche
+            </motion.p>
+          </div>
           </div>
 
           <div>

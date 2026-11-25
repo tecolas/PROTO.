@@ -3,6 +3,8 @@ import Preloader from "@/components/Preloader";
 import Cursor from "@/components/ui/Cursor";
 import Nav from "@/components/Nav";
 import CartDrawer from "@/components/CartDrawer";
+import SizeGuide from "@/components/SizeGuide";
+import WhatsFloat from "@/components/WhatsFloat";
 import Stage from "@/components/Stage";
 import SceneMount from "@/components/SceneMount";
 import Director from "@/components/Director";
@@ -24,6 +26,8 @@ export default function Home() {
       <Cursor />
       <Nav />
       <CartDrawer />
+      <SizeGuide />
+      <WhatsFloat />
       <Stage />
       <SceneMount />
 

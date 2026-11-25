@@ -6,6 +6,8 @@ import { brl } from "@/lib/catalog";
 import { setQty, toggleCart, useCart } from "@/lib/store";
 import { getLenis } from "@/lib/scroll";
 import ZipArt from "./ui/ZipArt";
+import { openWhatsApp } from "@/lib/contact";
+import { WhatsIcon } from "./SizeGuide";
 
 const FREE_SHIP = 600;
 
@@ -120,12 +122,25 @@ export default function CartDrawer() {
               </div>
               <button
                 disabled={!items.length}
-                className="group relative h-14 w-full overflow-hidden rounded-full bg-ink text-sm font-semibold uppercase tracking-[0.2em] text-paper transition-opacity disabled:opacity-30"
+                onClick={() => {
+                  const lines = items.map((i) => `• ${i.qty}× ${i.name} — ${i.detail} — ${brl(i.price * i.qty)}`);
+                  openWhatsApp(
+                    [
+                      "Olá! Quero finalizar este pedido na Jaguar Niche:",
+                      "",
+                      ...lines,
+                      "",
+                      `Subtotal: ${brl(subtotal)}${pct >= 1 ? " (frete grátis)" : ""}`,
+                    ].join("\n"),
+                  );
+                }}
+                className="group relative flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-ink text-sm font-semibold uppercase tracking-[0.16em] text-paper transition-opacity disabled:opacity-30"
               >
-                <span className="absolute inset-0 -translate-x-full bg-mid transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-enabled:group-hover:translate-x-0" />
-                <span className="relative">Finalizar — {brl(subtotal)}</span>
+                <span className="absolute inset-0 -translate-x-full bg-[#25D366] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-enabled:group-hover:translate-x-0" />
+                <WhatsIcon className="relative h-5 w-5" />
+                <span className="relative">Finalizar pelo WhatsApp</span>
               </button>
-              <p className="mt-3 text-center text-xs text-ash">ou 6× sem juros no cartão</p>
+              <p className="mt-3 text-center text-xs text-ash">Seu pedido vai pronto na conversa. A gente confirma estoque, frete e pagamento por lá.</p>
             </div>
           </motion.aside>
         </>

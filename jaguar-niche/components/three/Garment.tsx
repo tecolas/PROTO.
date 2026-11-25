@@ -336,7 +336,7 @@ export default function Garment() {
   }, []);
 
   useEffect(() => {
-    document.fonts?.load('120px "Archivo Black"').then(() => {
+    Promise.all([document.fonts?.load('92px "Archivo Black"'), document.fonts?.load('600 30px "Inter Tight Variable"')]).then(() => {
       const fresh = labelTexture();
       label.canvas.getContext("2d")!.drawImage(fresh.canvas, 0, 0);
       label.tex.needsUpdate = true;

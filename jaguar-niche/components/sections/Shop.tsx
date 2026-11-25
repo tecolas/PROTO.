@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { COLORS, TYPES, brl, type ZipType } from "@/lib/catalog";
-import { addToCart } from "@/lib/store";
+import { addToCart, openSizes } from "@/lib/store";
 import ZipArt from "../ui/ZipArt";
 import Button from "../ui/Button";
 import { RevealWords, FadeUp } from "../ui/Reveal";
@@ -92,7 +92,13 @@ function ProductCard({ t, i }: { t: ZipType; i: number }) {
             ))}
           </div>
 
-          <div className="mb-5 mt-4 flex gap-1.5" role="radiogroup" aria-label="Tamanho">
+          <div className="mt-4 flex items-center justify-between">
+            <span className="eyebrow !text-[10px] text-ash">Tamanho</span>
+            <button onClick={() => openSizes()} className="u-link text-xs font-medium text-ink/70 hover:text-ink">
+              Tabela de medidas
+            </button>
+          </div>
+          <div className="mb-5 mt-2 flex gap-1.5" role="radiogroup" aria-label="Tamanho">
             {SIZES.map((s) => (
               <button
                 key={s}

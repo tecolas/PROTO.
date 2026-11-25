@@ -1,5 +1,7 @@
 "use client";
 
+import Logo from "../ui/Logo";
+
 import { useRef } from "react";
 import {
   motion,
@@ -60,15 +62,13 @@ const WORDS = ["Merino", "Fleece", "Tech Shell", "Moletom", "Zíper metálico", 
 
 export default function Marquee() {
   return (
-    <section aria-label="Valores Norte" className="relative z-10 -my-6 py-16">
+    <section aria-label="Valores Jaguar Niche" className="relative z-10 -my-6 py-16">
       <div className="-rotate-2 scale-105 bg-ink py-4 text-paper md:py-6">
         <VelocityMarquee baseVelocity={2.2}>
           {[...WORDS, ...WORDS].map((w, i) => (
             <span key={i} className="display flex items-center gap-8 pr-8 text-5xl md:text-8xl">
               {w}
-              <svg viewBox="0 0 24 24" className="h-7 w-7 md:h-10 md:w-10" fill="currentColor" aria-hidden>
-                <path d="M12 1.5 21 22.5 12 17.6 3 22.5Z" />
-              </svg>
+              <Logo className="h-8 w-8 md:h-12 md:w-12" />
             </span>
           ))}
         </VelocityMarquee>

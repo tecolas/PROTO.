@@ -198,10 +198,14 @@ export function labelTexture() {
   ctx.strokeRect(14, 14, 484, 172);
   ctx.setLineDash([]);
   ctx.fillStyle = "#f0efea";
-  ctx.font = '120px "Archivo Black", "Arial Black", sans-serif';
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillText("NORTE", 256, 108);
+  ctx.font = '92px "Archivo Black", "Arial Black", sans-serif';
+  ctx.fillText("JAGUAR", 256, 88);
+  ctx.font = '600 30px "Inter Tight Variable", "Arial", sans-serif';
+  ctx.letterSpacing = "18px";
+  ctx.fillText("NICHE", 265, 152);
+  ctx.letterSpacing = "0px";
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 8;

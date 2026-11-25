@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { TYPES, COLORS, brl } from "@/lib/catalog";
-import { addToCart, setType, useUI } from "@/lib/store";
+import { addToCart, openSizes, setType, useUI } from "@/lib/store";
 import { scrollToTarget } from "@/lib/scroll";
 import { fabricPreview } from "../three/fabric";
 import Button from "../ui/Button";
@@ -176,6 +176,9 @@ export default function Types() {
                     >
                       Adicionar — {brl(t.price)}
                     </Button>
+                    <button onClick={() => openSizes()} className="u-link hidden text-sm font-medium sm:inline">
+                      Tabela de medidas
+                    </button>
                   </div>
                 </motion.div>
               </motion.div>

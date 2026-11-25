@@ -63,9 +63,12 @@ type UIState = {
   sceneActive: boolean;
   /** true while the Colours section owns the backdrop */
   colorsActive: boolean;
+  /** size-guide modal */
+  sizesOpen: boolean;
 };
 
-export const ui = createStore<UIState>({ type: 0, color: 0, loaded: false, introDone: false, sceneActive: true, colorsActive: false });
+export const ui = createStore<UIState>({ type: 0, color: 0, loaded: false, introDone: false, sceneActive: true, colorsActive: false, sizesOpen: false });
+export const openSizes = (open = true) => ui.set({ sizesOpen: open });
 export const useUI = <S,>(sel: (s: UIState) => S) => useStore(ui, sel);
 
 export const setType = (i: number) => {

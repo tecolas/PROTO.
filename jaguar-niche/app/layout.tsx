@@ -6,7 +6,7 @@ import "@fontsource/instrument-serif/400-italic.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NORTE — Quarter Zips",
+  title: "Jaguar Niche — Quarter Zips",
   description: "Quarter zips de merino, fleece, tech shell e moletom pesado. Feitos para o frio, desenhados para durar.",
 };
 

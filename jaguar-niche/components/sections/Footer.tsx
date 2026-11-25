@@ -6,6 +6,42 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { scrollToTarget } from "@/lib/scroll";
+import { openSizes } from "@/lib/store";
+import { openWhatsApp, whatsappLink, WHATSAPP_DISPLAY } from "@/lib/contact";
+import { WhatsIcon } from "../SizeGuide";
+
+type Link = { label: string; href?: string; onClick?: () => void };
+const wa = (msg: string) => () => openWhatsApp(msg);
+
+const COLUMNS: { t: string; l: Link[] }[] = [
+  {
+    t: "Loja",
+    l: [
+      { label: "Quarter zips", onClick: () => scrollToTarget("#loja") },
+      { label: "Kit Camadas", onClick: () => scrollToTarget("#loja") },
+      { label: "Vale-presente", onClick: wa("Olá! Quero comprar um vale-presente da Jaguar Niche.") },
+      { label: "Atacado", onClick: wa("Olá! Tenho interesse em comprar no atacado da Jaguar Niche.") },
+    ],
+  },
+  {
+    t: "Jaguar Niche",
+    l: [
+      { label: "Nossa história", onClick: () => scrollToTarget("#historia") },
+      { label: "Materiais", onClick: () => scrollToTarget("#materiais") },
+      { label: "Cores", onClick: () => scrollToTarget("#cores") },
+      { label: "Trabalhe conosco", onClick: wa("Olá! Gostaria de trabalhar com a Jaguar Niche.") },
+    ],
+  },
+  {
+    t: "Ajuda",
+    l: [
+      { label: "Entregas", onClick: wa("Olá! Tenho uma dúvida sobre entrega.") },
+      { label: "Trocas", onClick: wa("Olá! Preciso de ajuda com uma troca.") },
+      { label: "Tabela de medidas", onClick: () => openSizes() },
+      { label: "Contato", href: whatsappLink() },
+    ],
+  },
+];
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -99,7 +135,7 @@ export default function Footer() {
         <div className="relative grid gap-10 md:grid-cols-12">
           <div className="md:col-span-8">
             <p className="eyebrow">
-              <span className="text-ash">(08)</span> Lista Norte
+              <span className="text-ash">(08)</span> Lista Jaguar
             </p>
             <h2 className="display mt-6 text-[13vw] md:text-[7.5vw]">
               Próximo lote,
@@ -118,19 +154,21 @@ export default function Footer() {
         <div className="md:col-span-4">
           <p className="font-serif text-3xl italic leading-tight text-paper/90">Desenhado no Sul, feito para qualquer frio.</p>
         </div>
-        {[
-          { t: "Loja", l: ["Quarter zips", "Kit Camadas", "Vale-presente", "Atacado"] },
-          { t: "Norte", l: ["Nossa história", "Fornecedores", "Jornal", "Trabalhe conosco"] },
-          { t: "Ajuda", l: ["Entregas", "Trocas", "Guia de medidas", "Contato"] },
-        ].map((c, i) => (
+        {COLUMNS.map((c, i) => (
           <div key={c.t} className={i === 0 ? "md:col-span-2 md:col-start-7" : "md:col-span-2"}>
             <p className="eyebrow mb-4 text-ash">{c.t}</p>
             <ul className="space-y-2">
               {c.l.map((x) => (
-                <li key={x}>
-                  <a href="#" onClick={(e) => e.preventDefault()} className="u-link text-paper/80 hover:text-paper">
-                    {x}
-                  </a>
+                <li key={x.label}>
+                  {x.href ? (
+                    <a href={x.href} target="_blank" rel="noopener noreferrer" className="u-link text-paper/80 hover:text-paper">
+                      {x.label}
+                    </a>
+                  ) : (
+                    <button onClick={x.onClick} className="u-link text-left text-paper/80 hover:text-paper">
+                      {x.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -138,18 +176,38 @@ export default function Footer() {
         ))}
       </div>
 
-      <div className="mark relative select-none px-3 md:px-6" aria-hidden>
-        <div className="display flex justify-between overflow-hidden pt-[1vw] text-[21.5vw] leading-[0.9]">
-          {"NORTE".split("").map((c, i) => (
-            <span key={i} className="mark-letter inline-block">
-              {c}
-            </span>
-          ))}
-        </div>
+      <div className="px-5 pb-10 md:px-10">
+        <a
+          href={whatsappLink()}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cursor="hover"
+          className="group inline-flex items-center gap-4 rounded-full border border-paper/20 py-2 pl-2 pr-6 transition-colors hover:bg-paper hover:text-ink"
+        >
+          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-ink">
+            <WhatsIcon className="h-5 w-5" />
+          </span>
+          <span>
+            <span className="eyebrow block text-ash group-hover:text-ink/60">WhatsApp</span>
+            <span className="text-lg font-semibold">{WHATSAPP_DISPLAY}</span>
+          </span>
+        </a>
       </div>
 
-      <div className="eyebrow flex flex-col items-center justify-between gap-3 border-t border-paper/10 px-5 py-6 !tracking-[0.2em] text-ash md:flex-row md:px-10">
-        <span>© 2026 Norte Vestuário</span>
+      <div className="mark relative select-none px-3 md:px-6" aria-hidden>
+        {["JAGUAR", "NICHE"].map((word, w) => (
+          <div key={word} className={`display flex justify-between overflow-hidden leading-[0.9] ${w ? "text-outline pb-[1vw] text-[16vw]" : "pt-[1vw] text-[18.5vw]"}`}>
+            {word.split("").map((c, i) => (
+              <span key={i} className="mark-letter inline-block">
+                {c}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <div className="eyebrow flex flex-col items-center justify-between gap-3 border-t border-paper/10 px-5 pb-24 pt-6 !tracking-[0.2em] text-ash md:flex-row md:px-10 md:pb-6 md:pr-28">
+        <span>© 2026 Jaguar Niche</span>
         <span>Quarter zips · Inverno 26</span>
         <button onClick={() => scrollToTarget(0)} className="u-link text-paper" data-cursor="hover">
           Voltar ao topo ↑

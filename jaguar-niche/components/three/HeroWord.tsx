@@ -24,8 +24,8 @@ export default function HeroWord() {
     const vp = state.viewport.getCurrentViewport(camera, tmp);
     const landscape = size.width > size.height;
     const scroll = window.scrollY / window.innerHeight;
-    g.scale.setScalar((vp.width * (landscape ? 0.94 : 0.92)) / w);
-    g.position.set(0, (landscape ? 0.06 : 0.12) * vp.height + scroll * vp.height, DEPTH);
+    g.scale.setScalar((vp.width * (landscape ? 0.74 : 0.9)) / w);
+    g.position.set(0, (landscape ? 0.07 : 0.12) * vp.height + scroll * vp.height, DEPTH);
     g.visible = scroll < 1.3;
   });
 
@@ -37,6 +37,8 @@ export default function HeroWord() {
         letterSpacing={-0.03}
         anchorX="center"
         anchorY="middle"
+        textAlign="center"
+        lineHeight={0.86}
         fillOpacity={0}
         strokeWidth={0.008}
         strokeColor="#0b0b0b"
@@ -47,7 +49,7 @@ export default function HeroWord() {
           if (bb) setW(Math.max(0.1, bb.max.x - bb.min.x));
         }}
       >
-        NORTE
+        {"JAGUAR\nNICHE"}
         <meshBasicMaterial transparent toneMapped={false} />
       </Text>
     </group>

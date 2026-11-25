@@ -41,8 +41,8 @@ export default function Hero() {
   });
 
   return (
-    <section id="topo" className="relative flex h-[100svh] min-h-[640px] flex-col justify-between px-5 pb-6 pt-28 text-ink md:px-10 md:pb-10">
-      <h1 className="sr-only">Norte — quarter zips premium de merino, fleece, tech shell e moletom</h1>
+    <section id="topo" className="relative flex h-[100svh] min-h-[640px] flex-col justify-between px-5 pb-24 pt-28 text-ink md:px-10 md:pb-10">
+      <h1 className="sr-only">Jaguar Niche — quarter zips premium de merino, fleece, tech shell e moletom</h1>
 
       <motion.div initial="hidden" animate={show} className="eyebrow flex items-start justify-between">
         <motion.p variants={fade(0.1)} className="max-w-[13rem] leading-relaxed">
