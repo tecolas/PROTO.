@@ -1,6 +1,6 @@
-:HL["/PROTO./jaguar-niche-site/_next/static/chunks/32bfbnhag7y9m.css","style"]
+:HL["/PROTO./jaguar-niche-site/_next/static/chunks/0w00enpu_86mz.css","style"]
 :HC["/",""]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":{"n":"slug","t":"d","k":"termos","s":[]},"h":65632,"c":"$Q3"}]]
 1:[["children",{"s":"institucional","h":131168,"c":"$Q2"}]]
-0:{"b":"5SEwteLj1__Pga219lp9-","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
+0:{"b":"WUsdAZDnkHwa7F9Be-5sQ","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}

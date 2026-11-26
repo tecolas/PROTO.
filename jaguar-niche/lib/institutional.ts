@@ -76,6 +76,91 @@ export const PAGES: InstitutionalPage[] = [
       },
     ],
   },
+  {
+    slug: "privacidade",
+    label: "Política de privacidade",
+    title: "Política de Privacidade",
+    updated: "novembro de 2026",
+    intro:
+      "Esta Política descreve como a Jaguar Niche coleta, usa, compartilha e protege seus dados pessoais, de acordo com a Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018).",
+    sections: [
+      {
+        title: "Dados que coletamos",
+        blocks: [
+          {
+            list: [
+              "Atendimento e pedido: nome, telefone, CPF e endereço de entrega, informados por você no WhatsApp ao finalizar a compra. Eles são necessários para processar o pedido, emitir a nota fiscal e gerar o envio.",
+              "Itens do pedido: produtos, cores, tamanhos, quantidades e valores, além da data e hora do aceite dos Termos de Uso.",
+              "Lista Jaguar: o e-mail, caso você se cadastre para receber novidades.",
+              "Navegação: o site não tem cadastro nem login e não usa cookies. A sacola fica salva apenas no seu navegador, durante a visita. O provedor que hospeda o site pode registrar dados técnicos de acesso, como o endereço IP, por motivos de segurança.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Como usamos seus dados",
+        blocks: [
+          "Usamos seus dados exclusivamente para processar compras, entregar pedidos, oferecer suporte, realizar trocas e devoluções, prevenir fraudes e cumprir obrigações legais. O e-mail da Lista Jaguar é usado só para enviar novidades da marca, e você pode pedir para sair a qualquer momento.",
+          "Não vendemos seus dados e não os compartilhamos para fins de marketing de terceiros.",
+        ],
+      },
+      {
+        title: "Pagamento",
+        blocks: [
+          "Os pagamentos por Pix e cartão de crédito são processados por instituições de pagamento autorizadas. Não armazenamos dados completos de cartão. Essas informações vão direto entre você e a instituição de pagamento, de forma criptografada, e nós recebemos apenas a confirmação do pagamento.",
+          "A Jaguar Niche nunca pede número completo do cartão, código de segurança ou senha pelo WhatsApp ou pelo Instagram.",
+        ],
+      },
+      {
+        title: "Envio",
+        blocks: [
+          "Para gerar etiquetas e rastrear pedidos, compartilhamos nome, CPF, telefone e endereço com os Correios e as transportadoras parceiras responsáveis pela entrega.",
+        ],
+      },
+      {
+        title: "Atendimento pelo WhatsApp e Instagram",
+        blocks: [
+          "Nosso atendimento e a finalização dos pedidos acontecem pelo WhatsApp e pelo Instagram, serviços da Meta. As mensagens trocadas nesses aplicativos também seguem as políticas de privacidade deles.",
+        ],
+      },
+      {
+        title: "Seus direitos (LGPD)",
+        blocks: [
+          "Você pode, a qualquer momento:",
+          {
+            list: [
+              "Confirmar se tratamos dados seus;",
+              "Acessar, corrigir ou atualizar seus dados;",
+              "Solicitar a exclusão dos seus dados pessoais;",
+              "Revogar o consentimento, como o cadastro na Lista Jaguar;",
+              "Solicitar a portabilidade dos seus dados para outro fornecedor.",
+            ],
+          },
+          "Para exercer qualquer direito, fale com a gente pelo {whatsapp} ou pelo Instagram {instagram}.",
+        ],
+      },
+      {
+        title: "Retenção",
+        blocks: [
+          "Mantemos seus dados pelo tempo necessário para cumprir as finalidades acima e as obrigações legais, como notas fiscais, prazos de troca e garantia e prevenção a fraudes.",
+        ],
+      },
+      {
+        title: "Segurança",
+        blocks: [
+          "Adotamos medidas para proteger seus dados: o site funciona com conexão criptografada (HTTPS), não guarda dados pessoais em banco de dados próprio, e os dados dos pedidos ficam com acesso restrito à nossa equipe.",
+        ],
+      },
+      {
+        title: "Cookies",
+        blocks: ["O site não usa cookies, nem para login nem para publicidade. Se isso mudar, atualizaremos esta Política."],
+      },
+      {
+        title: "Contato",
+        blocks: ["Dúvidas? Fale com a gente pelo {whatsapp} ou pelo Instagram {instagram}."],
+      },
+    ],
+  },
 ];
 
 export const getPage = (slug: string) => PAGES.find((p) => p.slug === slug);

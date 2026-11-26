@@ -1,4 +1,4 @@
-:HL["/PROTO./jaguar-niche-site/_next/static/chunks/32bfbnhag7y9m.css","style"]
+:HL["/PROTO./jaguar-niche-site/_next/static/chunks/0w00enpu_86mz.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"5SEwteLj1__Pga219lp9-","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"WUsdAZDnkHwa7F9Be-5sQ","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

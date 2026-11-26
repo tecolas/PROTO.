@@ -114,7 +114,7 @@ export default async function InstitutionalRoute({ params }: { params: Promise<{
         </div>
       </header>
 
-      <main className="mx-auto grid max-w-6xl gap-12 px-5 pb-24 pt-14 md:grid-cols-[220px_1fr] md:px-10 md:pt-20">
+      <main className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-5 pb-24 pt-14 md:grid-cols-[220px_1fr] md:px-10 md:pt-20">
         <nav aria-label="Institucional" className="md:sticky md:top-28 md:self-start">
           <p className="eyebrow mb-4 text-ash">Institucional</p>
           <ul className="flex flex-wrap gap-2 md:flex-col md:gap-1">
@@ -137,9 +137,9 @@ export default async function InstitutionalRoute({ params }: { params: Promise<{
           </ul>
         </nav>
 
-        <article className="max-w-3xl">
+        <article className="min-w-0 max-w-3xl">
           <p className="eyebrow text-ash">Última atualização: {page.updated}</p>
-          <h1 className="display mt-4 text-[13vw] md:text-7xl">{page.title}</h1>
+          <h1 className="display mt-4 break-words text-[8.4vw] md:text-7xl">{page.title}</h1>
           <p className="mt-6 font-serif text-2xl italic leading-snug md:text-3xl">{page.intro}</p>
 
           <ol className="mt-14 space-y-12">
