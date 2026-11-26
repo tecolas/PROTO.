@@ -7,10 +7,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { scrollToTarget } from "@/lib/scroll";
 import { openSizes } from "@/lib/store";
-import { openWhatsApp, whatsappLink, WHATSAPP_DISPLAY } from "@/lib/contact";
+import NextLink from "next/link";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, openWhatsApp, whatsappLink, WHATSAPP_DISPLAY } from "@/lib/contact";
+import { PAGES, pageHref } from "@/lib/institutional";
 import { WhatsIcon } from "../SizeGuide";
 
-type Link = { label: string; href?: string; onClick?: () => void };
+/** href = external (new tab), to = internal page, onClick = in-page action */
+type Link = { label: string; href?: string; to?: string; onClick?: () => void };
 const wa = (msg: string) => () => openWhatsApp(msg);
 
 const COLUMNS: { t: string; l: Link[] }[] = [
@@ -39,6 +42,13 @@ const COLUMNS: { t: string; l: Link[] }[] = [
       { label: "Trocas", onClick: wa("Olá! Preciso de ajuda com uma troca.") },
       { label: "Tabela de medidas", onClick: () => openSizes() },
       { label: "Contato", href: whatsappLink() },
+    ],
+  },
+  {
+    t: "Institucional",
+    l: [
+      ...PAGES.map((p) => ({ label: p.label, to: pageHref(p.slug) })),
+      { label: "Meus pedidos", onClick: wa("Olá! Quero acompanhar o meu pedido na Jaguar Niche.") },
     ],
   },
 ];
@@ -155,12 +165,16 @@ export default function Footer() {
           <p className="font-serif text-3xl italic leading-tight text-paper/90">Desenhado no Sul, feito para qualquer frio.</p>
         </div>
         {COLUMNS.map((c, i) => (
-          <div key={c.t} className={i === 0 ? "md:col-span-2 md:col-start-7" : "md:col-span-2"}>
+          <div key={c.t} className={i === 0 ? "md:col-span-2 md:col-start-5" : "md:col-span-2"}>
             <p className="eyebrow mb-4 text-ash">{c.t}</p>
             <ul className="space-y-2">
               {c.l.map((x) => (
                 <li key={x.label}>
-                  {x.href ? (
+                  {x.to ? (
+                    <NextLink href={x.to} className="u-link text-paper/80 hover:text-paper">
+                      {x.label}
+                    </NextLink>
+                  ) : x.href ? (
                     <a href={x.href} target="_blank" rel="noopener noreferrer" className="u-link text-paper/80 hover:text-paper">
                       {x.label}
                     </a>
@@ -176,7 +190,7 @@ export default function Footer() {
         ))}
       </div>
 
-      <div className="px-5 pb-10 md:px-10">
+      <div className="flex flex-wrap gap-3 px-5 pb-10 md:px-10">
         <a
           href={whatsappLink()}
           target="_blank"
@@ -190,6 +204,25 @@ export default function Footer() {
           <span>
             <span className="eyebrow block text-ash group-hover:text-ink/60">WhatsApp</span>
             <span className="text-lg font-semibold">{WHATSAPP_DISPLAY}</span>
+          </span>
+        </a>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cursor="hover"
+          className="group inline-flex items-center gap-4 rounded-full border border-paper/20 py-2 pl-2 pr-6 transition-colors hover:bg-paper hover:text-ink"
+        >
+          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-paper text-ink">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </span>
+          <span>
+            <span className="eyebrow block text-ash group-hover:text-ink/60">Instagram</span>
+            <span className="text-lg font-semibold">{INSTAGRAM_HANDLE}</span>
           </span>
         </a>
       </div>

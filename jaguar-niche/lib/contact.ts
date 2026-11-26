@@ -8,3 +8,6 @@ export const whatsappLink = (message = "Olá! Vim pelo site da Jaguar Niche e go
 export const openWhatsApp = (message?: string) => {
   window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
 };
+
+export const INSTAGRAM_HANDLE = "@jaguarniche.co";
+export const INSTAGRAM_URL = "https://www.instagram.com/jaguarniche.co/";
