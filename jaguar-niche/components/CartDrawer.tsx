@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import NextLink from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { brl } from "@/lib/catalog";
 import { setQty, toggleCart, useCart } from "@/lib/store";
@@ -8,6 +9,7 @@ import { getLenis } from "@/lib/scroll";
 import ZipArt from "./ui/ZipArt";
 import { openWhatsApp } from "@/lib/contact";
 import { WhatsIcon } from "./SizeGuide";
+import { pageHref } from "@/lib/institutional";
 
 const FREE_SHIP = 600;
 
@@ -16,6 +18,7 @@ export default function CartDrawer() {
   const items = useCart((s) => s.items);
   const subtotal = items.reduce((n, i) => n + i.price * i.qty, 0);
   const pct = Math.min(1, subtotal / FREE_SHIP);
+  const [accepted, setAccepted] = useState(false);
 
   useEffect(() => {
     const l = getLenis();
@@ -120,9 +123,25 @@ export default function CartDrawer() {
                 <span className="eyebrow text-ash">Subtotal</span>
                 <span className="display text-3xl tabular-nums">{brl(subtotal)}</span>
               </div>
+              <label className="mb-4 flex cursor-pointer items-start gap-3 text-sm leading-snug text-ink/75">
+                <input
+                  type="checkbox"
+                  checked={accepted}
+                  onChange={(e) => setAccepted(e.target.checked)}
+                  className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer accent-ink"
+                />
+                <span>
+                  Li e aceito os{" "}
+                  <NextLink href={pageHref("termos")} target="_blank" className="font-semibold text-ink underline underline-offset-2">
+                    Termos de Uso
+                  </NextLink>
+                  , incluindo as regras de troca e devolução.
+                </span>
+              </label>
               <button
-                disabled={!items.length}
+                disabled={!items.length || !accepted}
                 onClick={() => {
+                  const when = new Date().toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
                   const lines = items.map((i) => `• ${i.qty}× ${i.name} — ${i.detail} — ${brl(i.price * i.qty)}`);
                   openWhatsApp(
                     [
@@ -131,6 +150,8 @@ export default function CartDrawer() {
                       ...lines,
                       "",
                       `Subtotal: ${brl(subtotal)}${pct >= 1 ? " (frete grátis)" : ""}`,
+                      "",
+                      `✓ Li e aceito os Termos de Uso da Jaguar Niche (aceite em ${when}).`,
                     ].join("\n"),
                   );
                 }}

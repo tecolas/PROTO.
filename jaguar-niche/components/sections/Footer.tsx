@@ -7,10 +7,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { scrollToTarget } from "@/lib/scroll";
 import { openSizes } from "@/lib/store";
-import { openWhatsApp, whatsappLink, WHATSAPP_DISPLAY } from "@/lib/contact";
+import NextLink from "next/link";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, openWhatsApp, whatsappLink, WHATSAPP_DISPLAY } from "@/lib/contact";
+import { PAGES, pageHref } from "@/lib/institutional";
 import { WhatsIcon } from "../SizeGuide";
 
-type Link = { label: string; href?: string; onClick?: () => void };
+/** href = external (new tab), to = internal page, onClick = in-page action */
+type Link = { label: string; href?: string; to?: string; onClick?: () => void; icon?: React.ReactNode };
 const wa = (msg: string) => () => openWhatsApp(msg);
 
 const COLUMNS: { t: string; l: Link[] }[] = [
@@ -39,6 +42,30 @@ const COLUMNS: { t: string; l: Link[] }[] = [
       { label: "Trocas", onClick: wa("Olá! Preciso de ajuda com uma troca.") },
       { label: "Tabela de medidas", onClick: () => openSizes() },
       { label: "Contato", href: whatsappLink() },
+    ],
+  },
+  {
+    t: "Institucional",
+    l: [
+      ...PAGES.map((p) => ({ label: p.label, to: pageHref(p.slug) })),
+      { label: "Meus pedidos", onClick: wa("Olá! Quero acompanhar o meu pedido na Jaguar Niche.") },
+    ],
+  },
+  {
+    t: "Contato",
+    l: [
+      {
+        label: INSTAGRAM_HANDLE,
+        href: INSTAGRAM_URL,
+        icon: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        ),
+      },
+      { label: WHATSAPP_DISPLAY, href: whatsappLink(), icon: <WhatsIcon className="h-4 w-4" /> },
     ],
   },
 ];
@@ -154,15 +181,26 @@ export default function Footer() {
         <div className="md:col-span-4">
           <p className="font-serif text-3xl italic leading-tight text-paper/90">Desenhado no Sul, feito para qualquer frio.</p>
         </div>
-        {COLUMNS.map((c, i) => (
-          <div key={c.t} className={i === 0 ? "md:col-span-2 md:col-start-7" : "md:col-span-2"}>
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-8 lg:grid-cols-5">
+        {COLUMNS.map((c) => (
+          <div key={c.t}>
             <p className="eyebrow mb-4 text-ash">{c.t}</p>
             <ul className="space-y-2">
               {c.l.map((x) => (
                 <li key={x.label}>
-                  {x.href ? (
-                    <a href={x.href} target="_blank" rel="noopener noreferrer" className="u-link text-paper/80 hover:text-paper">
+                  {x.to ? (
+                    <NextLink href={x.to} className="u-link text-paper/80 hover:text-paper">
                       {x.label}
+                    </NextLink>
+                  ) : x.href ? (
+                    <a
+                      href={x.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`text-paper/80 hover:text-paper ${x.icon ? "inline-flex items-center gap-2" : "u-link"}`}
+                    >
+                      {x.icon}
+                      <span className={x.icon ? "u-link" : undefined}>{x.label}</span>
                     </a>
                   ) : (
                     <button onClick={x.onClick} className="u-link text-left text-paper/80 hover:text-paper">
@@ -174,9 +212,10 @@ export default function Footer() {
             </ul>
           </div>
         ))}
+        </div>
       </div>
 
-      <div className="px-5 pb-10 md:px-10">
+      <div className="flex flex-wrap gap-3 px-5 pb-10 md:px-10">
         <a
           href={whatsappLink()}
           target="_blank"
@@ -192,11 +231,30 @@ export default function Footer() {
             <span className="text-lg font-semibold">{WHATSAPP_DISPLAY}</span>
           </span>
         </a>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cursor="hover"
+          className="group inline-flex items-center gap-4 rounded-full border border-paper/20 py-2 pl-2 pr-6 transition-colors hover:bg-paper hover:text-ink"
+        >
+          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-paper text-ink">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </span>
+          <span>
+            <span className="eyebrow block text-ash group-hover:text-ink/60">Instagram</span>
+            <span className="text-lg font-semibold">{INSTAGRAM_HANDLE}</span>
+          </span>
+        </a>
       </div>
 
       <div className="mark relative select-none px-3 md:px-6" aria-hidden>
         {["JAGUAR", "NICHE"].map((word, w) => (
-          <div key={word} className={`display flex justify-between overflow-hidden leading-[0.9] ${w ? "text-outline pb-[1vw] text-[16vw]" : "pt-[1vw] text-[18.5vw]"}`}>
+          <div key={word} className={`display flex justify-between overflow-hidden leading-[0.9] ${w ? "text-outline pb-[1vw] text-[16vw]" : "pt-[1vw] text-[17vw] md:text-[18.5vw]"}`}>
             {word.split("").map((c, i) => (
               <span key={i} className="mark-letter inline-block">
                 {c}
