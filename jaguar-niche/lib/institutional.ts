@@ -40,7 +40,7 @@ export const PAGES: InstitutionalPage[] = [
       {
         title: "Pagamento",
         blocks: [
-          "Aceitamos Pix, boleto e cartão de crédito. A forma de pagamento e as condições de parcelamento são combinadas no atendimento pelo WhatsApp, ao finalizar o pedido.",
+          "Aceitamos Pix e cartão de crédito. Não trabalhamos com boleto. A forma de pagamento e as condições de parcelamento são combinadas no atendimento pelo WhatsApp, ao finalizar o pedido.",
           "O pedido só é confirmado e separado para envio após a aprovação do pagamento.",
         ],
       },
@@ -52,12 +52,12 @@ export const PAGES: InstitutionalPage[] = [
             list: [
               "Arrependimento: você pode desistir da compra em até 7 dias corridos após o recebimento, sem precisar justificar. Devolvemos o valor integral, incluindo o frete.",
               "Troca de tamanho ou cor: em até 30 dias corridos após o recebimento. A primeira troca é grátis e depende da disponibilidade em estoque.",
-              "Defeito de fabricação: em até 90 dias após o recebimento. Você escolhe entre a troca por uma peça igual ou o reembolso integral.",
+              "Defeito de fabricação: avise a gente em até 7 dias após o recebimento. Você escolhe entre a troca por uma peça igual ou o reembolso integral. Esse prazo não afeta a garantia legal prevista no Código de Defesa do Consumidor.",
             ],
           },
           "Para trocas e devoluções por arrependimento, a peça deve voltar sem sinais de uso, sem lavagem, com as etiquetas e na embalagem original.",
           "Como solicitar: fale com a gente pelo {whatsapp} informando o número do pedido. Em caso de defeito, envie fotos do problema. Nós passamos as instruções e o código de postagem.",
-          "Reembolso: é feito pela mesma forma de pagamento da compra, em até 10 dias úteis após recebermos e conferirmos a peça. No cartão de crédito, o estorno pode aparecer em até duas faturas, conforme a operadora.",
+          "Reembolso: é feito pela mesma forma de pagamento da compra, em até 7 dias úteis após recebermos e conferirmos a peça. No cartão de crédito, o estorno pode aparecer em até duas faturas, conforme a operadora.",
         ],
       },
       {
