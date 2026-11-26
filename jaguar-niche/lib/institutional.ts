@@ -114,7 +114,7 @@ export const PAGES: InstitutionalPage[] = [
       {
         title: "Envio",
         blocks: [
-          "Para gerar etiquetas e rastrear pedidos, compartilhamos nome, CPF, telefone e endereço com os Correios e as transportadoras parceiras responsáveis pela entrega.",
+          "Todos os pedidos são enviados pelos Correios. Para gerar a etiqueta e rastrear a entrega, compartilhamos com os Correios apenas nome, CPF, telefone e endereço.",
         ],
       },
       {

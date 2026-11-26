@@ -1,4 +1,4 @@
 :HL["/PROTO./jaguar-niche-site/_next/static/chunks/0w00enpu_86mz.css","style"]
 :HC["/",""]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"WUsdAZDnkHwa7F9Be-5sQ","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"Y7eCNLcr3gEpag2LxB1OY","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
